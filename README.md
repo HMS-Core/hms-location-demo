@@ -6,7 +6,8 @@
  * [Introduction](#introduction)
  * [Installation](#installation)
  * [Supported Environments](#supported-environments)
- * [Sample Code](#Sample Code)
+ - [Sample Code](#Sample Code)
+ - [Code Examples](#code-examples)
  * [License](#license)
  
  
@@ -50,6 +51,7 @@
     To enable your app to continuously obtain the device location, you can use the requestLocationUpdates() API provided by the HUAWEI Location Kit service. 
     Code £ºlocationkit-java-sample/app/src/main/java/com/huawei/hmssample/location/RequestLocationUpdatesWithCallbackActivity.java
     
+## Code Examples    
 
 ##  License
     HUAWEI Location kit sample is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
