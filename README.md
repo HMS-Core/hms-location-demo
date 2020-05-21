@@ -6,6 +6,7 @@
  * [Introduction](#introduction)
  * [Installation](#installation)
  * [Supported Environments](#supported-environments)
+ * [Sample Code](#sample-code)
  * [License](#license)
  
  
@@ -24,6 +25,11 @@
 ## Supported Environments
 	Android Studio
 	Java
+
+
+## Sample Code
+The hms-ads-demo-java program integrates the HMS Core Ads SDK and provides the pages for displaying banner, native, rewarded, interstitial, and splash ads, respectively.
+The following classes in the demo are used for loading and displaying ads and collecting user comments:
 
 
 ##  License
