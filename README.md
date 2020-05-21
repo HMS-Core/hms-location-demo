@@ -15,12 +15,11 @@
    
 
 ## Installation
-    Before using HuaweiLocationKit sample code, check whether the Android Studio environment has been installed. 
-    Decompress the HuaweiLocationKit sample code package.
-    Download  locationkit-java-sample.zip.
-	Decompress the locationkit-java-sample.zip.
-	Open locationkit-java-sample with Android studio.
- 
+   
+   1. Clone or download this project and open the downloaded folder in Android Studio or compatible IDE.
+
+   2. use IDE's functionality to install configured project on to your device.
+   
     
 ## Supported Environments
 	Android Studio
