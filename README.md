@@ -22,9 +22,7 @@
    
     
 ## Supported Environments
-	Android Studio
-	Java
-
+   HMS Core (APK) 4.0.3 or later has been installed on Huawei Android phones.
 
 ## Sample Code
 The hms-ads-demo-java program integrates the HMS Core Ads SDK and provides the pages for displaying banner, native, rewarded, interstitial, and splash ads, respectively.
