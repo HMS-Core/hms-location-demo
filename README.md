@@ -33,5 +33,5 @@ The following classes in the demo are used for loading and displaying ads and co
 
 
 ##  License
-    HUAWEI Location kit sample is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
-
+    locationkit-java-sample is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+    
