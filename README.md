@@ -6,51 +6,31 @@
  * [Introduction](#introduction)
  * [Installation](#installation)
  * [Supported Environments](#supported-environments)
- * [Sample Code](# Sample Code)
+ * [Sample Code](#sample-code)
  * [License](#license)
  
  
 ## Introduction
-    HUAWEI Location Kit sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.
+HUAWEI Location Kit sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.
    
 
 ## Installation
-    Before using HuaweiLocationKit sample code, check whether the Android Studio environment has been installed. 
-    Decompress the HuaweiLocationKit sample code package.
-    Download  locationkit-java-sample.zip.
-	Decompress the locationkit-java-sample.zip.
-	Open locationkit-java-sample with Android studio.
- 
+   
+1. Clone or download this project and open the downloaded folder in Android Studio or compatible IDE.
+
+2. use IDE's functionality to install configured project on to your device.
+   
     
 ## Supported Environments
-	Android Studio
-	Java
+   HMS Core (APK) 4.0.3 or later has been installed on Huawei Android phones.
 
-	
 ## Sample Code
-    To use the HUAWEI Location Kit service API, you need to download and install the HMS Core service component on your device, and integrate related SDKs into your project.
-    The following describes methods in this demo.
-    
-    SendMessage:    request location update.
-	
 
-    1). Assigning App Permissions
-    You need to apply for the permissions in the Manifest file.
-    Code £ºlocationkit-java-sample/app/src/AndroidManifest.xml
-    
-    2). Creating a Location Service Client.
-    Create a FusedLocationProviderClient instance in the OnCreate() method of the activity and use the instance to call location-related APIs.
-    Code £ºlocationkit-java-sample/app/src/main/java/com/huawei/hmssample/location/RequestLocationUpdatesWithCallbackActivity.java
-    
-    3). Checking the Device Location Settings.
-    you are advised to check whether the device settings meet the location requirements before continuously obtaining location information.
-    Code £ºlocationkit-java-sample/app/src/main/java/com/huawei/hmssample/location/RequestLocationUpdatesWithCallbackActivity.java
-    
-    4). Continuously Obtaining the Location Information.
-    To enable your app to continuously obtain the device location, you can use the requestLocationUpdates() API provided by the HUAWEI Location Kit service. 
-    Code £ºlocationkit-java-sample/app/src/main/java/com/huawei/hmssample/location/RequestLocationUpdatesWithCallbackActivity.java
-    
+1. Invoke the addGeofence method of GeoFenceData to add a geo-fence. The code location is in the addGeofence method of the  src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java fle.
+   
+2. location broadcast receiver.The code is stored in src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java
+
+   
 
 ##  License
-    HUAWEI Location kit sample is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
-
+locationkit-java-sample is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
