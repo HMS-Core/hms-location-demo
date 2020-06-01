@@ -28,6 +28,6 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation('com.huawei.hms:location:4.0.3.303')
+    implementation('com.huawei.hms:location:4.0.4.300')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
