@@ -4,8 +4,8 @@
 ## Table of Contents
 
  * [Introduction](#introduction)
+ * [Getting](#Getting)
  * [Installation](#installation)
- * [Getting Started](#Getting Started)
  * [Supported Environments](#supported-environments)
  * [Sample Code](#sample-code)
  * [Result](#result)
