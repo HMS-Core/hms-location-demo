@@ -4,7 +4,7 @@
 ## Table of Contents
 
  * [Introduction](#introduction)
- * [Getting](#Getting)
+ * [Getting Started](#Getting Started)
  * [Installation](#installation)
  * [Supported Environments](#supported-environments)
  * [Sample Code](#sample-code)
