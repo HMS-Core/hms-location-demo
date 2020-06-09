@@ -16,15 +16,16 @@
 HUAWEI Location Kit sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.
    
 
+## Getting Started
+
+1. Clone or download this pr
+
 ## Installation
    
 1. Clone or download this project and open the downloaded folder in Android Studio or compatible IDE.
 
 2. use IDE's functionality to install configured project on to your device.
    
-    
-## Getting Started
-
 
 ## Supported Environments
    HMS Core (APK) 4.0.3 or later has been installed on Huawei Android phones.
