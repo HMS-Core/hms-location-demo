@@ -5,7 +5,7 @@
 
  * [Introduction](#introduction)
  * [Installation](#installation)
- * [Installation](#installation)
+ * [Getting Started](#Getting Started)
  * [Supported Environments](#supported-environments)
  * [Sample Code](#sample-code)
  * [Result](#result)
