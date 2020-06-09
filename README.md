@@ -5,6 +5,7 @@
 
  * [Introduction](#introduction)
  * [Installation](#installation)
+ * [Getting Started](#Getting Started)
  * [Supported Environments](#supported-environments)
  * [Sample Code](#sample-code)
  * [Result](#result)
@@ -22,6 +23,9 @@ HUAWEI Location Kit sample code encapsulates APIs of the HUAWEI Location Kit. It
 2. use IDE's functionality to install configured project on to your device.
    
     
+## Getting Started
+
+
 ## Supported Environments
    HMS Core (APK) 4.0.3 or later has been installed on Huawei Android phones.
 
