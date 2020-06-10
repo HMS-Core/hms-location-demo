@@ -48,7 +48,7 @@ You should create an app in AppGallery Connect, and obtain the file of agconnect
 2. location broadcast receiver.The code is stored in src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java
 
 ## Result
-1
+
 
 ##  License
 locationkit-java-sample is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
