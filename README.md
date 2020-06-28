@@ -22,13 +22,15 @@ We also provide an sample to demonstrate the use of LocationKit SDK for Android.
 
 This sample uses the Gradle build system.
 
-First download the demo by cloning this repository or downloading an archived snapshot.
+1. Download the demo by cloning this repository or downloading an archived snapshot.
 
-In Android Studio, use the "Open an existing Android Studio project", and select the directory of "locationkit-java-sample".
+2.In Android Studio, use the "Open an existing Android Studio project", and select the directory of "locationkit-java-sample".
 
 You can use the "gradlew build" command to build the project directly.
 
-You should create an app in AppGallery Connect, and obtain the file of agconnect-services.json and add to the project. You should also generate a signing certificate fingerprint and add the certificate file to the project, and add configuration to build.gradle. See the Configuring App Information in AppGallery Connect guide to configure app in AppGallery Connect.
+3.You should create an app in AppGallery Connect, and obtain the file of agconnect-services.json and add to the project. 
+
+4.You should also generate a signing certificate fingerprint and add the certificate file to the project, and add configuration to build.gradle. See the Configuring App Information in AppGallery Connect guide to configure app in AppGallery Connect.
 
 
 ## Installation
