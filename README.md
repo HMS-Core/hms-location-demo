@@ -1,4 +1,4 @@
-# HMS Location Demo Android Studio
+# HMS Location Demo for Android
 
 
 ## Table of Contents
@@ -55,4 +55,4 @@ You can use the "gradlew build" command to build the project directly.
 <img src="images/locationhd.png" width = 20% height = 20%>
 
 ##  License
-locationkit-java-sample is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+location demo for android is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
