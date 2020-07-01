@@ -49,9 +49,9 @@ You can use the "gradlew build" command to build the project directly.
 2. location broadcast receiver.The code is stored in src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java
 
 ## Result
-<img src="images/home.png" width = 20% height = 20%>
-<img src="images/locationgetlast.png" width = 20% height = 20%>
-<img src="images/locationhd.png" width = 20% height = 20%>
+<img src="images/home.jpg" width = 20% height = 20%>
+<img src="images/locationgetlast.jpg" width = 20% height = 20%>
+<img src="images/locationhd.jpg" width = 20% height = 20%>
 
 ##  License
 location demo for android is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
