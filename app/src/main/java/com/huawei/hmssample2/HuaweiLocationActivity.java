@@ -39,7 +39,7 @@ import android.view.View.OnClickListener;
 
 /**
  * Demonstration of Huawei Location Service Usage
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class HuaweiLocationActivity extends Activity implements OnClickListener {
@@ -60,6 +60,7 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         findViewById(R.id.location_activity_transition_update).setOnClickListener(this);
         findViewById(R.id.GeoFence).setOnClickListener(this);
         findViewById(R.id.locationHD).setOnClickListener(this);
+        findViewById(R.id.getNavigationContextState).setOnClickListener(this);
 
         //You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service is unavailable.
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
@@ -151,6 +152,12 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
                     locationIntent5.setClass(this, RequestLocationUpdatesHDWithCallbackActivity.class);
                     locationIntent5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(locationIntent5);
+                    break;
+                case R.id.getNavigationContextState:
+                    Intent locationIntent6 = new Intent();
+                    locationIntent6.setClass(this, NavigationContextStateActivity.class);
+                    locationIntent6.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(locationIntent6);
                     break;
                 default:
                     break;

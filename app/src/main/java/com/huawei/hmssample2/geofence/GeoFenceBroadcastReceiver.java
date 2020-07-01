@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 /**
  * location broadcast receiver
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class GeoFenceBroadcastReceiver extends BroadcastReceiver {

@@ -24,7 +24,7 @@ import android.app.FragmentTransaction;
 
 /**
  * add addLogFragment() method, if you want to show log on the screen
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class LocationBaseActivity extends LoggerActivity {

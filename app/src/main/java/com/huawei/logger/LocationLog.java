@@ -17,7 +17,7 @@ package com.huawei.logger;
 
 /**
  * util
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class LocationLog {

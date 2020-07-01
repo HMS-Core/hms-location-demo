@@ -46,7 +46,7 @@ import android.view.View.OnClickListener;
  * If the requester process is killed, use this method to continue to call back.
  * If the requester does not want to receive the location update result when the process is killed, see requestLocationUpdates (LocationRequest request,LocationCallback callback,Looper looper).
  *
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivity implements OnClickListener {

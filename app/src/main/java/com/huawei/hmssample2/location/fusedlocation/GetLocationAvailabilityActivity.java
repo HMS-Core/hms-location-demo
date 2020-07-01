@@ -32,7 +32,7 @@ import android.view.View.OnClickListener;
 
 /**
  * getLocationAvailability Example
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class GetLocationAvailabilityActivity extends LocationBaseActivity implements OnClickListener {

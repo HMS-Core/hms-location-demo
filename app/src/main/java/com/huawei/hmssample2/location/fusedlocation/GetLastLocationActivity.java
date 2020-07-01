@@ -31,7 +31,7 @@ import android.view.View.OnClickListener;
 
 /**
  * getLastLocation Example
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class GetLastLocationActivity extends LocationBaseActivity implements OnClickListener {

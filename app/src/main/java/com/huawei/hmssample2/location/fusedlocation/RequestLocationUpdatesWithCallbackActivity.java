@@ -48,7 +48,7 @@ import android.view.View.OnClickListener;
  * Requests a location update and calls back on the specified Looper thread. This method requires that the requester process exist for continuous callback.
  * If you still want to receive the callback after the process is killed, see requestLocationUpdates (LocationRequest request,PendingIntent callbackIntent)
  *
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActivity implements OnClickListener {

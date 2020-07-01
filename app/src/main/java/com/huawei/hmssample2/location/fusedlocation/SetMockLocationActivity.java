@@ -34,7 +34,7 @@ import android.view.View.OnClickListener;
  * setMockLocation Usage Example
  * Set the specific analog position. You must call setMockMode(boolean) before calling this method and set it to true.
  * Enable the mobile phone to allow mock location.
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class SetMockLocationActivity extends LocationBaseActivity implements OnClickListener {

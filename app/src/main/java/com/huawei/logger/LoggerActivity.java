@@ -22,7 +22,7 @@ import android.app.Activity;
 
 /**
  * the activity is used to attach LogFragment
- * @author lwx877867
+ * @author xxx888888
  * @since 2020-5-11
  */
 public class LoggerActivity extends Activity {

@@ -32,21 +32,21 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="VEHICLE[100]"/>
-    <LinearLayout
-        android:id="@+id/activityIN_VEHICLE"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/activityIN_VEHICLE"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="#CD2626"
-            android:layout_marginRight="20dp">
-        </ProgressBar>
-    </LinearLayout>
+            android:orientation="horizontal">
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="#CD2626"
+                android:layout_marginRight="20dp">
+            </ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:paddingLeft="20dp"
@@ -58,21 +58,21 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="BIKE[101]"/>
-    <LinearLayout
-        android:id="@+id/activityON_BICYCLE"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/emui_color_gray_10"
-            android:layout_marginRight="20dp">
-        </ProgressBar>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activityON_BICYCLE"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="#0000FF"
+                android:layout_marginRight="20dp">
+            </ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:paddingLeft="20dp"
@@ -84,21 +84,21 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="FOOT[102]"/>
-    <LinearLayout
-        android:id="@+id/activityON_FOOT"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorAccent"
-            android:layout_marginRight="20dp">
-        </ProgressBar>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activityON_FOOT"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp">
+            </ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:paddingLeft="20dp"
@@ -110,21 +110,21 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="STILL[103]"/>
-    <LinearLayout
-        android:id="@+id/activitySTILL"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/emui_color_gray_7"
-            android:layout_marginRight="20dp">
-        </ProgressBar>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activitySTILL"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="#7CFC00"
+                android:layout_marginRight="20dp">
+            </ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:paddingLeft="20dp"
@@ -136,22 +136,22 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="OTHERS[104]"/>
-    <LinearLayout
-        android:id="@+id/activityUNKNOWN"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        >
-
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/activityUNKNOWN"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/colorPrimaryDark"></ProgressBar>
-    </LinearLayout>
+            >
+
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimaryDark"></ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:paddingLeft="20dp"
@@ -163,21 +163,21 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="TILTING[105]"/>
-    <LinearLayout
-        android:id="@+id/activityTILTING"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="#FF7F24"
-            android:layout_marginRight="20dp">
-        </ProgressBar>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activityTILTING"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="#FF7F24"
+                android:layout_marginRight="20dp">
+            </ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:paddingLeft="20dp"
@@ -190,21 +190,21 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="WALKING[107]" />
-    <LinearLayout
-        android:id="@+id/activityWALKING"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="10dp"
-            android:background="#EE00EE"
-            android:layout_marginRight="20dp">
-        </ProgressBar>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activityWALKING"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="#EE00EE"
+                android:layout_marginRight="20dp">
+            </ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:paddingLeft="20dp"
@@ -216,21 +216,21 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="RUNNING[108]"/>
-    <LinearLayout
-        android:id="@+id/activityRunning"
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-    <ProgressBar
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/upsdk_blue_text_007dff"
-        android:layout_marginRight="20dp">
-    </ProgressBar>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activityRunning"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/blue_text_007dff"
+                android:layout_marginRight="20dp">
+            </ProgressBar>
+        </LinearLayout>
     </LinearLayout>
     <ScrollView
         android:layout_width="wrap_content"

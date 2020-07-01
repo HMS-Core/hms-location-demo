@@ -8,8 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    tools:context="com.huawei.hmssample2.location.fusedlocation.RequestActivityUpdatesActivity" >
+    android:focusableInTouchMode="true" >
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -8,8 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    tools:context="com.huawei.hmssample2.location.fusedlocation.RequestActivityTransitionActivity" >
+    android:focusableInTouchMode="true" >
 
     <TextView
         android:layout_width="match_parent"
@@ -21,11 +20,11 @@
         android:layout_height="1dp"
         android:background="#123456"/>
 
-<!--   	<Button
-        android:id="@+id/location_getLastLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/location_getLastLocation" />-->
+    <!--   	<Button
+            android:id="@+id/location_getLastLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location_getLastLocation" />-->
 
     <Button
         android:id="@+id/request_activity_transition_updates_btn"
