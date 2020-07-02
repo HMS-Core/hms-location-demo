@@ -1,5 +1,4 @@
-##  locationkit-java-sample
-
+#  HMS Locationkit Demo for Android
 
 ## Table of Contents
 
