@@ -1,4 +1,5 @@
 #  华为定位服务安卓版示例代码
+中文 | [English](https://github.com/HMS-Core/hms-location-demo-android-studio)
 
 ## 目录
  * [开发准备](#开发准备)
@@ -21,7 +22,7 @@
 1.	调用GeoFenceData的addGeofence方法添加地理围栏。 代码位置是在src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java文件中的addGeofence方法中。
 2.	定位广播接收器。代码存储在src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java文件中。
 ## 结果
-<img src="images/home.jpg" width = 20% height = 20%> <img src="images/locationgetlast.jpg" width = 20% height = 20%><img src="images/locationhd.jpg" width = 20% height = 20%>
+<img src="images/home.jpg" width = 20% height = 20%> <img src="images/locationgetlast.jpg" width = 20% height = 20%> <img src="images/locationhd.jpg" width = 20% height = 20%>
    
 ## 授权许可
 定位服务Java示例代码经过Apache License 2.0授权许可。
