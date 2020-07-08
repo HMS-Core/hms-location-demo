@@ -1,5 +1,7 @@
 #  HMS Locationkit Demo for Android
 
+English | [中文](https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/README_ZH.md)
+
 ## Table of Contents
 
  * [Introduction](#introduction)
