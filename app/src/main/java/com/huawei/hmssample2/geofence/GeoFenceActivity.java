@@ -116,7 +116,7 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
 
     public void getText() {
         Data temp = new Data();
-        temp.longitude = Double.parseDouble(setlatitude.getText().toString());
+        temp.longitude = Double.parseDouble(setlongitude.getText().toString());
         temp.latitude = Double.parseDouble(setlatitude.getText().toString());
         temp.radius = Float.parseFloat(setradius.getText().toString());
         temp.uniqueId = setUniqueId.getText().toString();
