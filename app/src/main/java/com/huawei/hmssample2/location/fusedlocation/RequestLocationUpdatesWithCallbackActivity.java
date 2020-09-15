@@ -32,6 +32,7 @@ import com.huawei.hms.location.LocationSettingsRequest;
 import com.huawei.hms.location.LocationSettingsResponse;
 import com.huawei.hms.location.LocationSettingsStatusCodes;
 import com.huawei.hms.location.SettingsClient;
+import com.huawei.hmssample2.LogInfoUtil;
 import com.huawei.hmssample2.R;
 import com.huawei.logger.LocationLog;
 
@@ -104,6 +105,8 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
      * Requests a location update and calls back on the specified Looper thread.
      */
     private void requestLocationUpdatesWithCallback() {
+        Log.i(TAG, "requestLocationUpdatesWithCallback");
+        LogInfoUtil.getLogInfo(this);
         try {
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
             builder.addLocationRequest(mLocationRequest);
