@@ -28,6 +28,7 @@ import com.huawei.hms.location.LocationSettingsRequest;
 import com.huawei.hms.location.LocationSettingsResponse;
 import com.huawei.hms.location.LocationSettingsStatusCodes;
 import com.huawei.hms.location.SettingsClient;
+import com.huawei.hmssample2.LogInfoUtil;
 import com.huawei.hmssample2.R;
 import com.huawei.logger.LocationLog;
 
@@ -83,6 +84,7 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
      * Request for location update
      */
     private void requestLocationUpdatesWithIntent() {
+        LogInfoUtil.getLogInfo(this);
         try {
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
             builder.addLocationRequest(mLocationRequest);
