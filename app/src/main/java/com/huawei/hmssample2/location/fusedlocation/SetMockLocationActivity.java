@@ -67,7 +67,7 @@ public class SetMockLocationActivity extends LocationBaseActivity implements OnC
             voidTask.addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        LocationLog.i(TAG, "setMockLocation onSuccess "+ mockLocation.toString());
+                        LocationLog.i(TAG, "setMockLocation onSuccess ");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
