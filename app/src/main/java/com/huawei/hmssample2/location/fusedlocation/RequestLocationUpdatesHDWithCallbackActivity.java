@@ -17,18 +17,15 @@
 package com.huawei.hmssample2.location.fusedlocation;
 
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -40,14 +37,15 @@ import com.huawei.hms.location.LocationRequest;
 import com.huawei.hms.location.LocationResult;
 import com.huawei.hms.location.LocationServices;
 import com.huawei.hmssample2.JsonDataUtil;
-import com.huawei.hmssample2.LogInfoUtil;
 import com.huawei.hmssample2.R;
 import com.huawei.logger.LocationLog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+
 import java.util.List;
 import java.util.Map;
 
@@ -58,36 +56,6 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
 
     LocationCallback mLocationHDCallback;
 
-    protected void initDataDisplayView(TableLayout tableLayout, String json) {
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            Iterator iterator = jsonObject.keys();
-            while (iterator.hasNext()) {
-                String key = (String) iterator.next();
-                String value = jsonObject.getString(key);
-
-                TableRow tableRow = new TableRow(getBaseContext());
-
-                TextView textView = new TextView(getBaseContext());
-                textView.setText(key);
-                textView.setTextColor(Color.GRAY);
-                textView.setId(getBaseContext().getResources()
-                    .getIdentifier(key + "_key", "id", getBaseContext().getPackageName()));
-                tableRow.addView(textView);
-
-                EditText editText = new EditText(getBaseContext());
-                editText.setText(value);
-                editText.setId(getBaseContext().getResources()
-                    .getIdentifier(key + "_value", "id", getBaseContext().getPackageName()));
-                editText.setTextColor(Color.DKGRAY);
-                tableRow.addView(editText);
-                tableLayout.addView(tableRow);
-            }
-        } catch (JSONException e) {
-            Log.e(TAG, "initDataDisplayView JSONException:" + e.getMessage());
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,16 +63,16 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         TableLayout tableLayout = findViewById(R.id.callback_table_layout_show);
         String locationRequestJson = JsonDataUtil.getJson(this, "LocationRequest.json", true);
-        initDataDisplayView(tableLayout, locationRequestJson);
+        initDataDisplayView(TAG, tableLayout, locationRequestJson);
         findViewById(R.id.btn_remove_hd).setOnClickListener(this);
         findViewById(R.id.btn_hd).setOnClickListener(this);
         addLogFragment();
         if (ActivityCompat.checkSelfPermission(this,
-            android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             String[] strings =
-                {android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
+                    {android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
             ActivityCompat.requestPermissions(this, strings, 1);
         }
     }
@@ -129,18 +97,18 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
             public void run() {
                 try {
                     fusedLocationProviderClient.removeLocationUpdates(mLocationHDCallback)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                LocationLog.i(TAG, "removeLocationHd onSuccess");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(Exception e) {
-                                LocationLog.i(TAG, "removeLocationHd onFailure:" + e.getMessage());
-                            }
-                        });
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    LocationLog.i(TAG, "removeLocationHd onSuccess");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(Exception e) {
+                                    LocationLog.i(TAG, "removeLocationHd onFailure:" + e.getMessage());
+                                }
+                            });
                 } catch (Exception e) {
                     LocationLog.e(TAG, "removeLocationHd exception:" + e.getMessage());
                 }
@@ -150,12 +118,13 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
     }
 
     private void getLocationWithHd() {
-        LogInfoUtil.getLogInfo(this);
+        // LogInfoUtil.getLogInfo(this);
         new Thread() {
             @Override
             public void run() {
                 try {
                     LocationRequest locationRequest = new LocationRequest();
+                    setLocationRequest(locationRequest);
                     if (null == mLocationHDCallback) {
                         mLocationHDCallback = new LocationCallback() {
                             @Override
@@ -175,19 +144,19 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                         };
                     }
                     fusedLocationProviderClient
-                        .requestLocationUpdatesEx(locationRequest, mLocationHDCallback, Looper.getMainLooper())
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                LocationLog.i(TAG, "getLocationWithHd onSuccess");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(Exception e) {
-                                LocationLog.i(TAG, "getLocationWithHd onFailure:" + e.getMessage());
-                            }
-                        });
+                            .requestLocationUpdatesEx(locationRequest, mLocationHDCallback, Looper.getMainLooper())
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    LocationLog.i(TAG, "getLocationWithHd onSuccess");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(Exception e) {
+                                    LocationLog.i(TAG, "getLocationWithHd onFailure:" + e.getMessage());
+                                }
+                            });
                 } catch (Exception e) {
                     LocationLog.i(TAG, "getLocationWithHd exception :" + e.getMessage());
                 }
@@ -203,24 +172,51 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         }
     }
 
+    private void setLocationRequest(LocationRequest locationRequest) {
+        TableLayout tableLayout = findViewById(R.id.callback_table_layout_show);
+        ArrayList<String> paramList = new ArrayList<String>();
+        TableRow[] rows = new TableRow[tableLayout.getChildCount()];
+        for (int i = 0; i < rows.length; i++) {
+            rows[i] = (TableRow) tableLayout.getChildAt(i);
+            if (rows[i].getChildAt(1) instanceof EditText) {
+                paramList.add(((EditText) rows[i].getChildAt(1)).getText().toString());
+                Log.d(TAG, ((EditText) rows[i].getChildAt(1)).getText().toString());
+            }
+        }
+        locationRequest.setPriority(Integer.parseInt("".equals(paramList.get(0)) ? "102" : paramList.get(0)));
+        locationRequest.setInterval(Long.parseLong("".equals(paramList.get(1)) ? "5000" : paramList.get(1)));
+        locationRequest.setFastestInterval(Long.parseLong("".equals(paramList.get(2)) ? "5000" : paramList.get(2)));
+        locationRequest
+            .setExpirationTime(Long.parseLong("".equals(paramList.get(4)) ? "9223372036854775807" : paramList.get(4)));
+        locationRequest.setExpirationDuration(
+            Long.parseLong("".equals(paramList.get(5)) ? "9223372036854775807" : paramList.get(5)));
+        locationRequest.setNumUpdates(Integer.parseInt("".equals(paramList.get(6)) ? "2147483647" : paramList.get(6)));
+        locationRequest.setSmallestDisplacement(Float.parseFloat("".equals(paramList.get(7)) ? "0" : paramList.get(7)));
+        locationRequest.setMaxWaitTime(Long.parseLong("".equals(paramList.get(8)) ? "0" : paramList.get(8)));
+        locationRequest.setNeedAddress(Boolean.parseBoolean("".equals(paramList.get(9)) ? "false" : paramList.get(9)));
+        locationRequest.setLanguage("".equals(paramList.get(10)) ? "zh" : paramList.get(10));
+        locationRequest.setCountryCode("".equals(paramList.get(11)) ? "CN" : paramList.get(11));
+
+    }
+
     private void logHwLocation(List<HWLocation> hwLocations) {
         if (hwLocations == null || hwLocations.isEmpty()) {
             Log.i(TAG, "getLocationWithHd callback hwLocations is empty");
             return;
         }
         for (HWLocation hwLocation : hwLocations) {
-            if (hwLocation == null ) {
+            if (hwLocation == null) {
                 Log.i(TAG, "getLocationWithHd callback hwLocation is empty");
                 return;
             }
             boolean hdbBinary = false;
             Map<String, Object> extraInfo = hwLocation.getExtraInfo();
-            int SourceType = 0;
-            if (extraInfo != null && !extraInfo.isEmpty() && extraInfo.containsKey("SourceType")) {
-                Object object = extraInfo.get("SourceType");
+            int sourceType = 0;
+            if (extraInfo != null && !extraInfo.isEmpty() && extraInfo.containsKey("sourceType")) {
+                Object object = extraInfo.get("sourceType");
                 if (object instanceof Integer) {
-                    SourceType = (int) object;
-                    hdbBinary = getBinaryFlag(SourceType);
+                    sourceType = (int) object;
+                    hdbBinary = getBinaryFlag(sourceType);
                 }
             }
             String hdFlag = "";
@@ -228,11 +224,11 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 hdFlag = "result is HD";
             }
             LocationLog.i(TAG,
-                "[new]location result : " + "\n" + "Longitude = " + hwLocation.getLongitude() + "\n" + "Latitude = "
-                    + hwLocation.getLatitude() + "\n" + "Accuracy = " + hwLocation.getAccuracy() + "\n"
-                    + "SourceType = " + SourceType + "\n" + hwLocation.getCountryName() + "," + hwLocation.getState()
-                    + "," + hwLocation.getCity() + "," + hwLocation.getCounty() + "," + hwLocation.getFeatureName()
-                    + "\n" + hdFlag);
+                    "[new]location result : " + "\n" + "Longitude = " + hwLocation.getLongitude() + "\n" + "Latitude = "
+                            + hwLocation.getLatitude() + "\n" + "Accuracy = " + hwLocation.getAccuracy() + "\n"
+                            + "sourceType = " + sourceType + "\n" + hwLocation.getCountryName() + "," + hwLocation.getState()
+                            + "," + hwLocation.getCity() + "," + hwLocation.getCounty() + "," + hwLocation.getFeatureName()
+                            + "\n" + hdFlag);
         }
     }
 
@@ -243,24 +239,24 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
             return;
         }
         for (Location location : locations) {
-            if (location == null ) {
+            if (location == null) {
                 Log.i(TAG, "getLocationWithHd callback location is empty");
                 return;
             }
             boolean hdbBinary = false;
             Bundle extraInfo = location.getExtras();
-            int SourceType = 0;
-            if (extraInfo != null && !extraInfo.isEmpty() && extraInfo.containsKey("SourceType")) {
-                SourceType = extraInfo.getInt("SourceType", -1);
-                hdbBinary = getBinaryFlag(SourceType);
+            int sourceType = 0;
+            if (extraInfo != null && !extraInfo.isEmpty() && extraInfo.containsKey("sourceType")) {
+                sourceType = extraInfo.getInt("sourceType", -1);
+                hdbBinary = getBinaryFlag(sourceType);
             }
             if (hdbBinary) {
                 hdFlag = "result is HD";
             }
             LocationLog.i(TAG,
-                "[old]location result : " + "\n" + "Longitude = " + location.getLongitude() + "\n" + "Latitude = "
-                    + location.getLatitude() + "\n" + "Accuracy = " + location.getAccuracy() + "\n" + "SourceType = "
-                    + SourceType + "\n" + hdFlag);
+                    "[old]location result : " + "\n" + "Longitude = " + location.getLongitude() + "\n" + "Latitude = "
+                            + location.getLatitude() + "\n" + "Accuracy = " + location.getAccuracy() + "\n" + "sourceType = "
+                            + sourceType + "\n" + hdFlag);
         }
     }
 

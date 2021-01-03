@@ -35,7 +35,7 @@ import android.util.Log;
 
 /**
  * location broadcast receiver
- * @author xxx888888
+ *
  * @since 2020-5-11
  */
 public class LocationBroadcastReceiver extends BroadcastReceiver {

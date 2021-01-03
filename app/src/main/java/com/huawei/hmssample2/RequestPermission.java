@@ -31,7 +31,7 @@ public class RequestPermission {
     public static void requestLocationPermission(Context context) {
         // check location permisiion
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-            Log.i(TAG, "sdk < 28 Q");
+            Log.i(TAG, "android sdk < 28 Q");
             if (ActivityCompat.checkSelfPermission(context,
                     Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(context,

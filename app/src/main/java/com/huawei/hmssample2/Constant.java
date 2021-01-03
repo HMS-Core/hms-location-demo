@@ -17,7 +17,7 @@ package com.huawei.hmssample2;
 
 /**
  * Request code
- * @author xxx888888
+ *
  * @since 2020-5-11
  */
 public class Constant {

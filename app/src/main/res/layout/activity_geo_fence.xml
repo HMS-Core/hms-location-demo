@@ -50,7 +50,7 @@
                     android:id="@+id/setlatitude"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberSigned|numberDecimal"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -62,7 +62,7 @@
                     android:id="@+id/setlongitude"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberSigned|numberDecimal"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

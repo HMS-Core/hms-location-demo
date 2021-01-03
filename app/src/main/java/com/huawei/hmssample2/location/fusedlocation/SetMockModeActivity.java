@@ -33,7 +33,7 @@ import android.widget.RadioGroup;
 /**
  * setMockMode Usage Example
  * Enable the mobile phone to allow mock location.
- * @author xxx888888
+ *
  * @since 2020-5-11
  */
 public class SetMockModeActivity extends LocationBaseActivity implements OnClickListener, RadioGroup.OnCheckedChangeListener {

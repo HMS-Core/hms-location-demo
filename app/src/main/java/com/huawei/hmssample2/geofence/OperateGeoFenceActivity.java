@@ -150,7 +150,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         PendingIntent intent = null;
         for (int i = requestList.size() - 1; i >= 0; i--) {
             if (requestList.get(i).requestCode == a) {
-                intent = requestList.get(i).intnet;
+                intent = requestList.get(i).pendingIntent;
                 requestList.remove(i);
             }
         }
@@ -236,9 +236,24 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
             LocationLog.d(TAG, "default trigger is 5");
         }
         RequestList temp = requestList.get(requestList.size() - 1);
-        PendingIntent pendingIntent = temp.intnet;
+        PendingIntent pendingIntent = temp.pendingIntent;
         setList(pendingIntent, temp.requestCode, GeoFenceData.returnList());
-        geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent);
+        try {
+            geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                LocationLog.i(TAG, "add geofence success！");
+                            } else {
+                                // Get the status code for the error and log it using a user-friendly message.
+                                LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            LocationLog.i(TAG, "add geofence error：" + e.getMessage());
+        }
         GeoFenceData.createNewList();
     }
 
@@ -292,12 +307,12 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
 }
 
 class RequestList {
-    public PendingIntent intnet;
+    public PendingIntent pendingIntent;
     public int requestCode;
     public ArrayList<Geofence> geofences;
 
-    public RequestList(PendingIntent intnet, int requestCode, ArrayList<Geofence> geofences) {
-        this.intnet = intnet;
+    public RequestList(PendingIntent pendingIntent, int requestCode, ArrayList<Geofence> geofences) {
+        this.pendingIntent = pendingIntent;
         this.requestCode = requestCode;
         this.geofences = geofences;
     }

@@ -18,6 +18,7 @@ package com.huawei.hmssample2;
 import com.huawei.hmssample2.activity.ActivityConversionActivity;
 import com.huawei.hmssample2.activity.ActivityIdentificationActivity;
 import com.huawei.hmssample2.geofence.OperateGeoFenceActivity;
+import com.huawei.hmssample2.location.fusedlocation.CheckSettingActivity;
 import com.huawei.hmssample2.location.fusedlocation.GetLastLocationActivity;
 import com.huawei.hmssample2.location.fusedlocation.GetLocationAvailabilityActivity;
 import com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesHDWithCallbackActivity;
@@ -27,6 +28,7 @@ import com.huawei.hmssample2.location.fusedlocation.SetMockLocationActivity;
 import com.huawei.hmssample2.location.fusedlocation.SetMockModeActivity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -39,7 +41,7 @@ import android.view.View.OnClickListener;
 
 /**
  * Demonstration of Huawei Location Service Usage
- * @author xxx888888
+ *
  * @since 2020-5-11
  */
 public class HuaweiLocationActivity extends Activity implements OnClickListener {
@@ -61,10 +63,11 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         findViewById(R.id.GeoFence).setOnClickListener(this);
         findViewById(R.id.locationHD).setOnClickListener(this);
         findViewById(R.id.getNavigationContextState).setOnClickListener(this);
+        findViewById(R.id.check_setting).setOnClickListener(this);
 
         //You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service is unavailable.
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-            Log.i(TAG, "sdk < 28 Q");
+            Log.i(TAG, "android sdk < 28 Q");
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(this,
@@ -93,73 +96,31 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         try {
             switch (v.getId()) {
                 case R.id.location_requestLocationUpdatesWithIntent:
-                    Intent updatesWithIntent = new Intent();
-                    updatesWithIntent.setClass(this, RequestLocationUpdatesWithIntentActivity.class);
-                    updatesWithIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(updatesWithIntent);
+                    startIntent(RequestLocationUpdatesWithIntentActivity.class);
                     break;
                 case R.id.location_getLastLocation:
-                    Intent lastlocationIntent = new Intent();
-                    lastlocationIntent.setClass(this, GetLastLocationActivity.class);
-                    lastlocationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(lastlocationIntent);
+                    startIntent(GetLastLocationActivity.class);
                     break;
                 case R.id.location_getLocationAvailability:
-                    Intent locationAvailabilityIntent = new Intent();
-                    locationAvailabilityIntent.setClass(this, GetLocationAvailabilityActivity.class);
-                    locationAvailabilityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(locationAvailabilityIntent);
+                    startIntent(GetLocationAvailabilityActivity.class);
                     break;
-
                 case R.id.location_requestLocationUpdatesWithCallback:
-                    Intent updatesWithCallback = new Intent();
-                    updatesWithCallback.setClass(this, RequestLocationUpdatesWithCallbackActivity.class);
-                    updatesWithCallback.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(updatesWithCallback);
+                    startIntent(RequestLocationUpdatesWithCallbackActivity.class);
                     break;
                 case R.id.location_setMockLocation:
-                    Intent mockLocationIntent = new Intent();
-                    mockLocationIntent.setClass(this, SetMockLocationActivity.class);
-                    mockLocationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(mockLocationIntent);
+                    startIntent(SetMockLocationActivity.class);
                     break;
                 case R.id.location_setMockMode:
-                    Intent mockModeIntent = new Intent();
-                    mockModeIntent.setClass(this, SetMockModeActivity.class);
-                    mockModeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(mockModeIntent);
+                    startIntent(SetMockModeActivity.class);
                     break;
                 case R.id.GeoFence:
-                    Intent geoFenceIntent = new Intent();
-                    geoFenceIntent.setClass(this, OperateGeoFenceActivity.class);
-                    geoFenceIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(geoFenceIntent);
+                    startIntent(OperateGeoFenceActivity.class);
                     break;
                 case R.id.location_activity_transition_update:
-                    Intent locationIntent3 = new Intent();
-                    locationIntent3.setClass(this, ActivityConversionActivity.class);
-                    locationIntent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(locationIntent3);
-                    break;
-                case R.id.location_activity_update:
-                    Intent locationIntent4 = new Intent();
-                    locationIntent4.setClass(this, ActivityIdentificationActivity.class);
-                    locationIntent4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(locationIntent4);
-                    break;
-                case R.id.locationHD:
-                    Intent locationIntent5 = new Intent();
-                    locationIntent5.setClass(this, RequestLocationUpdatesHDWithCallbackActivity.class);
-                    locationIntent5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(locationIntent5);
-                    break;
-                case R.id.getNavigationContextState:
-                    Intent locationIntent6 = new Intent();
-                    locationIntent6.setClass(this, NavigationContextStateActivity.class);
-                    locationIntent6.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(locationIntent6);
+                    startIntent(ActivityConversionActivity.class);
                     break;
                 default:
+                    otherClick(v.getId());
                     break;
             }
         } catch (RuntimeException e) {
@@ -167,6 +128,31 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         } catch (Exception e) {
             Log.i(TAG, "HuaweiLocation Exception:" + e);
         }
+    }
+
+    private void otherClick(int id){
+        switch (id){
+            case R.id.location_activity_update:
+                startIntent(ActivityIdentificationActivity.class);
+                break;
+            case R.id.locationHD:
+                startIntent(RequestLocationUpdatesHDWithCallbackActivity.class);
+                break;
+            case R.id.getNavigationContextState:
+                startIntent(NavigationContextStateActivity.class);
+                break;
+            case R.id.check_setting:
+                startIntent(CheckSettingActivity.class);
+                break;
+            default:
+                throw new IllegalArgumentException("view error:" + id);
+        }
+    }
+
+    private void startIntent(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override

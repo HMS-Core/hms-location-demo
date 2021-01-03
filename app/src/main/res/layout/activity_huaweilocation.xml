@@ -71,5 +71,11 @@
                 android:id="@+id/getNavigationContextState"
                 style="@style/ButtonStyle"
                 android:text="GetNavigationContextState" />
+
+         <Button
+                android:id="@+id/check_setting"
+                style="@style/ButtonStyle"
+                android:text="CheckSetting" />
+
     </LinearLayout>
 </ScrollView>

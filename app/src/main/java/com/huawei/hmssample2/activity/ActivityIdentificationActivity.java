@@ -39,7 +39,7 @@ import java.util.List;
 public class ActivityIdentificationActivity extends LocationBaseActivity implements View.OnClickListener {
     public String TAG = "ActivityTransitionUpdate";
 
-    private final static int  progressBarOriginWidth = 100;
+    private final static int PROGRESS_BAR_ORIGIN_WIDTH = 100;
 
     private final static int enlarge = 6;
 
@@ -50,7 +50,6 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
     private static LinearLayout.LayoutParams type2;
     private static LinearLayout.LayoutParams type3;
     private static LinearLayout.LayoutParams type4;
-    private static LinearLayout.LayoutParams type5;
     private static LinearLayout.LayoutParams type7;
     private static LinearLayout.LayoutParams type8;
 
@@ -59,11 +58,11 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
     private static LinearLayout activityON_FOOT;
     private static LinearLayout activitySTILL;
     private static LinearLayout activityUNKNOWN;
-    private static LinearLayout activityTILTING;
     private static LinearLayout activityWALKING;
     private static LinearLayout activityRunning;
 
     private PendingIntent pendingIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +81,6 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
         type3 = (LinearLayout.LayoutParams) activitySTILL.getLayoutParams();
         activityUNKNOWN = (LinearLayout) findViewById(R.id.activityUNKNOWN);
         type4 = (LinearLayout.LayoutParams) activityUNKNOWN.getLayoutParams();
-        activityTILTING = (LinearLayout) findViewById(R.id.activityTILTING);
-        type5 = (LinearLayout.LayoutParams) activityTILTING.getLayoutParams();
         activityWALKING = (LinearLayout) findViewById(R.id.activityWALKING);
         type7 = (LinearLayout.LayoutParams) activityWALKING.getLayoutParams();
         activityRunning = (LinearLayout) findViewById(R.id.activityRunning);
@@ -95,24 +92,24 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
 
     public void requestActivityUpdates(long detectionIntervalMillis) {
         try {
-            if(pendingIntent != null){
+            if (pendingIntent != null) {
                 removeActivityUpdates();
             }
             pendingIntent = getPendingIntent();
             LocationBroadcastReceiver.addIdentificationListener();
             activityIdentificationService.createActivityIdentificationUpdates(detectionIntervalMillis, pendingIntent)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        LocationLog.i(TAG, "createActivityIdentificationUpdates onSuccess");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        LocationLog.e(TAG, "createActivityIdentificationUpdates onFailure:" + e.getMessage());
-                    }
-                });
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            LocationLog.i(TAG, "createActivityIdentificationUpdates onSuccess");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception e) {
+                            LocationLog.e(TAG, "createActivityIdentificationUpdates onFailure:" + e.getMessage());
+                        }
+                    });
         } catch (Exception e) {
             LocationLog.e(TAG, "createActivityIdentificationUpdates exception:" + e.getMessage());
         }
@@ -124,18 +121,18 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
             LocationBroadcastReceiver.removeIdentificationListener();
             Log.i(TAG, "start to removeActivityUpdates");
             activityIdentificationService.deleteActivityIdentificationUpdates(pendingIntent)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        LocationLog.i(TAG, "deleteActivityIdentificationUpdates onSuccess");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        LocationLog.e(TAG, "deleteActivityIdentificationUpdates onFailure:" + e.getMessage());
-                    }
-                });
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            LocationLog.i(TAG, "deleteActivityIdentificationUpdates onSuccess");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception e) {
+                            LocationLog.e(TAG, "deleteActivityIdentificationUpdates onFailure:" + e.getMessage());
+                        }
+                    });
         } catch (Exception e) {
             LocationLog.e(TAG, "removeActivityUpdates exception:" + e.getMessage());
         }
@@ -167,7 +164,7 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
 
     @Override
     protected void onDestroy() {
-        if(pendingIntent != null) {
+        if (pendingIntent != null) {
             removeActivityUpdates();
         }
         super.onDestroy();
@@ -200,10 +197,6 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
                         type4.width = type4.width + value * enlarge;
                         activityUNKNOWN.setLayoutParams(type4);
                         break;
-                    case ActivityIdentificationData.TILTING:
-                        type5.width = type5.width + value * enlarge;
-                        activityTILTING.setLayoutParams(type5);
-                        break;
                     case ActivityIdentificationData.WALKING:
                         type7.width = type7.width + value * enlarge;
                         activityWALKING.setLayoutParams(type7);
@@ -224,21 +217,19 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
     }
 
     public static void reSet() {
-        type0.width = progressBarOriginWidth ;
+        type0.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityIN_VEHICLE.setLayoutParams(type0);
-        type1.width = progressBarOriginWidth ;
+        type1.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityON_BICYCLE.setLayoutParams(type1);
-        type2.width = progressBarOriginWidth ;
+        type2.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityON_FOOT.setLayoutParams(type2);
-        type3.width = progressBarOriginWidth ;
+        type3.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activitySTILL.setLayoutParams(type3);
-        type4.width = progressBarOriginWidth ;
+        type4.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityUNKNOWN.setLayoutParams(type4);
-        type5.width = progressBarOriginWidth ;
-        activityTILTING.setLayoutParams(type5);
-        type7.width = progressBarOriginWidth ;
+        type7.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityWALKING.setLayoutParams(type7);
-        type8.width = progressBarOriginWidth ;
+        type8.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityRunning.setLayoutParams(type8);
     }
 }

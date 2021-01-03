@@ -21,10 +21,21 @@ import com.huawei.logger.LogFragment;
 import com.huawei.logger.LoggerActivity;
 
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 
 /**
  * add addLogFragment() method, if you want to show log on the screen
- * @author xxx888888
+ *
  * @since 2020-5-11
  */
 public class LocationBaseActivity extends LoggerActivity {
@@ -44,6 +55,36 @@ public class LocationBaseActivity extends LoggerActivity {
             transaction.commit();
         }else {
             LocationLog.e("LocationBaseActivity", "addLogFragment error !");
+        }
+    }
+
+    public void initDataDisplayView(String TAG,TableLayout tableLayout, String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            Iterator iterator = jsonObject.keys();
+            while (iterator.hasNext()) {
+                String key = (String) iterator.next();
+                String value = jsonObject.getString(key);
+
+                TableRow tableRow = new TableRow(getBaseContext());
+
+                TextView textView = new TextView(getBaseContext());
+                textView.setText(key);
+                textView.setTextColor(Color.GRAY);
+                textView.setId(getBaseContext().getResources()
+                        .getIdentifier(key + "_key", "id", getBaseContext().getPackageName()));
+                tableRow.addView(textView);
+
+                EditText editText = new EditText(getBaseContext());
+                editText.setText(value);
+                editText.setId(getBaseContext().getResources()
+                        .getIdentifier(key + "_value", "id", getBaseContext().getPackageName()));
+                editText.setTextColor(Color.DKGRAY);
+                tableRow.addView(editText);
+                tableLayout.addView(tableRow);
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, "initDataDisplayView JSONException:" + e.getMessage());
         }
     }
 }

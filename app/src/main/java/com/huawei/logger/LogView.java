@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 /**
  * LogView is used to show LocationLog info
- * @author xxx888888
+ *
  * @since 2020-5-11
  */
 public class LogView extends TextView implements LogNode {

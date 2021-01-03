@@ -33,7 +33,7 @@ import android.widget.ScrollView;
 
 /**
  * the fragment will be used to show log info, the useful info will print on screen.
- * @author xxx888888
+ *
  * @since 2020-5-11
  */
 
