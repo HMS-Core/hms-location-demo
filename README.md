@@ -1,5 +1,4 @@
-##  huawei-location-android-demo
-
+##  HMS Location Kit Demo for Android
 
 ## Table of Contents
 
@@ -36,9 +35,17 @@ You should create an app in AppGallery Connect, and obtain the file of agconnect
 2. location broadcast receiver.The code is stored in src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java
 
 ## Result
-<img src="images/home.png" width = 20% height = 20%>
-<img src="images/locationgetlast.png" width = 20% height = 20%>
-<img src="images/locationhd.png" width = 20% height = 20%>
+**Home**
+
+<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/home.jpg width = 20% height = 20%>
+
+**Location get last**
+
+<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/locationgetlast.jpg width = 20% height = 20%>
+
+**Location hd**
+
+<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/locationhd.jpg width = 20% height = 20%>
 
 
 ##  License
