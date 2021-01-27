@@ -53,7 +53,7 @@ public class CheckSettingActivity extends LocationBaseActivity implements View.O
             @Override
             public void run() {
                 try {
-                    CheckSettingsRequest checkSettingsRequest = new CheckSettingsRequest()
+                    CheckSettingsRequest checkSettingsRequest = new CheckSettingsRequest();
                     LocationRequest locationRequest = new LocationRequest();
                     checkSettingsRequest.setLocationRequest(locationRequest);
                     checkSettingsRequest.setAlwaysShow(false);
