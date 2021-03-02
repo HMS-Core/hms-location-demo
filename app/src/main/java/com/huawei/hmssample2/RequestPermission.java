@@ -13,6 +13,7 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.hmssample2;
 
 import android.Manifest;
@@ -20,8 +21,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
 
 import com.huawei.logger.LocationLog;
 
@@ -55,7 +57,6 @@ public class RequestPermission {
         }
     }
     public static void requestActivityTransitionPermission(Context context){
-
         // check location permisiion
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             if (ActivityCompat.checkSelfPermission(context,

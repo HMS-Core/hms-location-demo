@@ -20,12 +20,13 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+
+import androidx.core.app.ActivityCompat;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -40,12 +41,7 @@ import com.huawei.hmssample2.JsonDataUtil;
 import com.huawei.hmssample2.R;
 import com.huawei.logger.LocationLog;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import java.util.List;
 import java.util.Map;
 
@@ -118,7 +114,6 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
     }
 
     private void getLocationWithHd() {
-        // LogInfoUtil.getLogInfo(this);
         new Thread() {
             @Override
             public void run() {

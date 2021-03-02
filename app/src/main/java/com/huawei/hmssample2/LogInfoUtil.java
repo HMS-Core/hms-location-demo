@@ -16,10 +16,6 @@
 
 package com.huawei.hmssample2;
 
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Set;
-
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -40,11 +36,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
 import android.telephony.CellInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
+
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 功能描述

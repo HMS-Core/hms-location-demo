@@ -13,6 +13,7 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.hmssample2.geofence;
 
 import android.app.PendingIntent;
@@ -37,12 +38,19 @@ import java.util.List;
 
 public class OperateGeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
     public String TAG = "operateGeoFenceActivity";
+
     private TextView geoFenceData;
+
     private TextView geoRequestData;
+
     private EditText removeWithPendingIntentInput;
+
     private EditText removeWithIDInput;
+
     private EditText trigger;
+
     public GeofenceService geofenceService;
+
     public static final ArrayList<RequestList> requestList = new ArrayList<RequestList>();
 
     @Override
@@ -126,24 +134,24 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         }
 
         PendingIntent pendingIntent = getPendingIntent();
-        setList(pendingIntent, GeoFenceData.getRequestCode(), GeoFenceData.returnList());
         try {
             geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                LocationLog.i(TAG, "add geofence success！");
-                            } else {
-                                // Get the status code for the error and log it using a user-friendly message.
-                                LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
-                            }
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            LocationLog.i(TAG, "add geofence success！");
+                        } else {
+                            // Get the status code for the error and log it using a user-friendly message.
+                            LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
                         }
-                    });
+                    }
+                });
+            setList(pendingIntent, GeoFenceData.getRequestCode(), GeoFenceData.returnList());
+            GeoFenceData.createNewList();
         } catch (Exception e) {
             LocationLog.i(TAG, "add geofence error：" + e.getMessage());
         }
-        GeoFenceData.createNewList();
     }
 
     public PendingIntent findIntentByID(int a) {
@@ -237,24 +245,24 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         }
         RequestList temp = requestList.get(requestList.size() - 1);
         PendingIntent pendingIntent = temp.pendingIntent;
-        setList(pendingIntent, temp.requestCode, GeoFenceData.returnList());
         try {
             geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                LocationLog.i(TAG, "add geofence success！");
-                            } else {
-                                // Get the status code for the error and log it using a user-friendly message.
-                                LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
-                            }
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            LocationLog.i(TAG, "add geofence success！");
+                        } else {
+                            // Get the status code for the error and log it using a user-friendly message.
+                            LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
                         }
-                    });
+                    }
+                });
+            setList(pendingIntent, temp.requestCode, GeoFenceData.returnList());
+            GeoFenceData.createNewList();
         } catch (Exception e) {
             LocationLog.i(TAG, "add geofence error：" + e.getMessage());
         }
-        GeoFenceData.createNewList();
     }
 
     public boolean checkUniqueID() {
@@ -290,10 +298,10 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         for (int i = 0; i < requestList.size(); i++) {
             buf.append(requestList.get(i).show());
         }
-        if (s.equals("")) {
-            buf.append("no request!");
-        }
         s = buf.toString();
+        if (s.equals("")) {
+            s = "no request!";
+        }
         geoRequestData.setText(s);
     }
 
@@ -302,13 +310,16 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         intent.setAction(GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION);
         Log.d(TAG, "new request");
         GeoFenceData.newRequest();
-        return PendingIntent.getBroadcast(this, GeoFenceData.getRequestCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(this, GeoFenceData.getRequestCode(), intent,
+            PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
 
 class RequestList {
     public PendingIntent pendingIntent;
+
     public int requestCode;
+
     public ArrayList<Geofence> geofences;
 
     public RequestList(PendingIntent pendingIntent, int requestCode, ArrayList<Geofence> geofences) {
@@ -321,7 +332,8 @@ class RequestList {
         StringBuilder buf = new StringBuilder();
         String s = "";
         for (int i = 0; i < geofences.size(); i++) {
-            buf.append("PendingIntent: " + String.valueOf(requestCode) + " UniqueID: " + geofences.get(i).getUniqueId() + "\n");
+            buf.append("PendingIntent: " + String.valueOf(requestCode) + " UniqueID: " + geofences.get(i).getUniqueId()
+                + "\n");
         }
         s = buf.toString();
         return s;
@@ -334,7 +346,7 @@ class RequestList {
             for (int i = 0; i < geofences.size(); i++) {
                 if (s.equals(geofences.get(i).getUniqueId())) {
                     return true;
-                    //id already exist
+                    // id already exist
                 }
             }
         }

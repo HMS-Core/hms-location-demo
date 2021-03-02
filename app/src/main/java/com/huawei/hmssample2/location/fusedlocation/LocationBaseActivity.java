@@ -13,6 +13,7 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.hmssample2.location.fusedlocation;
 
 import com.huawei.hmssample2.R;
@@ -22,6 +23,7 @@ import com.huawei.logger.LoggerActivity;
 
 import android.app.FragmentTransaction;
 import android.graphics.Color;
+import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -50,15 +52,15 @@ public class LocationBaseActivity extends LoggerActivity {
     protected void addLogFragment() {
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
         final LogFragment fragment = new LogFragment();
-        if(transaction != null) {
+        if (transaction != null) {
             transaction.replace(R.id.framelog, fragment);
             transaction.commit();
-        }else {
+        } else {
             LocationLog.e("LocationBaseActivity", "addLogFragment error !");
         }
     }
 
-    public void initDataDisplayView(String TAG,TableLayout tableLayout, String json) {
+    public void initDataDisplayView(String TAG, TableLayout tableLayout, String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
             Iterator iterator = jsonObject.keys();
@@ -80,6 +82,10 @@ public class LocationBaseActivity extends LoggerActivity {
                 editText.setId(getBaseContext().getResources()
                         .getIdentifier(key + "_value", "id", getBaseContext().getPackageName()));
                 editText.setTextColor(Color.DKGRAY);
+                if (!key.equals("isFastestIntervalExplicitlySet") && !key.equals("needAddress")
+                        && !key.equals("language") && !key.equals("countryCode") && !key.equals("alwaysShow") && !key.equals("needble")) {
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                }
                 tableRow.addView(editText);
                 tableLayout.addView(tableRow);
             }
