@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.huawei.hmssample" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.huawei.hms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="29" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <!--配置数据元，当用户手机上未安装HMS Core（APK）或者版本过低时，引导用户安装或升级HMS Core-->
+        <meta-data
+            android:name="com.huawei.hms.client.channel.androidMarket"
+            android:value="false" />
+        <activity android:name=".geofence.OperateGeoFenceActivity" >
+        </activity>
+        <activity android:name=".geofence.GeoFenceActivity" />
+        <activity
+            android:name=".GetNavigationContextStateActivity"
+            android:label="@string/title_activity_get_navigation_context_state_activity" >
+        </activity>
+        <activity android:name=".HuaweiLocationActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- RequestLocationUpdatesWithCallback -->
+        <activity
+            android:name=".location.fusedlocation.RequestLocationUpdatesWithCallbackActivity"
+            android:configChanges="orientation|screenSize" />
+        <!-- RequestLocationUpdatesWithIntent -->
+        <activity
+            android:name=".location.fusedlocation.RequestLocationUpdatesWithIntentActivity"
+            android:configChanges="orientation|screenSize" />
+        <!-- GetLastLocation -->
+        <activity
+            android:name=".location.fusedlocation.GetLastLocationActivity"
+            android:configChanges="orientation|screenSize" />
+        <!-- GetLocationAvailability -->
+        <activity
+            android:name=".location.fusedlocation.GetLocationAvailabilityActivity"
+            android:configChanges="orientation|screenSize" />
+        <!-- SetMockMode -->
+        <activity
+            android:name=".location.fusedlocation.SetMockModeActivity"
+            android:configChanges="orientation|screenSize" />
+        <!-- SetMockLocation -->
+        <activity
+            android:name=".location.fusedlocation.SetMockLocationActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".activity.ActivityConversionActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".activity.ActivityIdentificationActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".location.fusedlocation.RequestLocationUpdatesHDWithCallbackActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".location.fusedlocation.CheckSettingActivity"
+            android:configChanges="orientation|screenSize" />
+        <!-- LocationBroadcastReceiver -->
+        <receiver
+            android:name=".location.fusedlocation.LocationBroadcastReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.huawei.hmssample.location.LocationBroadcastReceiver.ACTION_PROCESS_LOCATION" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".geofence.GeoFenceBroadcastReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.huawei.hms.update.provider.UpdateProvider"
+            android:authorities="com.huawei.hmssample.hms.update.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+    </application>
+
+</manifest>

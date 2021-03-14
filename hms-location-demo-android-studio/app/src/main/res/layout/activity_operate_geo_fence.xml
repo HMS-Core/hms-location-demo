@@ -1,0 +1,212 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="GeoFence" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <TextView
+                    android:id="@+id/GeoFenceData"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:layout_weight="4"
+                    android:scrollbars="vertical"
+                    android:hint="see the Geofence which wait to add"
+                    android:paddingTop="10dp" />
+            </ScrollView>
+            <Button
+                android:id="@+id/CreateGeofence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Geofence" />
+            <Button
+                android:id="@+id/removeGeofence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="remove all Geofence" />
+            <Button
+                android:id="@+id/getGeoFenceData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="get GeoFence Data" />
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="Trigger" />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/trigger"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="input trigger"/>
+                </LinearLayout>
+            </LinearLayout>
+            <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+                    <TextView
+                        android:hint="see the Geofence which already send the request"
+                        android:id="@+id/GeoRequestData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_weight="4"
+                        android:paddingTop="10dp" />
+            </ScrollView>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/sendRequest"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Send Request with pendingIntent" />
+                <Button
+                    android:id="@+id/sendRequestWithNew"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Send with new pendingIntent" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/GetRequestMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get Request Message" />
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="removeWithPendingIntent"
+                    />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/removeWithPendingIntentInput"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="input pengdingIntent"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="removeWithID"
+                    />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/removeWithIDInput"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Input fence ID"
+                        android:inputType="text" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/removeWithIntent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Remove With Intent" />
+                <Button
+                    android:id="@+id/removeWithID"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Remove With ID" />
+
+            </LinearLayout>
+                <FrameLayout
+                    android:id="@+id/framelog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+            </ScrollView>
+            </LinearLayout>
+
+
+        </LinearLayout>

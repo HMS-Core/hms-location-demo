@@ -1,0 +1,50 @@
+<!--
+  ~ Copyright (c) Huawei Technologies Co., Ltd. 2019-2019. All rights reserved.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_title_margin"
+    android:paddingTop="@dimen/activity_title_margin"
+    android:paddingRight="@dimen/activity_title_margin"
+    tools:context=".location.fusedlocation.RequestLocationUpdatesWithIntentActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TitleStyle"
+                android:text="@string/hwlocation_locationupdates" />
+
+            <Button
+                android:id="@+id/location_requestLocationUpdatesWithIntent"
+                style="@style/ButtonStyle"
+                android:text="@string/hwlocation_requestLocationUpdatesWithIntent" />
+
+            <Button
+                android:id="@+id/location_removeLocationUpdatesWithIntent"
+                style="@style/ButtonStyle"
+                android:text="@string/hwlocation_removeLocationUpdatesWithIntent" />
+
+
+            <FrameLayout
+                android:id="@+id/framelog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"></FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
