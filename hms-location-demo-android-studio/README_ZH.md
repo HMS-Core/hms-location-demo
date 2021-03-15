@@ -1,5 +1,5 @@
 #  华为定位服务安卓版示例代码
-中文 | [English](https://github.com/HMS-Core/hms-location-demo-android-studio)
+中文 | [English](https://github.com/HMS-Core/hms-location-demo/blob/master/hms-location-demo-android-studio/README.md)
 
 ## 目录
  * [开发准备](#开发准备)
