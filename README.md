@@ -1,5 +1,4 @@
 # hms-location-demo
-English
 
 ## Table of Contents
 
