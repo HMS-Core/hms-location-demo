@@ -13,6 +13,7 @@
  
 ## Introduction
 Android sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.The following describes of Android sample code.
+
 hmssample:Android Sample Code for Integration to Eclipse
 
 ## Getting Started
