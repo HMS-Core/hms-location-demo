@@ -1,5 +1,5 @@
 # hms-location-demo
-English | [中文](https://github.com/HMS-Core/hms-location-demo/blob/master/hms-location-demo-android-studio/README_ZH.md)
+English
 
 ## Table of Contents
 
