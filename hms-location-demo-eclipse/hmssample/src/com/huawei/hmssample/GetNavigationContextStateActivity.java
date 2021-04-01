@@ -18,7 +18,6 @@ package com.huawei.hmssample;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
-import com.huawei.hmf.tasks.Task;
 import com.huawei.hms.location.LocationEnhanceService;
 import com.huawei.hms.location.LocationServices;
 import com.huawei.hms.location.NavigationRequest;
@@ -70,7 +69,7 @@ public class GetNavigationContextStateActivity extends LocationBaseActivity impl
 		try {
             int type = Integer. valueOf(requestType.getText().toString());
             NavigationRequest request = new NavigationRequest(type);
-            Task<NavigationResult> task = locationEnhanceService.getNavigationState(request)
+            locationEnhanceService.getNavigationState(request)
                     .addOnSuccessListener(new OnSuccessListener<NavigationResult>() {
                         public void onSuccess(NavigationResult result) {
                             LocationLog.i(TAG, "get NavigationResult sucess, State is :"

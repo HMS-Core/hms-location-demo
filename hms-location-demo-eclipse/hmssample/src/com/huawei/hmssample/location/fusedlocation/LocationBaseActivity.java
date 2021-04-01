@@ -40,6 +40,7 @@ import android.widget.TextView;
  * 
  * @since 2020-5-11
  */
+@SuppressWarnings("deprecation")
 public class LocationBaseActivity extends LoggerActivity {
     @Override
     protected void onDestroy() {
@@ -52,15 +53,15 @@ public class LocationBaseActivity extends LoggerActivity {
     protected void addLogFragment() {
         final FragmentTransaction transaction = getFragmentManager().beginTransaction();
         final LogFragment fragment = new LogFragment();
-        if(transaction != null) {
+        if (transaction != null) {
             transaction.replace(R.id.framelog, fragment);
             transaction.commit();
-        }else {
+        } else {
             LocationLog.e("LocationBaseActivity", "addLogFragment error !");
         }
     }
-    
-    protected void initDataDisplayView(String TAG,TableLayout tableLayout, String json) {
+
+    protected void initDataDisplayView(String TAG, TableLayout tableLayout, String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
             Iterator iterator = jsonObject.keys();
@@ -73,19 +74,19 @@ public class LocationBaseActivity extends LoggerActivity {
                 TextView textView = new TextView(getBaseContext());
                 textView.setText(key);
                 textView.setTextColor(Color.GRAY);
-                textView.setId(getBaseContext().getResources().getIdentifier(key + "_key",
-                        "id", getBaseContext().getPackageName()));
+                textView.setId(getBaseContext().getResources().getIdentifier(key + "_key", "id",
+                    getBaseContext().getPackageName()));
                 tableRow.addView(textView);
 
                 EditText editText = new EditText(getBaseContext());
                 editText.setText(value);
-                editText.setId(getBaseContext().getResources().getIdentifier(key + "_value",
-                        "id", getBaseContext().getPackageName()));
+                editText.setId(getBaseContext().getResources().getIdentifier(key + "_value", "id",
+                    getBaseContext().getPackageName()));
                 editText.setTextColor(Color.DKGRAY);
-				if (!key.equals("isFastestIntervalExplicitlySet") && !key.equals("needAddress")
-                        && !key.equals("language") && !key.equals("countryCode")) {
-					editText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    }
+                if (!key.equals("isFastestIntervalExplicitlySet") && !key.equals("needAddress")
+                    && !key.equals("language") && !key.equals("countryCode")) {
+                    editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                }
                 tableRow.addView(editText);
                 tableLayout.addView(tableRow);
             }

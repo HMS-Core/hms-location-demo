@@ -34,6 +34,7 @@ import com.huawei.hmssample2.location.fusedlocation.LocationBaseActivity;
 import com.huawei.logger.LocationLog;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OperateGeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
@@ -133,7 +134,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
             LocationLog.d(TAG, "default trigger is 5");
         }
 
-        PendingIntent pendingIntent = getPendingIntent();
+        final PendingIntent pendingIntent = getPendingIntent();
         try {
             geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -141,14 +142,14 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
                     public void onComplete(Task<Void> task) {
                         if (task.isSuccessful()) {
                             LocationLog.i(TAG, "add geofence success！");
+                            setList(pendingIntent, GeoFenceData.getRequestCode(), GeoFenceData.returnList());
+                            GeoFenceData.createNewList();
                         } else {
                             // Get the status code for the error and log it using a user-friendly message.
                             LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
                         }
                     }
                 });
-            setList(pendingIntent, GeoFenceData.getRequestCode(), GeoFenceData.returnList());
-            GeoFenceData.createNewList();
         } catch (Exception e) {
             LocationLog.i(TAG, "add geofence error：" + e.getMessage());
         }
@@ -192,9 +193,20 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
     public void removeWithID() {
         String s = removeWithIDInput.getText().toString();
         String[] str = s.split(" ");
-        List<String> list = new ArrayList<String>();
-        for (int i = 0; i < str.length; i++)
-            list.add(str[i]);
+        List<String> list = new ArrayList<>();
+        List<String> geofenceList = new ArrayList<>();
+        Collections.addAll(list, str);
+        for (int i = 0; i < requestList.size(); i++) {
+            for (int j = 0; j < requestList.get(i).geofences.size(); j++) {
+                geofenceList.add(requestList.get(i).geofences.get(j).getUniqueId());
+            }
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (!geofenceList.contains(list.get(i))) {
+                LocationLog.i(TAG, "delete ID not found.");
+                return;
+            }
+        }
         try {
             geofenceService.deleteGeofenceList(list).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -332,8 +344,7 @@ class RequestList {
         StringBuilder buf = new StringBuilder();
         String s = "";
         for (int i = 0; i < geofences.size(); i++) {
-            buf.append("PendingIntent: " + String.valueOf(requestCode) + " UniqueID: " + geofences.get(i).getUniqueId()
-                + "\n");
+            buf.append("PendingIntent: " + requestCode + " UniqueID: " + geofences.get(i).getUniqueId() + "\n");
         }
         s = buf.toString();
         return s;

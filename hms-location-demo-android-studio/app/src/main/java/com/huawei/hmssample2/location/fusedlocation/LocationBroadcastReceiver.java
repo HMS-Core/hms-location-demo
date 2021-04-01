@@ -16,7 +16,11 @@
 
 package com.huawei.hmssample2.location.fusedlocation;
 
-import java.util.List;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.util.Log;
 
 import com.huawei.hms.location.ActivityConversionData;
 import com.huawei.hms.location.ActivityConversionResponse;
@@ -27,11 +31,7 @@ import com.huawei.hms.location.LocationResult;
 import com.huawei.hmssample2.activity.ActivityIdentificationActivity;
 import com.huawei.logger.LocationLog;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.location.Location;
-import android.util.Log;
+import java.util.List;
 
 /**
  * location broadcast receiver
@@ -46,6 +46,7 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
     public static boolean isListenActivityIdentification = false;
 
     public static boolean isListenActivityConversion = false;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent != null) {
@@ -56,7 +57,8 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
                 Log.i(TAG, "null != intent");
                 String messageBack = "";
                 StringBuffer buf = new StringBuffer();
-                ActivityConversionResponse activityTransitionResult = ActivityConversionResponse.getDataFromIntent(intent);
+                ActivityConversionResponse activityTransitionResult =
+                    ActivityConversionResponse.getDataFromIntent(intent);
                 if (activityTransitionResult != null && isListenActivityConversion == true) {
                     List<ActivityConversionData> list = activityTransitionResult.getActivityConversionDatas();
                     for (int i = 0; i < list.size(); i++) {
@@ -67,7 +69,8 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
                     LocationLog.d("TAG", messageBack);
                 }
 
-                ActivityIdentificationResponse activityRecognitionResult = ActivityIdentificationResponse.getDataFromIntent(intent);
+                ActivityIdentificationResponse activityRecognitionResult =
+                    ActivityIdentificationResponse.getDataFromIntent(intent);
                 if (activityRecognitionResult != null && isListenActivityIdentification == true) {
                     LocationLog.i(TAG, "activityRecognitionResult:" + activityRecognitionResult);
                     List<ActivityIdentificationData> list = activityRecognitionResult.getActivityIdentificationDatas();
@@ -79,46 +82,51 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
                         List<Location> locations = result.getLocations();
                         if (!locations.isEmpty()) {
                             sb.append("requestLocationUpdatesWithIntent[Longitude,Latitude,Accuracy]:");
-                            sb.append((char)13).append((char)10);
+                            sb.append((char) 13).append((char) 10);
                             for (Location location : locations) {
                                 sb.append(location.getLongitude())
                                     .append(",")
                                     .append(location.getLatitude())
                                     .append(",")
                                     .append(location.getAccuracy())
-                                    .append((char)13).append((char)10);
+                                    .append((char) 13)
+                                    .append((char) 10);
 
                             }
                         }
                     }
                 }
 
-//                Processing LocationAvailability information
+                // Processing LocationAvailability information
                 if (LocationAvailability.hasLocationAvailability(intent)) {
                     LocationAvailability locationAvailability =
                         LocationAvailability.extractLocationAvailability(intent);
                     if (locationAvailability != null) {
                         sb.append("[locationAvailability]:" + locationAvailability.isLocationAvailable());
-                        sb.append((char)13).append((char)10);
+                        sb.append((char) 13).append((char) 10);
                     }
                 }
             }
-            if (!"".equals(sb.toString())){
+            if (!"".equals(sb.toString())) {
                 LocationLog.i(TAG, sb.toString());
             }
 
         }
     }
-    public static void addConversionListener(){
+
+    public static void addConversionListener() {
         isListenActivityConversion = true;
     }
-    public static void removeConversionListener(){
+
+    public static void removeConversionListener() {
         isListenActivityConversion = false;
     }
-    public static void addIdentificationListener(){
+
+    public static void addIdentificationListener() {
         isListenActivityIdentification = true;
     }
-    public static void removeIdentificationListener(){
+
+    public static void removeIdentificationListener() {
         isListenActivityIdentification = false;
     }
 }

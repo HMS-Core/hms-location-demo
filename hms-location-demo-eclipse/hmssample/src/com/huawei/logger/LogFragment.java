@@ -37,6 +37,7 @@ import android.widget.ScrollView;
  * @since 2020-5-11
  */
 
+@SuppressWarnings("deprecation")
 public class LogFragment extends Fragment {
 
     private LogView mLogView;
@@ -67,7 +68,6 @@ public class LogFragment extends Fragment {
         return mScrollView;
     }
 
-    @SuppressWarnings("deprecation")
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

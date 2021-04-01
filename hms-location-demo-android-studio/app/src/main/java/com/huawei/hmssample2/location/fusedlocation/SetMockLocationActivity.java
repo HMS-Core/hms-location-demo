@@ -13,7 +13,15 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.hmssample2.location.fusedlocation;
+
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -22,13 +30,6 @@ import com.huawei.hms.location.FusedLocationProviderClient;
 import com.huawei.hms.location.LocationServices;
 import com.huawei.hmssample2.R;
 import com.huawei.logger.LocationLog;
-
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 /**
  * setMockLocation Usage Example
@@ -57,25 +58,25 @@ public class SetMockLocationActivity extends LocationBaseActivity implements OnC
      */
     private void setMockLocation() {
         try {
-            //Fill in the information sources such as gps and network based on the application situation.
+            // Fill in the information sources such as gps and network based on the application situation.
             final Location mockLocation = new Location(LocationManager.GPS_PROVIDER);
             mockLocation.setLongitude(118.76);
             mockLocation.setLatitude(31.98);
-            // Note: To enable the mock function, enable the android.permission.ACCESS_MOCK_LOCATION permission in the AndroidManifest.xml file,
+            // Note: To enable the mock function, enable the android.permission.ACCESS_MOCK_LOCATION permission in the
+            // AndroidManifest.xml file,
             // and set the application to the mock location app in the device setting.
             Task<Void> voidTask = mFusedLocationProviderClient.setMockLocation(mockLocation);
             voidTask.addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        LocationLog.i(TAG, "setMockLocation onSuccess ");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        LocationLog.e(TAG, "setMockLocation onFailure:" + e.getMessage());
-                    }
-                });
+                @Override
+                public void onSuccess(Void aVoid) {
+                    LocationLog.i(TAG, "setMockLocation onSuccess ");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "setMockLocation onFailure:" + e.getMessage());
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "setMockLocation exception:" + e.getMessage());
         }

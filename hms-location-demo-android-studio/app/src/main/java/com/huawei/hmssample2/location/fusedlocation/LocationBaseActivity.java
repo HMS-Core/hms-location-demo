@@ -16,11 +16,6 @@
 
 package com.huawei.hmssample2.location.fusedlocation;
 
-import com.huawei.hmssample2.R;
-import com.huawei.logger.LocationLog;
-import com.huawei.logger.LogFragment;
-import com.huawei.logger.LoggerActivity;
-
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.text.InputType;
@@ -29,6 +24,11 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.huawei.hmssample2.R;
+import com.huawei.logger.LocationLog;
+import com.huawei.logger.LogFragment;
+import com.huawei.logger.LoggerActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -74,16 +74,17 @@ public class LocationBaseActivity extends LoggerActivity {
                 textView.setText(key);
                 textView.setTextColor(Color.GRAY);
                 textView.setId(getBaseContext().getResources()
-                        .getIdentifier(key + "_key", "id", getBaseContext().getPackageName()));
+                    .getIdentifier(key + "_key", "id", getBaseContext().getPackageName()));
                 tableRow.addView(textView);
 
                 EditText editText = new EditText(getBaseContext());
                 editText.setText(value);
                 editText.setId(getBaseContext().getResources()
-                        .getIdentifier(key + "_value", "id", getBaseContext().getPackageName()));
+                    .getIdentifier(key + "_value", "id", getBaseContext().getPackageName()));
                 editText.setTextColor(Color.DKGRAY);
                 if (!key.equals("isFastestIntervalExplicitlySet") && !key.equals("needAddress")
-                        && !key.equals("language") && !key.equals("countryCode") && !key.equals("alwaysShow") && !key.equals("needble")) {
+                    && !key.equals("language") && !key.equals("countryCode") && !key.equals("alwaysShow")
+                    && !key.equals("needble")) {
                     editText.setInputType(InputType.TYPE_CLASS_NUMBER);
                 }
                 tableRow.addView(editText);

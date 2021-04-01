@@ -13,6 +13,7 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.hmssample2.geofence;
 
 import android.content.IntentSender;
@@ -48,17 +49,29 @@ import java.util.List;
 
 public class GeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
     private EditText setlatitude;
+
     private EditText setlongitude;
+
     private EditText setradius;
+
     private EditText setUniqueId;
+
     private EditText setConversions;
+
     private EditText setValidContinueTime;
+
     private EditText setDwellDelayTime;
+
     private EditText setNotificationInterval;
+
     LocationCallback mLocationCallbacks;
+
     LocationRequest mLocationRequest;
+
     private FusedLocationProviderClient mFusedLocationProviderClient;
+
     private SettingsClient mSettingsClient;
+
     public String TAG = "GeoFenceActivity";
 
     @Override
@@ -93,8 +106,8 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
                         if (!locations.isEmpty()) {
                             for (Location location : locations) {
                                 LocationLog.i(TAG,
-                                        "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
-                                                + "," + location.getLatitude() + "," + location.getAccuracy());
+                                    "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
+                                        + "," + location.getLatitude() + "," + location.getAccuracy());
                                 setlatitude.setText(String.valueOf(location.getLatitude()));
                                 setlongitude.setText(String.valueOf(location.getLongitude()));
                                 removeGeoFenceLocationUpdatesWith();
@@ -158,48 +171,48 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
             builders.addLocationRequest(mLocationRequest);
             LocationSettingsRequest locationSettingsRequest = builders.build();
             // Before requesting location update, invoke checkLocationSettings to check device settings.
-            Task<LocationSettingsResponse> locationSettingsResponseTasks = mSettingsClient.checkLocationSettings(locationSettingsRequest);
+            Task<LocationSettingsResponse> locationSettingsResponseTasks =
+                mSettingsClient.checkLocationSettings(locationSettingsRequest);
             locationSettingsResponseTasks.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
                 @Override
                 public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                     Log.i(TAG, "check location settings success");
                     mFusedLocationProviderClient
-                            .requestLocationUpdates(mLocationRequest, mLocationCallbacks, Looper.getMainLooper())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    LocationLog.i(TAG, "geoFence onSuccess");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    LocationLog.e(TAG,
-                                            "geoFence onFailure:" + e.getMessage());
-                                }
-                            });
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "checkLocationSetting onFailures:" + e.getMessage());
-                            int statusCodes = ((ApiException) e).getStatusCode();
-                            switch (statusCodes) {
-                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                    try {
-                                        //When the startResolutionForResult is invoked, a dialog box is displayed, asking you to open the corresponding permission.
-                                        ResolvableApiException raes = (ResolvableApiException) e;
-                                        raes.startResolutionForResult(GeoFenceActivity.this, 0);
-                                    } catch (IntentSender.SendIntentException sie) {
-                                        Log.e(TAG, "PendingIntent unable to execute request");
-                                    }
-                                    break;
-                                default:
-                                    break;
+                        .requestLocationUpdates(mLocationRequest, mLocationCallbacks, Looper.getMainLooper())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                LocationLog.i(TAG, "geoFence onSuccess");
                             }
-                        }
-                    });
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                LocationLog.e(TAG, "geoFence onFailure:" + e.getMessage());
+                            }
+                        });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "checkLocationSetting onFailures:" + e.getMessage());
+                    int statusCodes = ((ApiException) e).getStatusCode();
+                    switch (statusCodes) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                // When the startResolutionForResult is invoked, a dialog box is displayed, asking you
+                                // to open the corresponding permission.
+                                ResolvableApiException raes = (ResolvableApiException) e;
+                                raes.startResolutionForResult(GeoFenceActivity.this, 0);
+                            } catch (IntentSender.SendIntentException sie) {
+                                Log.e(TAG, "PendingIntent unable to execute request");
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "geoFence exception:" + e.getMessage());
         }
@@ -213,20 +226,19 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
                 public void onSuccess(Void aVoid) {
                     LocationLog.i(TAG, "removeGeoFenceLocationUpdatesWith onSuccess");
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "removeGeoFenceLocationUpdatesWith onFailure:" + e.getMessage());
-                        }
-                    });
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "removeGeoFenceLocationUpdatesWith onFailure:" + e.getMessage());
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "removeGeoFenceLocationUpdatesWith exception:" + e.getMessage());
         }
     }
 
     protected void onDestroy() {
-        //Removed when the location update is no longer required.
+        // Removed when the location update is no longer required.
         super.onDestroy();
     }
 
@@ -234,19 +246,27 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
 
 class Data {
     public double latitude;
+
     public double longitude;
+
     public float radius;
+
     public String uniqueId;
+
     public int conversions;
+
     public long validContinueTime;
+
     public int dwellDelayTime;
+
     public int notificationInterval;
 }
 
 class GeoFenceData {
     private static int requestCode = 0;
-    static ArrayList<Geofence> geofences = new ArrayList<Geofence>();
-    ;
+
+    static ArrayList<Geofence> geofences = new ArrayList<Geofence>();;
+
     static Geofence.Builder geoBuild = new Geofence.Builder();
 
     public static void addGeofence(Data data) {

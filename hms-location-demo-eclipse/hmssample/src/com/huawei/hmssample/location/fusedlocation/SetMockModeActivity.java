@@ -37,10 +37,11 @@ import android.widget.RadioGroup;
  * 
  * @since 2020-5-11
  */
-public class SetMockModeActivity extends LocationBaseActivity implements OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class SetMockModeActivity extends LocationBaseActivity
+    implements OnClickListener, RadioGroup.OnCheckedChangeListener {
     public static final String TAG = "SetMockModeActivity";
 
-    //the mockMode flag
+    // the mockMode flag
     private boolean mMockFlag;
 
     private RadioGroup mRadioGroupSetMockMode;
@@ -68,7 +69,8 @@ public class SetMockModeActivity extends LocationBaseActivity implements OnClick
     private void setMockMode() {
         try {
             Log.i(TAG, "setMockMode mock mode is " + mMockFlag);
-            // Note: To enable the mock function, enable the android.permission.ACCESS_MOCK_LOCATION permission in the AndroidManifest.xml file,
+            // Note: To enable the mock function, enable the android.permission.ACCESS_MOCK_LOCATION permission in the
+            // AndroidManifest.xml file,
             // and set the application to the mock location app in the device setting.
             Task<Void> voidTask = mFusedLocationProviderClient.setMockMode(mMockFlag);
             voidTask.addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -105,7 +107,8 @@ public class SetMockModeActivity extends LocationBaseActivity implements OnClick
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        //If you do not need to simulate a location, set mode to false. Otherwise, other applications cannot use the positioning function of Huawei location service.
+        // If you do not need to simulate a location, set mode to false. Otherwise, other applications cannot use the
+        // positioning function of Huawei location service.
         RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
         mMockFlag = Boolean.valueOf(radioButton.getText().toString());
     }

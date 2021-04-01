@@ -16,13 +16,8 @@
 
 package com.huawei.hmssample.geofence;
 
-import android.content.IntentSender;
-import android.location.Location;
-import android.os.Bundle;
-import android.os.Looper;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -44,22 +39,39 @@ import com.huawei.hmssample.R;
 import com.huawei.hmssample.location.fusedlocation.LocationBaseActivity;
 import com.huawei.logger.LocationLog;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.content.IntentSender;
+import android.location.Location;
+import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
-public class GeoFenceActivity extends LocationBaseActivity implements View.OnClickListener{
+public class GeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
     private EditText setlatitude;
+
     private EditText setlongitude;
+
     private EditText setradius;
+
     private EditText setUniqueId;
+
     private EditText setConversions;
+
     private EditText setValidContinueTime;
+
     private EditText setDwellDelayTime;
+
     private EditText setNotificationInterval;
+
     LocationCallback mLocationCallback;
+
     LocationRequest mLocationRequest;
+
     private FusedLocationProviderClient mFusedLocationProviderClient;
+
     private SettingsClient mSettingsClient;
+
     public String TAG = "GeoFenceActivity";
 
     @Override
@@ -94,8 +106,8 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
                         if (!locations.isEmpty()) {
                             for (Location location : locations) {
                                 LocationLog.i(TAG,
-                                        "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
-                                                + "," + location.getLatitude() + "," + location.getAccuracy());
+                                    "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
+                                        + "," + location.getLatitude() + "," + location.getAccuracy());
                                 setlatitude.setText(String.valueOf(location.getLatitude()));
                                 setlongitude.setText(String.valueOf(location.getLongitude()));
                                 removeLocationUpdatesWithCallback();
@@ -103,6 +115,7 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
                         }
                     }
                 }
+
                 @Override
                 public void onLocationAvailability(LocationAvailability locationAvailability) {
                     if (locationAvailability != null) {
@@ -113,7 +126,8 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
             };
         }
     }
-    public void getText(){
+
+    public void getText() {
         Data temp = new Data();
         temp.longitude = Double.parseDouble(setlongitude.getText().toString());
         temp.latitude = Double.parseDouble(setlatitude.getText().toString());
@@ -125,9 +139,11 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
         temp.notificationInterval = Integer.parseInt(setNotificationInterval.getText().toString());
         GeoFenceData.addGeofence(temp);
     }
-    public void getLocation(){
+
+    public void getLocation() {
         requestLocationUpdatesWithCallback();
     }
+
     @Override
     public void onClick(View v) {
         try {
@@ -148,59 +164,61 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
             LocationLog.e(TAG, "GeoFenceActivity Exception:" + e);
         }
     }
+
     private void requestLocationUpdatesWithCallback() {
         try {
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
             builder.addLocationRequest(mLocationRequest);
             LocationSettingsRequest locationSettingsRequest = builder.build();
             // Before requesting location update, invoke checkLocationSettings to check device settings.
-            Task<LocationSettingsResponse> locationSettingsResponseTask = mSettingsClient.checkLocationSettings(locationSettingsRequest);
+            Task<LocationSettingsResponse> locationSettingsResponseTask =
+                mSettingsClient.checkLocationSettings(locationSettingsRequest);
             locationSettingsResponseTask.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
                 @Override
                 public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                     Log.i(TAG, "check location settings success");
                     mFusedLocationProviderClient
-                            .requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.getMainLooper())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    LocationLog.i(TAG, "requestLocationUpdatesWithCallback onSuccess");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    LocationLog.e(TAG,
-                                            "requestLocationUpdatesWithCallback onFailure:" + e.getMessage());
-                                }
-                            });
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
-                            int statusCode = ((ApiException) e).getStatusCode();
-                            switch (statusCode) {
-                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                    try {
-                                        //When the startResolutionForResult is invoked, a dialog box is displayed, asking you to open the corresponding permission.
-                                        ResolvableApiException rae = (ResolvableApiException) e;
-                                        rae.startResolutionForResult(GeoFenceActivity.this, 0);
-                                    } catch (IntentSender.SendIntentException sie) {
-                                        Log.e(TAG, "PendingIntent unable to execute request.");
-                                    }
-                                    break;
-								default:
-                                    break;
-
+                        .requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.getMainLooper())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                LocationLog.i(TAG, "requestLocationUpdatesWithCallback onSuccess");
                             }
-                        }
-                    });
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                LocationLog.e(TAG, "requestLocationUpdatesWithCallback onFailure:" + e.getMessage());
+                            }
+                        });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
+                    int statusCode = ((ApiException) e).getStatusCode();
+                    switch (statusCode) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                // When the startResolutionForResult is invoked, a dialog box is displayed, asking you
+                                // to open the corresponding permission.
+                                ResolvableApiException rae = (ResolvableApiException) e;
+                                rae.startResolutionForResult(GeoFenceActivity.this, 0);
+                            } catch (IntentSender.SendIntentException sie) {
+                                Log.e(TAG, "PendingIntent unable to execute request.");
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "requestLocationUpdatesWithCallback exception:" + e.getMessage());
         }
     }
+
     private void removeLocationUpdatesWithCallback() {
         try {
             Task<Void> voidTask = mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback);
@@ -209,45 +227,56 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
                 public void onSuccess(Void aVoid) {
                     LocationLog.i(TAG, "removeLocationUpdatesWithCallback onSuccess");
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "removeLocationUpdatesWithCallback onFailure:" + e.getMessage());
-                        }
-                    });
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "removeLocationUpdatesWithCallback onFailure:" + e.getMessage());
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "removeLocationUpdatesWithCallback exception:" + e.getMessage());
         }
     }
+
     protected void onDestroy() {
-        //Removed when the location update is no longer required.
+        // Removed when the location update is no longer required.
         super.onDestroy();
     }
 
 }
 
-class Data{
+class Data {
     public double latitude;
+
     public double longitude;
+
     public float radius;
+
     public String uniqueId;
+
     public int conversions;
+
     public long validContinueTime;
+
     public int dwellDelayTime;
+
     public int notificationInterval;
 }
-class GeoFenceData{
+
+class GeoFenceData {
     private static int requestCode = 0;
+
     static ArrayList<Geofence> geofences = new ArrayList<Geofence>();;
+
     static Geofence.Builder geoBuild = new Geofence.Builder();
-    public static void addGeofence(Data data){
-        if(checkStyle( geofences,data.uniqueId) == false){
-            LocationLog.d("GeoFenceActivity","not unique ID!");
+
+    public static void addGeofence(Data data) {
+        if (checkStyle(geofences, data.uniqueId) == false) {
+            LocationLog.d("GeoFenceActivity", "not unique ID!");
             LocationLog.i("GeoFenceActivity", "addGeofence failed!");
             return;
         }
-        geoBuild.setRoundArea(data.latitude,data.longitude,data.radius);
+        geoBuild.setRoundArea(data.latitude, data.longitude, data.radius);
         geoBuild.setUniqueId(data.uniqueId);
         geoBuild.setConversions(data.conversions);
         geoBuild.setValidContinueTime(data.validContinueTime);
@@ -256,31 +285,37 @@ class GeoFenceData{
         geofences.add(geoBuild.build());
         LocationLog.i("GeoFenceActivity", "addGeofence success!");
     }
-    public static void createNewList(){
+
+    public static void createNewList() {
         geofences = new ArrayList<Geofence>();
     }
-    public static boolean checkStyle(ArrayList<Geofence> geofences,String ID){
-        for(int i = 0;i<geofences.size();i++){
-            if(geofences.get(i).getUniqueId().equals(ID))
+
+    public static boolean checkStyle(ArrayList<Geofence> geofences, String ID) {
+        for (int i = 0; i < geofences.size(); i++) {
+            if (geofences.get(i).getUniqueId().equals(ID))
                 return false;
         }
         return true;
     }
-    public static ArrayList<Geofence> returnList(){
+
+    public static ArrayList<Geofence> returnList() {
         return geofences;
     }
-    public static void show(){
-        if(geofences.isEmpty()){
-            LocationLog.d("GeoFenceActivity","no GeoFence Data!");
+
+    public static void show() {
+        if (geofences.isEmpty()) {
+            LocationLog.d("GeoFenceActivity", "no GeoFence Data!");
         }
-        for(int i = 0;i<geofences.size();i++){
-                LocationLog.d("GeoFenceActivity","Unique ID is "+(geofences.get(i)).getUniqueId());
+        for (int i = 0; i < geofences.size(); i++) {
+            LocationLog.d("GeoFenceActivity", "Unique ID is " + (geofences.get(i)).getUniqueId());
         }
     }
-    public static void newRequest(){
+
+    public static void newRequest() {
         requestCode++;
     }
-    public static int getRequestCode(){
+
+    public static int getRequestCode() {
         return requestCode;
     }
- }
+}

@@ -16,16 +16,16 @@
 
 package com.huawei.hmssample.geofence;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.location.Location;
+import java.util.ArrayList;
 
 import com.huawei.hms.location.Geofence;
 import com.huawei.hms.location.GeofenceData;
 import com.huawei.logger.LocationLog;
 
-import java.util.ArrayList;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
 
 /**
  * location broadcast receiver
@@ -33,7 +33,9 @@ import java.util.ArrayList;
  * @since 2020-5-11
  */
 public class GeoFenceBroadcastReceiver extends BroadcastReceiver {
-    public static final String ACTION_PROCESS_LOCATION = "com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION";
+    public static final String ACTION_PROCESS_LOCATION =
+        "com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION";
+
     private static final String TAG = "GeoFenceReceiver";
 
     @Override

@@ -16,13 +16,9 @@
 
 package com.huawei.hmssample.geofence;
 
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import com.huawei.hmf.tasks.OnCompleteListener;
 import com.huawei.hmf.tasks.Task;
@@ -33,17 +29,29 @@ import com.huawei.hmssample.R;
 import com.huawei.hmssample.location.fusedlocation.LocationBaseActivity;
 import com.huawei.logger.LocationLog;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class OperateGeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
     public String TAG = "operateGeoFenceActivity";
+
     private TextView geoFenceData;
+
     private TextView geoRequestData;
+
     private EditText removeWithPendingIntentInput;
+
     private EditText removeWithIDInput;
+
     private EditText trigger;
+
     public GeofenceService geofenceService;
+
     public static final ArrayList<RequestList> requestList = new ArrayList<RequestList>();
 
     @Override
@@ -117,30 +125,32 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         }
         GeofenceRequest.Builder geofenceRequest = new GeofenceRequest.Builder();
         geofenceRequest.createGeofenceList(GeoFenceData.returnList());
-        if(trigger.getText() != null) {
+        if (trigger.getText() != null) {
             int trigGer = Integer.parseInt(trigger.getText().toString());
             geofenceRequest.setInitConversions(trigGer);
-            LocationLog.d(TAG,"trigger is "+ trigGer);
-        }else {
+            LocationLog.d(TAG, "trigger is " + trigGer);
+        } else {
             geofenceRequest.setInitConversions(5);
-            LocationLog.d(TAG,"default trigger is 5");}
+            LocationLog.d(TAG, "default trigger is 5");
+        }
 
-        PendingIntent pendingIntent = getPendingIntent();
+        final PendingIntent pendingIntent = getPendingIntent();
         try {
             geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                LocationLog.i(TAG, "add geofence success!");
-                            } else {
-                                // Get the status code for the error and log it using a user-friendly message.
-                                LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
-                            }
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            LocationLog.i(TAG, "add geofence success!");
+                            setList(pendingIntent, GeoFenceData.getRequestCode(), GeoFenceData.returnList());
+                            GeoFenceData.createNewList();
+                        } else {
+                            // Get the status code for the error and log it using a user-friendly message.
+                            LocationLog.w(TAG, "add geofence failed : " + task.getException().getMessage());
                         }
-                    });
-            setList(pendingIntent, GeoFenceData.getRequestCode(), GeoFenceData.returnList());
-            GeoFenceData.createNewList();
+                    }
+                });
+            
         } catch (Exception e) {
             LocationLog.i(TAG, "add geofence error:" + e.getMessage());
         }
@@ -185,8 +195,20 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         String s = removeWithIDInput.getText().toString();
         String[] str = s.split(" ");
         List<String> list = new ArrayList<String>();
-        for (int i = 0; i < str.length; i++)
-            list.add(str[i]);
+        List<String> geofenceList = new ArrayList<String>();
+        Collections.addAll(list, str);
+        for (int i = 0; i < requestList.size(); i++) {
+            for (int j = 0; j < requestList.get(i).geofences.size(); j++) {
+                geofenceList.add(requestList.get(i).geofences.get(j).getUniqueId());
+            }
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (!geofenceList.contains(list.get(i))) {
+                LocationLog.i(TAG, "delete ID not found.");
+                return;
+            }
+        }
+
         try {
             geofenceService.deleteGeofenceList(list).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -227,28 +249,29 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         checkUniqueID();
         GeofenceRequest.Builder geofenceRequest = new GeofenceRequest.Builder();
         geofenceRequest.createGeofenceList(GeoFenceData.returnList());
-        if(trigger.getText() != null) {
+        if (trigger.getText() != null) {
             int trigGer = Integer.parseInt(trigger.getText().toString());
             geofenceRequest.setInitConversions(trigGer);
-            LocationLog.d(TAG,"trigger is "+ trigGer);
-        }else {
+            LocationLog.d(TAG, "trigger is " + trigGer);
+        } else {
             geofenceRequest.setInitConversions(5);
-            LocationLog.d(TAG,"default trigger is 5");}
+            LocationLog.d(TAG, "default trigger is 5");
+        }
         RequestList temp = requestList.get(requestList.size() - 1);
         PendingIntent pendingIntent = temp.pengingIntent;
         try {
             geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                LocationLog.i(TAG, "add geofence success!");
-                            } else {
-                                // Get the status code for the error and log it using a user-friendly message.
-                                LocationLog.w(TAG, "add geofence failed: " + task.getException().getMessage());
-                            }
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            LocationLog.i(TAG, "add geofence success!");
+                        } else {
+                            // Get the status code for the error and log it using a user-friendly message.
+                            LocationLog.w(TAG, "add geofence failed: " + task.getException().getMessage());
                         }
-                    });
+                    }
+                });
             setList(pendingIntent, temp.requestCode, GeoFenceData.returnList());
             GeoFenceData.createNewList();
         } catch (Exception e) {
@@ -266,7 +289,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
 
     public void getData() {
         ArrayList<Geofence> geofences = GeoFenceData.returnList();
-		StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder();
         String s = "";
         if (geofences.isEmpty()) {
             buf.append("no GeoFence Data!");
@@ -274,7 +297,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         for (int i = 0; i < geofences.size(); i++) {
             buf.append("Unique ID is " + geofences.get(i).getUniqueId() + "\n");
         }
-		s = buf.toString();
+        s = buf.toString();
         geoFenceData.setText(s);
     }
 
@@ -284,7 +307,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
     }
 
     public void getRequestMessage() {
-		StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder();
         String s = "";
         for (int i = 0; i < requestList.size(); i++) {
             buf.append(requestList.get(i).show());
@@ -301,13 +324,16 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         intent.setAction(GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION);
         Log.d(TAG, "new request");
         GeoFenceData.newRequest();
-        return PendingIntent.getBroadcast(this, GeoFenceData.getRequestCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(this, GeoFenceData.getRequestCode(), intent,
+            PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
 
 class RequestList {
     public PendingIntent pengingIntent;
+
     public int requestCode;
+
     public ArrayList<Geofence> geofences;
 
     public RequestList(PendingIntent pengingIntent, int requestCode, ArrayList<Geofence> geofences) {
@@ -317,12 +343,12 @@ class RequestList {
     }
 
     public String show() {
-		StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder();
         String s = "";
         for (int i = 0; i < geofences.size(); i++) {
-            buf.append("PendingIntent: " + String.valueOf(requestCode) + " UniqueID: " + geofences.get(i).getUniqueId() + "\n");
+            buf.append("PendingIntent: " + requestCode + " UniqueID: " + geofences.get(i).getUniqueId() + "\n");
         }
-		s = buf.toString();
+        s = buf.toString();
         return s;
     }
 
@@ -333,7 +359,7 @@ class RequestList {
             for (int i = 0; i < geofences.size(); i++) {
                 if (s.equals(geofences.get(i).getUniqueId())) {
                     return true;
-                    //id already exist
+                    // id already exist
                 }
             }
         }

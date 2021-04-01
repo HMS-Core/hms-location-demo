@@ -13,19 +13,8 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
-package com.huawei.hmssample2;
 
-import com.huawei.hmssample2.activity.ActivityConversionActivity;
-import com.huawei.hmssample2.activity.ActivityIdentificationActivity;
-import com.huawei.hmssample2.geofence.OperateGeoFenceActivity;
-import com.huawei.hmssample2.location.fusedlocation.CheckSettingActivity;
-import com.huawei.hmssample2.location.fusedlocation.GetLastLocationActivity;
-import com.huawei.hmssample2.location.fusedlocation.GetLocationAvailabilityActivity;
-import com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesHDWithCallbackActivity;
-import com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesWithCallbackActivity;
-import com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesWithIntentActivity;
-import com.huawei.hmssample2.location.fusedlocation.SetMockLocationActivity;
-import com.huawei.hmssample2.location.fusedlocation.SetMockModeActivity;
+package com.huawei.hmssample2;
 
 import android.Manifest;
 import android.app.Activity;
@@ -38,6 +27,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import androidx.core.app.ActivityCompat;
+
+import com.huawei.hmssample2.activity.ActivityConversionActivity;
+import com.huawei.hmssample2.activity.ActivityIdentificationActivity;
+import com.huawei.hmssample2.geofence.OperateGeoFenceActivity;
+import com.huawei.hmssample2.location.fusedlocation.CheckSettingActivity;
+import com.huawei.hmssample2.location.fusedlocation.GetLastLocationActivity;
+import com.huawei.hmssample2.location.fusedlocation.GetLocationAvailabilityActivity;
+import com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesHDWithCallbackActivity;
+import com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesWithCallbackActivity;
+import com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesWithIntentActivity;
+import com.huawei.hmssample2.location.fusedlocation.SetMockLocationActivity;
+import com.huawei.hmssample2.location.fusedlocation.SetMockModeActivity;
 
 /**
  * Demonstration of Huawei Location Service Usage
@@ -65,27 +66,27 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         findViewById(R.id.getNavigationContextState).setOnClickListener(this);
         findViewById(R.id.check_setting).setOnClickListener(this);
 
-        //You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service is unavailable.
+        // You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service
+        // is unavailable.
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             Log.i(TAG, "android sdk < 28 Q");
             if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 String[] strings =
-                        {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+                    {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
                 ActivityCompat.requestPermissions(this, strings, 1);
             }
         } else {
             if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this,
-                    "android.permission.ACCESS_BACKGROUND_LOCATION") != PackageManager.PERMISSION_GRANTED) {
+                && ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 String[] strings = {android.Manifest.permission.ACCESS_FINE_LOCATION,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                        "android.permission.ACCESS_BACKGROUND_LOCATION"};
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION};
                 ActivityCompat.requestPermissions(this, strings, 2);
             }
         }
@@ -130,8 +131,8 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         }
     }
 
-    private void otherClick(int id){
-        switch (id){
+    private void otherClick(int id) {
+        switch (id) {
             case R.id.location_activity_update:
                 startIntent(ActivityIdentificationActivity.class);
                 break;
@@ -160,7 +161,7 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
             if (grantResults.length > 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 Log.i(TAG, "onRequestPermissionsResult: apply LOCATION PERMISSION successful");
             } else {
                 Log.i(TAG, "onRequestPermissionsResult: apply LOCATION PERMISSSION  failed");
@@ -169,8 +170,8 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
 
         if (requestCode == 2) {
             if (grantResults.length > 2 && grantResults[2] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 Log.i(TAG, "onRequestPermissionsResult: apply ACCESS_BACKGROUND_LOCATION successful");
             } else {
                 Log.i(TAG, "onRequestPermissionsResult: apply ACCESS_BACKGROUND_LOCATION  failed");

@@ -16,8 +16,6 @@
 
 package com.huawei.logger;
 
-import com.huawei.hmssample2.Constant;
-
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -30,6 +28,8 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
+
+import com.huawei.hmssample2.Constant;
 
 /**
  * the fragment will be used to show log info, the useful info will print on screen.
@@ -48,6 +48,7 @@ public class LogFragment extends Fragment {
 
     /**
      * load view
+     *
      * @return View
      */
     private View inflateViews() {

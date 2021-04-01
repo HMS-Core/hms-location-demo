@@ -16,12 +16,7 @@
 
 package com.huawei.hmssample.activity;
 
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
+import java.util.List;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -34,34 +29,52 @@ import com.huawei.hmssample.location.fusedlocation.LocationBaseActivity;
 import com.huawei.hmssample.location.fusedlocation.LocationBroadcastReceiver;
 import com.huawei.logger.LocationLog;
 
-import java.util.List;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 public class ActivityIdentificationActivity extends LocationBaseActivity implements View.OnClickListener {
     public String TAG = "ActivityTransitionUpdate";
 
-    private final static int  PROGRESS_BAR_ORIGIN_WIDTH = 100;
+    private final static int PROGRESS_BAR_ORIGIN_WIDTH = 100;
 
     private final static int enlarge = 6;
 
     public ActivityIdentificationService activityIdentificationService;
 
     private static LinearLayout.LayoutParams type0;
+
     private static LinearLayout.LayoutParams type1;
+
     private static LinearLayout.LayoutParams type2;
+
     private static LinearLayout.LayoutParams type3;
+
     private static LinearLayout.LayoutParams type4;
+
     private static LinearLayout.LayoutParams type7;
+
     private static LinearLayout.LayoutParams type8;
 
     private static LinearLayout activityIN_VEHICLE;
+
     private static LinearLayout activityON_BICYCLE;
+
     private static LinearLayout activityON_FOOT;
+
     private static LinearLayout activitySTILL;
+
     private static LinearLayout activityUNKNOWN;
+
     private static LinearLayout activityWALKING;
+
     private static LinearLayout activityRunning;
 
     private PendingIntent pendingIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +104,7 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
 
     public void requestActivityUpdates(long detectionIntervalMillis) {
         try {
-            if(pendingIntent != null){
+            if (pendingIntent != null) {
                 removeActivityUpdates();
             }
             pendingIntent = getPendingIntent();
@@ -163,7 +176,7 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
 
     @Override
     protected void onDestroy() {
-        if(pendingIntent != null) {
+        if (pendingIntent != null) {
             removeActivityUpdates();
         }
         super.onDestroy();
@@ -214,19 +227,19 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
     }
 
     public static void reSet() {
-        type0.width = PROGRESS_BAR_ORIGIN_WIDTH ;
+        type0.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityIN_VEHICLE.setLayoutParams(type0);
-        type1.width = PROGRESS_BAR_ORIGIN_WIDTH ;
+        type1.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityON_BICYCLE.setLayoutParams(type1);
-        type2.width = PROGRESS_BAR_ORIGIN_WIDTH ;
+        type2.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityON_FOOT.setLayoutParams(type2);
-        type3.width = PROGRESS_BAR_ORIGIN_WIDTH ;
+        type3.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activitySTILL.setLayoutParams(type3);
-        type4.width = PROGRESS_BAR_ORIGIN_WIDTH ;
+        type4.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityUNKNOWN.setLayoutParams(type4);
-        type7.width = PROGRESS_BAR_ORIGIN_WIDTH ;
+        type7.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityWALKING.setLayoutParams(type7);
-        type8.width = PROGRESS_BAR_ORIGIN_WIDTH ;
+        type8.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityRunning.setLayoutParams(type8);
     }
 }

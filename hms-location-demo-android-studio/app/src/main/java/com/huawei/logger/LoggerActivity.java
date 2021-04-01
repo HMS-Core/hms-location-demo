@@ -16,9 +16,9 @@
 
 package com.huawei.logger;
 
-import com.huawei.hmssample2.R;
-
 import android.app.Activity;
+
+import com.huawei.hmssample2.R;
 
 /**
  * the activity is used to attach LogFragment

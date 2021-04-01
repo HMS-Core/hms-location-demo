@@ -70,34 +70,35 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         findViewById(R.id.GeoFence).setOnClickListener(this);
         findViewById(R.id.LocationHD).setOnClickListener(this);
         findViewById(R.id.getNavigationContextState).setOnClickListener(this);
-		findViewById(R.id.check_setting).setOnClickListener(this);
+        findViewById(R.id.check_setting).setOnClickListener(this);
 
-        //You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service is unavailable.
+        // You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service
+        // is unavailable.
         if (Build.VERSION.SDK_INT <= 28) {
             Log.i(TAG, "android sdk < 28 Q");
             if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 String[] strings =
-                        {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+                    {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
                 ActivityCompat.requestPermissions(this, strings, 1);
             }
         } else {
             if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this,
+                && ActivityCompat.checkSelfPermission(this,
                     "android.permission.ACCESS_BACKGROUND_LOCATION") != PackageManager.PERMISSION_GRANTED) {
                 String[] strings = {android.Manifest.permission.ACCESS_FINE_LOCATION,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                        "android.permission.ACCESS_BACKGROUND_LOCATION"};
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                    "android.permission.ACCESS_BACKGROUND_LOCATION"};
                 ActivityCompat.requestPermissions(this, strings, 2);
             }
         }
     }
-    
+
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(context);
@@ -162,20 +163,20 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
             Log.i(TAG, "HuaweiLocation Exception:" + e);
         }
     }
-	
-	private void startIntent(Class<?> clazz){
+
+    private void startIntent(Class<?> clazz) {
         Intent intent = new Intent(this, clazz);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-	
+
     @TargetApi(23)
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
             if (grantResults.length > 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 Log.i(TAG, "onRequestPermissionsResult: apply LOCATION PERMISSION successful");
             } else {
                 Log.i(TAG, "onRequestPermissionsResult: apply LOCATION PERMISSSION  failed");
@@ -184,8 +185,8 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
 
         if (requestCode == 2) {
             if (grantResults.length > 2 && grantResults[2] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 Log.i(TAG, "onRequestPermissionsResult: apply ACCESS_BACKGROUND_LOCATION successful");
             } else {
                 Log.i(TAG, "onRequestPermissionsResult: apply ACCESS_BACKGROUND_LOCATION  failed");

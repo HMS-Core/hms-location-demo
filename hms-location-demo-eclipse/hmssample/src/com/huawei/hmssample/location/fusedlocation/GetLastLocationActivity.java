@@ -19,11 +19,13 @@ package com.huawei.hmssample.location.fusedlocation;
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hmf.tasks.Task;
+import com.huawei.hms.common.ResolvableApiException;
 import com.huawei.hms.location.FusedLocationProviderClient;
 import com.huawei.hms.location.LocationServices;
 import com.huawei.hmssample.R;
 import com.huawei.logger.LocationLog;
 
+import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,8 +49,8 @@ public class GetLastLocationActivity extends LocationBaseActivity implements OnC
         // Button click listeners
         findViewById(R.id.location_getLastLocation).setOnClickListener(this);
         addLogFragment();
-        //Creating a Location Service Client
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        // Creating a Location Service Client
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getBaseContext());
     }
 
     /**
@@ -64,15 +66,25 @@ public class GetLastLocationActivity extends LocationBaseActivity implements OnC
                         LocationLog.i(TAG, "getLastLocation onSuccess location is null");
                         return;
                     }
-                    LocationLog.i(TAG,
-                        "getLastLocation onSuccess location[Longitude,Latitude]:" + location.getLongitude() + ","
-                            + location.getLatitude());
+                    LocationLog.i(TAG, "getLastLocation onSuccess location[Longitude,Latitude]:"
+                        + location.getLongitude() + "," + location.getLatitude());
                     return;
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception e) {
-                    LocationLog.e(TAG, "getLastLocation onFailure:" + e.getMessage());
+                    // ¡ä|¨¤¨ª?¡ä¡ã2¡Á¡ãHMS Core¡ê¡§APK¡ê?¨º¡À¡ê?¨°y¦Ì?¨®??¡ì¡ã2¡Á¡ã?¨°¨¦y??HMS Core
+                    if (e instanceof ResolvableApiException) {
+                        ResolvableApiException apiException = (ResolvableApiException) e;
+                        LocationLog.e(TAG, "getLastLocation onFailure:" + apiException.getStatusCode());
+                        try {
+                            apiException.startResolutionForResult(GetLastLocationActivity.this, 2009);
+                        } catch (IntentSender.SendIntentException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        LocationLog.e(TAG, "getLastLocation onFailure:" + e.getMessage());
+                    }
                 }
             });
         } catch (Exception e) {

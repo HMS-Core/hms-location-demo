@@ -13,11 +13,13 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.logger;
 
 public interface LogNode {
     /**
      * Node
+     *
      * @param priority priority
      * @param tag tag
      * @param msg msg

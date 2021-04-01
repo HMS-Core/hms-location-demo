@@ -46,16 +46,22 @@ import android.view.View.OnClickListener;
 
 /**
  * Example of Using requestLocationUpdates and removeLocationUpdates.
- * Requests a location update and calls back on the specified Looper thread. This method requires that the requester process exist for continuous callback.
- * If you still want to receive the callback after the process is killed, see requestLocationUpdates (LocationRequest request,PendingIntent callbackIntent)
+ * Requests a location update and calls back on the specified Looper thread. This method requires that the requester
+ * process exist for continuous callback.
+ * If you still want to receive the callback after the process is killed, see requestLocationUpdates (LocationRequest
+ * request,PendingIntent callbackIntent)
  * 
  * @since 2020-5-11
  */
 public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActivity implements OnClickListener {
     public static final String TAG = "LocationUpdatesCallback";
+
     LocationCallback mLocationCallback;
+
     LocationRequest mLocationRequest;
+
     private FusedLocationProviderClient mFusedLocationProviderClient;
+
     private SettingsClient mSettingsClient;
 
     @Override
@@ -82,8 +88,8 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
                         if (!locations.isEmpty()) {
                             for (Location location : locations) {
                                 LocationLog.i(TAG,
-                                        "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
-                                                + "," + location.getLatitude() + "," + location.getAccuracy());
+                                    "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
+                                        + "," + location.getLatitude() + "," + location.getAccuracy());
                             }
                         }
                     }
@@ -109,49 +115,49 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
             builder.addLocationRequest(mLocationRequest);
             LocationSettingsRequest locationSettingsRequest = builder.build();
             // Before requesting location update, invoke checkLocationSettings to check device settings.
-            Task<LocationSettingsResponse> locationSettingsResponseTask = mSettingsClient.checkLocationSettings(locationSettingsRequest);
+            Task<LocationSettingsResponse> locationSettingsResponseTask =
+                mSettingsClient.checkLocationSettings(locationSettingsRequest);
             locationSettingsResponseTask.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
                 @Override
                 public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                     Log.i(TAG, "check location settings success");
                     mFusedLocationProviderClient
-                            .requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.getMainLooper())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    LocationLog.i(TAG, "requestLocationUpdatesWithCallback onSuccess");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    LocationLog.e(TAG,
-                                            "requestLocationUpdatesWithCallback onFailure:" + e.getMessage());
-                                }
-                            });
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
-                            int statusCode = ((ApiException) e).getStatusCode();
-                            switch (statusCode) {
-                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                    try {
-                                        //When the startResolutionForResult is invoked, a dialog box is displayed, asking you to open the corresponding permission.
-                                        ResolvableApiException rae = (ResolvableApiException) e;
-                                        rae.startResolutionForResult(RequestLocationUpdatesWithCallbackActivity.this, 0);
-                                    } catch (IntentSender.SendIntentException sie) {
-                                        Log.e(TAG, "PendingIntent unable to execute request.");
-                                    }
-                                    break;
-								default:
-                                    break;
-
+                        .requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.getMainLooper())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                LocationLog.i(TAG, "requestLocationUpdatesWithCallback onSuccess");
                             }
-                        }
-                    });
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                LocationLog.e(TAG, "requestLocationUpdatesWithCallback onFailure:" + e.getMessage());
+                            }
+                        });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
+                    int statusCode = ((ApiException) e).getStatusCode();
+                    switch (statusCode) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                // When the startResolutionForResult is invoked, a dialog box is displayed, asking you
+                                // to open the corresponding permission.
+                                ResolvableApiException rae = (ResolvableApiException) e;
+                                rae.startResolutionForResult(RequestLocationUpdatesWithCallbackActivity.this, 0);
+                            } catch (IntentSender.SendIntentException sie) {
+                                Log.e(TAG, "PendingIntent unable to execute request.");
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "requestLocationUpdatesWithCallback exception:" + e.getMessage());
         }
@@ -159,7 +165,7 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
 
     @Override
     protected void onDestroy() {
-        //Removed when the location update is no longer required.
+        // Removed when the location update is no longer required.
         removeLocationUpdatesWithCallback();
         super.onDestroy();
     }
@@ -175,13 +181,12 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
                 public void onSuccess(Void aVoid) {
                     LocationLog.i(TAG, "removeLocationUpdatesWithCallback onSuccess");
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "removeLocationUpdatesWithCallback onFailure:" + e.getMessage());
-                        }
-                    });
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "removeLocationUpdatesWithCallback onFailure:" + e.getMessage());
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "removeLocationUpdatesWithCallback exception:" + e.getMessage());
         }

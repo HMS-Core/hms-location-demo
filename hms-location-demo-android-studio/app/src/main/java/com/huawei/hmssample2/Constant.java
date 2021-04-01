@@ -13,6 +13,7 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.hmssample2;
 
 /**
@@ -21,8 +22,9 @@ package com.huawei.hmssample2;
  * @since 2020-5-11
  */
 public class Constant {
-    //Configuration whether to display log 1 display 0 not display logs
+    // Configuration whether to display log 1 display 0 not display logs
     public static final int IS_LOG = 1;
-    //Request Location Permission
+
+    // Request Location Permission
     public static final int REQUEST_LOCATION_PERMISSION = 1009;
 }

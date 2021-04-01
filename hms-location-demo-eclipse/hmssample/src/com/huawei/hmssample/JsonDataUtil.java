@@ -26,22 +26,20 @@ import java.nio.charset.Charset;
 
 import com.huawei.logger.LocationLog;
 
-
 public class JsonDataUtil {
-	
-	private static String TAG="JsonDataUtil";
+    private static String TAG = "JsonDataUtil";
 
-    public static String getJson(Context context, String fileName,boolean isBr) {
+    public static String getJson(Context context, String fileName, boolean isBr) {
 
         StringBuilder stringBuilder = new StringBuilder();
-		BufferedReader bf = null;
+        BufferedReader bf = null;
         try {
             AssetManager assetManager = context.getAssets();
             bf = new BufferedReader(new InputStreamReader(assetManager.open(fileName), Charset.forName("UTF-8")));
             String line;
             while ((line = bf.readLine()) != null) {
                 stringBuilder.append(line);
-                if(isBr){
+                if (isBr) {
                     stringBuilder.append("\n");
                 }
             }
@@ -58,6 +56,5 @@ public class JsonDataUtil {
         }
         return stringBuilder.toString();
     }
-
 
 }

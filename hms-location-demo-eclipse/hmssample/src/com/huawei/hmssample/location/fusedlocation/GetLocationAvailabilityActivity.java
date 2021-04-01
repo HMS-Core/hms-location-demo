@@ -50,6 +50,7 @@ public class GetLocationAvailabilityActivity extends LocationBaseActivity implem
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
+
     /**
      * Obtaining Location Availability
      */
@@ -57,20 +58,18 @@ public class GetLocationAvailabilityActivity extends LocationBaseActivity implem
         try {
             Task<LocationAvailability> locationAvailability = mFusedLocationProviderClient.getLocationAvailability();
             locationAvailability.addOnSuccessListener(new OnSuccessListener<LocationAvailability>() {
-                    @Override
-                    public void onSuccess(LocationAvailability locationAvailability) {
-                        if (locationAvailability != null) {
-                            LocationLog.i(TAG,
-                                "getLocationAvailability onSuccess:" + locationAvailability.toString());
-                        }
+                @Override
+                public void onSuccess(LocationAvailability locationAvailability) {
+                    if (locationAvailability != null) {
+                        LocationLog.i(TAG, "getLocationAvailability onSuccess:" + locationAvailability.toString());
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        LocationLog.e(TAG, "getLocationAvailability onFailure:" + e.getMessage());
-                    }
-                });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "getLocationAvailability onFailure:" + e.getMessage());
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "getLocationAvailability exception:" + e.getMessage());
         }

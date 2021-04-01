@@ -46,19 +46,31 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
     public ActivityIdentificationService activityIdentificationService;
 
     private static LinearLayout.LayoutParams type0;
+
     private static LinearLayout.LayoutParams type1;
+
     private static LinearLayout.LayoutParams type2;
+
     private static LinearLayout.LayoutParams type3;
+
     private static LinearLayout.LayoutParams type4;
+
     private static LinearLayout.LayoutParams type7;
+
     private static LinearLayout.LayoutParams type8;
 
     private static LinearLayout activityIN_VEHICLE;
+
     private static LinearLayout activityON_BICYCLE;
+
     private static LinearLayout activityON_FOOT;
+
     private static LinearLayout activitySTILL;
+
     private static LinearLayout activityUNKNOWN;
+
     private static LinearLayout activityWALKING;
+
     private static LinearLayout activityRunning;
 
     private PendingIntent pendingIntent;
@@ -98,18 +110,18 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
             pendingIntent = getPendingIntent();
             LocationBroadcastReceiver.addIdentificationListener();
             activityIdentificationService.createActivityIdentificationUpdates(detectionIntervalMillis, pendingIntent)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            LocationLog.i(TAG, "createActivityIdentificationUpdates onSuccess");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "createActivityIdentificationUpdates onFailure:" + e.getMessage());
-                        }
-                    });
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        LocationLog.i(TAG, "createActivityIdentificationUpdates onSuccess");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        LocationLog.e(TAG, "createActivityIdentificationUpdates onFailure:" + e.getMessage());
+                    }
+                });
         } catch (Exception e) {
             LocationLog.e(TAG, "createActivityIdentificationUpdates exception:" + e.getMessage());
         }
@@ -121,18 +133,18 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
             LocationBroadcastReceiver.removeIdentificationListener();
             Log.i(TAG, "start to removeActivityUpdates");
             activityIdentificationService.deleteActivityIdentificationUpdates(pendingIntent)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            LocationLog.i(TAG, "deleteActivityIdentificationUpdates onSuccess");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "deleteActivityIdentificationUpdates onFailure:" + e.getMessage());
-                        }
-                    });
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        LocationLog.i(TAG, "deleteActivityIdentificationUpdates onSuccess");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        LocationLog.e(TAG, "deleteActivityIdentificationUpdates onFailure:" + e.getMessage());
+                    }
+                });
         } catch (Exception e) {
             LocationLog.e(TAG, "removeActivityUpdates exception:" + e.getMessage());
         }

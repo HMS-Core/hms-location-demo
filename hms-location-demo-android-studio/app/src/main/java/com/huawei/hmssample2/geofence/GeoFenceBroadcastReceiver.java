@@ -13,6 +13,7 @@
         See the License for the specific language governing permissions and
         limitations under the License.
 */
+
 package com.huawei.hmssample2.geofence;
 
 import android.content.BroadcastReceiver;
@@ -32,7 +33,9 @@ import java.util.ArrayList;
  * @since 2020-5-11
  */
 public class GeoFenceBroadcastReceiver extends BroadcastReceiver {
-    public static final String ACTION_PROCESS_LOCATION = "com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION";
+    public static final String ACTION_PROCESS_LOCATION =
+        "com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION";
+
     private static final String TAG = "GeoFenceReceiver";
 
     @Override

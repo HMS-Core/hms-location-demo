@@ -42,16 +42,21 @@ import android.view.View.OnClickListener;
 /**
  * Example of Using requestLocationUpdates and removeLocationUpdates
  * Use the PendingIntent mode to continuously request the location update.
- * The location update result LocationResult and LocationAvailability are encapsulated in the Intent, and the send() of the transferred PendingIntent is invoked to send the result to the requester.
+ * The location update result LocationResult and LocationAvailability are encapsulated in the Intent, and the send() of
+ * the transferred PendingIntent is invoked to send the result to the requester.
  * If the requester process is killed, use this method to continue to call back.
- * If the requester does not want to receive the location update result when the process is killed, see requestLocationUpdates (LocationRequest request,LocationCallback callback,Looper looper).
+ * If the requester does not want to receive the location update result when the process is killed, see
+ * requestLocationUpdates (LocationRequest request,LocationCallback callback,Looper looper).
  * 
  * @since 2020-5-11
  */
 public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivity implements OnClickListener {
     public static final String TAG = "LocationUpdatesIntent";
+
     LocationRequest mLocationRequest;
+
     private FusedLocationProviderClient mFusedLocationProviderClient;
+
     private SettingsClient mSettingsClient;
 
     @Override
@@ -65,9 +70,9 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         mSettingsClient = LocationServices.getSettingsClient(this);
         mLocationRequest = new LocationRequest();
-        //Sets the interval for location update (unit: Millisecond)
+        // Sets the interval for location update (unit: Millisecond)
         mLocationRequest.setInterval(10000);
-        //Sets the priority
+        // Sets the priority
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -86,49 +91,49 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
             builder.addLocationRequest(mLocationRequest);
             LocationSettingsRequest locationSettingsRequest = builder.build();
-            //Before requesting location update, invoke checkLocationSettings to check device settings.
-            Task<LocationSettingsResponse> locationSettingsResponseTask = mSettingsClient.checkLocationSettings(locationSettingsRequest);
+            // Before requesting location update, invoke checkLocationSettings to check device settings.
+            Task<LocationSettingsResponse> locationSettingsResponseTask =
+                mSettingsClient.checkLocationSettings(locationSettingsRequest);
             locationSettingsResponseTask.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
                 @Override
                 public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                     Log.i(TAG, "check location settings success");
                     mFusedLocationProviderClient.requestLocationUpdates(mLocationRequest, getPendingIntent())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    LocationLog.i(TAG, "requestLocationUpdatesWithIntent onSuccess");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(Exception e) {
-                                    LocationLog.e(TAG,
-                                            "requestLocationUpdatesWithIntent onFailure:" + e.getMessage());
-                                }
-                            });
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
-                            int statusCode = ((ApiException) e).getStatusCode();
-                            switch (statusCode) {
-                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                    try {
-                                        //When the startResolutionForResult is invoked, a dialog box is displayed, asking you to open the corresponding permission.
-                                        ResolvableApiException rae = (ResolvableApiException) e;
-                                        rae.startResolutionForResult(RequestLocationUpdatesWithIntentActivity.this, 0);
-                                    } catch (IntentSender.SendIntentException sie) {
-                                        LocationLog.e(TAG, "PendingIntent unable to execute request.");
-                                    }
-                                    break;
-								default:
-                                    break;
-
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                LocationLog.i(TAG, "requestLocationUpdatesWithIntent onSuccess");
                             }
-                        }
-                    });
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                LocationLog.e(TAG, "requestLocationUpdatesWithIntent onFailure:" + e.getMessage());
+                            }
+                        });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
+                    int statusCode = ((ApiException) e).getStatusCode();
+                    switch (statusCode) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                // When the startResolutionForResult is invoked, a dialog box is displayed, asking you
+                                // to open the corresponding permission.
+                                ResolvableApiException rae = (ResolvableApiException) e;
+                                rae.startResolutionForResult(RequestLocationUpdatesWithIntentActivity.this, 0);
+                            } catch (IntentSender.SendIntentException sie) {
+                                LocationLog.e(TAG, "PendingIntent unable to execute request.");
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "requestLocationUpdatesWithIntent exception:" + e.getMessage());
         }
@@ -145,13 +150,12 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
                 public void onSuccess(Void aVoid) {
                     LocationLog.i(TAG, "removeLocatonUpdatesWithIntent onSuccess");
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "removeLocatonUpdatesWithIntent onFailure:" + e.getMessage());
-                        }
-                    });
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "removeLocatonUpdatesWithIntent onFailure:" + e.getMessage());
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "removeLocatonUpdatesWithIntent exception:" + e.getMessage());
         }

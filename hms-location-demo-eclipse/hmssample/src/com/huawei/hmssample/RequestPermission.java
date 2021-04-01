@@ -16,6 +16,8 @@
 
 package com.huawei.hmssample;
 
+import com.huawei.logger.LocationLog;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -24,52 +26,50 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
-import com.huawei.logger.LocationLog;
-
-
 public class RequestPermission {
     public static final String TAG = "RequestPermission";
+
     public static void requestLocationPermission(Context context) {
         // check location permisiion
         if (Build.VERSION.SDK_INT <= 28) {
             Log.i(TAG, "android sdk < 28 Q");
             if (ActivityCompat.checkSelfPermission(context,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 String[] strings =
-                        {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-                ActivityCompat.requestPermissions((Activity)context, strings, 1);
+                    {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+                ActivityCompat.requestPermissions((Activity) context, strings, 1);
             }
         } else {
             if (ActivityCompat.checkSelfPermission(context,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context,
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(context,
+                && ActivityCompat.checkSelfPermission(context,
                     "android.permission.ACCESS_BACKGROUND_LOCATION") != PackageManager.PERMISSION_GRANTED) {
                 String[] strings = {Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                        "android.permission.ACCESS_BACKGROUND_LOCATION"};
-                ActivityCompat.requestPermissions((Activity)context, strings, 2);
+                    Manifest.permission.ACCESS_COARSE_LOCATION, "android.permission.ACCESS_BACKGROUND_LOCATION"};
+                ActivityCompat.requestPermissions((Activity) context, strings, 2);
             }
         }
     }
-    public static void requestActivityTransitionPermission(Context context){
+
+    public static void requestActivityTransitionPermission(Context context) {
 
         // check location permisiion
         if (Build.VERSION.SDK_INT <= 28) {
             if (ActivityCompat.checkSelfPermission(context,
-                    "com.huawei.hms.permission.ACTIVITY_RECOGNITION") != PackageManager.PERMISSION_GRANTED) {
+                "com.huawei.hms.permission.ACTIVITY_RECOGNITION") != PackageManager.PERMISSION_GRANTED) {
                 String[] permissions = {"com.huawei.hms.permission.ACTIVITY_RECOGNITION"};
-                ActivityCompat.requestPermissions((Activity)context, permissions, 1);
+                ActivityCompat.requestPermissions((Activity) context, permissions, 1);
                 LocationLog.i(TAG, "requestActivityTransitionButtonHandler: apply permission");
             }
         } else {
             if (ActivityCompat.checkSelfPermission(context,
-                    "android.permission.ACTIVITY_RECOGNITION") != PackageManager.PERMISSION_GRANTED) {
+                "android.permission.ACTIVITY_RECOGNITION") != PackageManager.PERMISSION_GRANTED) {
                 String[] permissions = {"android.permission.ACTIVITY_RECOGNITION"};
-                ActivityCompat.requestPermissions((Activity)context, permissions, 2);
+                ActivityCompat.requestPermissions((Activity) context, permissions, 2);
                 LocationLog.i(TAG, "requestActivityTransitionButtonHandler: apply permission");
             }
         }

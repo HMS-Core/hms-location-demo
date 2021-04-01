@@ -16,6 +16,11 @@
 
 package com.huawei.hmssample2.location.fusedlocation;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hmf.tasks.Task;
@@ -24,11 +29,6 @@ import com.huawei.hms.location.LocationAvailability;
 import com.huawei.hms.location.LocationServices;
 import com.huawei.hmssample2.R;
 import com.huawei.logger.LocationLog;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 /**
  * getLocationAvailability Example
@@ -50,6 +50,7 @@ public class GetLocationAvailabilityActivity extends LocationBaseActivity implem
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
+
     /**
      * Obtaining Location Availability
      */
@@ -57,20 +58,18 @@ public class GetLocationAvailabilityActivity extends LocationBaseActivity implem
         try {
             Task<LocationAvailability> locationAvailability = mFusedLocationProviderClient.getLocationAvailability();
             locationAvailability.addOnSuccessListener(new OnSuccessListener<LocationAvailability>() {
-                    @Override
-                    public void onSuccess(LocationAvailability locationAvailability) {
-                        if (locationAvailability != null) {
-                            LocationLog.i(TAG,
-                                "getLocationAvailability onSuccess:" + locationAvailability.toString());
-                        }
+                @Override
+                public void onSuccess(LocationAvailability locationAvailability) {
+                    if (locationAvailability != null) {
+                        LocationLog.i(TAG, "getLocationAvailability onSuccess:" + locationAvailability.toString());
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        LocationLog.e(TAG, "getLocationAvailability onFailure:" + e.getMessage());
-                    }
-                });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "getLocationAvailability onFailure:" + e.getMessage());
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "getLocationAvailability exception:" + e.getMessage());
         }

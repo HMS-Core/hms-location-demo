@@ -157,7 +157,7 @@ public class LogInfoUtil {
     private static boolean isRegisterReceiverBle = false;
 
     private static void getBluetoothInfo(Context context) {
-        Log.i(TAG+ "-Bluetooth", "getBluetoothInfo start");
+        Log.i(TAG + "-Bluetooth", "getBluetoothInfo start");
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             Log.i(TAG + "-Bluetooth", "Bluetooth is not found");
@@ -218,7 +218,6 @@ public class LogInfoUtil {
             try {
                 locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
             } catch (Settings.SettingNotFoundException e) {
-                e.printStackTrace();
                 return false;
             }
             return locationMode != Settings.Secure.LOCATION_MODE_OFF;

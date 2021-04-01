@@ -39,6 +39,6 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.huawei.hms:location:5.1.0.301'
+    implementation 'com.huawei.hms:location:5.1.0.303'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }

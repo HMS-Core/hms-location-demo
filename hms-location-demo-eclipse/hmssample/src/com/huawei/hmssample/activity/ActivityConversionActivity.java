@@ -16,12 +16,8 @@
 
 package com.huawei.hmssample.activity;
 
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.CheckBox;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -36,21 +32,36 @@ import com.huawei.hmssample.location.fusedlocation.LocationBaseActivity;
 import com.huawei.hmssample.location.fusedlocation.LocationBroadcastReceiver;
 import com.huawei.logger.LocationLog;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
 
 public class ActivityConversionActivity extends LocationBaseActivity implements View.OnClickListener {
     private CheckBox IN_VEHICLE_IN;
+
     private CheckBox WALKING_IN;
+
     private CheckBox WALKING_OUT;
+
     private CheckBox IN_VEHICLE_OUT;
+
     private CheckBox ON_BICYCLE_IN;
+
     private CheckBox ON_BICYCLE_OUT;
+
     private CheckBox ON_FOOT_IN;
+
     private CheckBox ON_FOOT_OUT;
+
     private CheckBox STILL_IN;
+
     private CheckBox STILL_OUT;
+
     private CheckBox RUNNING_IN;
+
     private CheckBox RUNNING_OUT;
 
     public String TAG = "ActivityTransitionConvert";
@@ -62,6 +73,7 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
     public List<ActivityConversionInfo> transitions;
 
     private PendingIntent pendingIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,13 +137,14 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
 
     public void requestActivityTransitionUpdate() {
         try {
-            if(pendingIntent != null){
+            if (pendingIntent != null) {
                 removeActivityTransitionUpdates();
             }
             LocationBroadcastReceiver.addConversionListener();
             pendingIntent = getPendingIntent();
             activityTransitionRequest = new ActivityConversionRequest(transitions);
-            Task<Void> task = activityIdentificationService.createActivityConversionUpdates(activityTransitionRequest, pendingIntent);
+            Task<Void> task =
+                activityIdentificationService.createActivityConversionUpdates(activityTransitionRequest, pendingIntent);
             task.addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -172,7 +185,7 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
 
     @Override
     protected void onDestroy() {
-        if(pendingIntent != null) {
+        if (pendingIntent != null) {
             removeActivityTransitionUpdates();
         }
         super.onDestroy();
