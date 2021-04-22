@@ -14,6 +14,8 @@ English | [中文](https://github.com/HMS-Core/hms-location-demo/blob/master/hms
  
 ## Introduction
 HUAWEI Location Kit sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.
+
+You also can use HMS Toolkit to quickly integrate the kit and run the demo project, as well as debug the app using a remote device for free. For details, please visit https://developer.huawei.com/consumer/en/doc/development/Tools-Guides/getting-started-0000001077381096..
    
 ## Getting Started
 We also provide an sample to demonstrate the use of LocationKit SDK for Android.
