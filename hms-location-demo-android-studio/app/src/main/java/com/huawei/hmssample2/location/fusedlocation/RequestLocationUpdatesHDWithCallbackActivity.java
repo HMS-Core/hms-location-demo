@@ -188,7 +188,6 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         locationRequest.setNumUpdates(Integer.parseInt("".equals(paramList.get(6)) ? "2147483647" : paramList.get(6)));
         locationRequest.setSmallestDisplacement(Float.parseFloat("".equals(paramList.get(7)) ? "0" : paramList.get(7)));
         locationRequest.setMaxWaitTime(Long.parseLong("".equals(paramList.get(8)) ? "0" : paramList.get(8)));
-
     }
 
     private void logHwLocation(List<HWLocation> hwLocations) {
