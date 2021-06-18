@@ -51,8 +51,6 @@ public class CheckSettingActivity extends LocationBaseActivity implements View.O
         settingsClient = LocationServices.getSettingsClient(this);
         findViewById(R.id.checkLocationSetting).setOnClickListener(this);
         TableLayout tableLayout = findViewById(R.id.check_setting_table_layout_show);
-        String locationRequestJson = JsonDataUtil.getJson(this, "LocationRequest.json", true);
-        initDataDisplayView(TAG, tableLayout, locationRequestJson);
         String settingJson = JsonDataUtil.getJson(this, "CheckLocationSettings.json", true);
         initDataDisplayView(TAG, tableLayout, settingJson);
         addLogFragment();
