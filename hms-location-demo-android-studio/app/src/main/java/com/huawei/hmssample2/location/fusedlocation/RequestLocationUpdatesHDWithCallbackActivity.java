@@ -188,9 +188,6 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         locationRequest.setNumUpdates(Integer.parseInt("".equals(paramList.get(6)) ? "2147483647" : paramList.get(6)));
         locationRequest.setSmallestDisplacement(Float.parseFloat("".equals(paramList.get(7)) ? "0" : paramList.get(7)));
         locationRequest.setMaxWaitTime(Long.parseLong("".equals(paramList.get(8)) ? "0" : paramList.get(8)));
-        locationRequest.setNeedAddress(Boolean.parseBoolean("".equals(paramList.get(9)) ? "false" : paramList.get(9)));
-        locationRequest.setLanguage("".equals(paramList.get(10)) ? "zh" : paramList.get(10));
-        locationRequest.setCountryCode("".equals(paramList.get(11)) ? "CN" : paramList.get(11));
 
     }
 
