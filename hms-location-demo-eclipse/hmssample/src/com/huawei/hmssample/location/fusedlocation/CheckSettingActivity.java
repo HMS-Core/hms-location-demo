@@ -50,9 +50,6 @@ public class CheckSettingActivity extends LocationBaseActivity implements View.O
         settingsClient = LocationServices.getSettingsClient(this);
         findViewById(R.id.checkLocationSetting).setOnClickListener(this);
         TableLayout tableLayout = findViewById(R.id.check_setting_table_layout_show);
-        String locationRequestJson =
-            "{\"priority\": 102,\"interval\": 5000,\"fastestInterval\": 5000,\"isFastestIntervalExplicitlySet\": false,\"expirationTime\": 9223372036854775807,\"expirationDuration\": 9223372036854775807,\"numUpdates\": 2147483647,\"smallestDisplacement\": 0,\"maxWaitTime\": 0,\"needAddress\": false,\"language\": \"zh\",\"countryCode\": \"CN\"}";
-        initDataDisplayView(TAG, tableLayout, locationRequestJson);
         String settingJson = "{\"alwaysShow\": false,\"needBle\": false}";
         initDataDisplayView(TAG, tableLayout, settingJson);
         addLogFragment();
