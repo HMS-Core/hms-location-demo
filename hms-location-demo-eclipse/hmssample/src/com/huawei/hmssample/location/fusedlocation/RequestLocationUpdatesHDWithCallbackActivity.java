@@ -58,7 +58,7 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         TableLayout tableLayout = (TableLayout) findViewById(R.id.callback_table_layout_show);
         String locationRequestJson =
-            "{\"priority\": 102,\"interval\": 5000,\"fastestInterval\": 5000,\"isFastestIntervalExplicitlySet\": false,\"expirationTime\": 9223372036854775807,\"expirationDuration\": 9223372036854775807,\"numUpdates\": 2147483647,\"smallestDisplacement\": 0,\"maxWaitTime\": 0,\"needAddress\": false,\"language\": \"zh\",\"countryCode\": \"CN\"}";
+            "{\"priority\": 102,\"interval\": 5000,\"fastestInterval\": 5000,\"isFastestIntervalExplicitlySet\": false,\"expirationTime\": 9223372036854775807,\"expirationDuration\": 9223372036854775807,\"numUpdates\": 2147483647,\"smallestDisplacement\": 0,\"maxWaitTime\": 0}";
         initDataDisplayView(TAG, tableLayout, locationRequestJson);
         findViewById(R.id.btn_remove_hd).setOnClickListener(this);
         findViewById(R.id.btn_hd).setOnClickListener(this);
