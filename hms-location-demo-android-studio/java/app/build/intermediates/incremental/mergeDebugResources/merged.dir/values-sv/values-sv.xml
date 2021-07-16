@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="7903180715631665059" name="abc_action_bar_home_description">"Navigera hem"</string>
+    <string msgid="6794660482873516081" name="abc_action_bar_up_description">"Navigera uppåt"</string>
+    <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"Fler alternativ"</string>
+    <string msgid="2571498368472823490" name="abc_action_mode_done">"Klar"</string>
+    <string msgid="3732416590524162402" name="abc_activity_chooser_view_see_all">"Visa alla"</string>
+    <string msgid="1798588241954930982" name="abc_activitychooserview_choose_application">"Välj en app"</string>
+    <string msgid="3403923230105792483" name="abc_capital_off">"AV"</string>
+    <string msgid="7831734969929204599" name="abc_capital_on">"PÅ"</string>
+    <string msgid="5725160506500770567" name="abc_menu_alt_shortcut_label">"Alt + "</string>
+    <string msgid="944415252197684443" name="abc_menu_ctrl_shortcut_label">"Ctrl + "</string>
+    <string msgid="129742188101734366" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="6840127756824236027" name="abc_menu_enter_shortcut_label">"retur"</string>
+    <string msgid="4974283687810130415" name="abc_menu_function_shortcut_label">"Funktion + "</string>
+    <string msgid="8046416353848716905" name="abc_menu_meta_shortcut_label">"Meta + "</string>
+    <string msgid="3271697756921353410" name="abc_menu_shift_shortcut_label">"Skift + "</string>
+    <string msgid="2304645930658438191" name="abc_menu_space_shortcut_label">"blanksteg"</string>
+    <string msgid="8327365089695024394" name="abc_menu_sym_shortcut_label">"Symbol + "</string>
+    <string msgid="3570106412128999382" name="abc_prepend_shortcut_label">"Meny + "</string>
+    <string msgid="940844115270746197" name="abc_search_hint">"Sök …"</string>
+    <string msgid="1769270744562318534" name="abc_searchview_description_clear">"Ta bort frågan"</string>
+    <string msgid="908784302972860853" name="abc_searchview_description_query">"Sökfråga"</string>
+    <string msgid="5466662225065974044" name="abc_searchview_description_search">"Sök"</string>
+    <string msgid="8203855622131699655" name="abc_searchview_description_submit">"Skicka fråga"</string>
+    <string msgid="3478748990613108725" name="abc_searchview_description_voice">"Röstsökning"</string>
+    <string msgid="2650565705514630347" name="abc_shareactionprovider_share_with">"Dela med"</string>
+    <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Dela med <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Komprimera"</string>
+    <string name="hms_abort" priority="translator">"Stoppa"</string>
+    <string name="hms_abort_message" priority="translator">"Vill du stoppa hämtningen?"</string>
+    <string name="hms_bindfaildlg_message" priority="translator">"%1$s kan inte använda HMS Core. Starta Optimerare (Telefonhanterare) eller gå till Inställningar, aktivera alla behörigheter för %2$s (inklusive autostart och sekundär start) och försök igen."</string>
+    <string name="hms_cancel" priority="translator">"Avbryt"</string>
+    <string name="hms_check_failure" priority="translator">"Det gick inte att söka efter uppdateringar."</string>
+    <string name="hms_checking" priority="translator">"Söker efter uppdateringar..."</string>
+    <string name="hms_confirm" priority="translator">"OK"</string>
+    <string name="hms_download_failure" priority="translator">"Det gick inte att hämta HMS Core-paketet."</string>
+    <string name="hms_download_no_space" priority="translator">"Inte tillräckligt med ledigt utrymme. Hämtningen kan inte genomföras."</string>
+    <string name="hms_download_retry" priority="translator">"Hämtningen misslyckades. Vill du försöka igen?"</string>
+    <string name="hms_downloading_loading" priority="LT">"Laddar ned"</string>
+    <string name="hms_install" priority="translator">"Installera"</string>
+    <string name="hms_install_message" priority="translator">"HMS Core måste vara installerad för att använda den här funktionen. Installera?"</string>
+    <string name="hms_is_spoof" priority="LT">"Det verkar som om du har en inofficiell version av HMS Core (%1$s) installerad på din enhet. Avinstallera HMS Core från Inställningar och returnera den här appen för att installera den officiella versionen."</string>
+    <string name="hms_retry" priority="translator">"Försök igen"</string>
+    <string name="hms_spoof_hints" priority="LT">"Notera"</string>
+    <string name="hms_update" priority="translator">"Uppdatera"</string>
+    <string name="hms_update_continue" priority="LT">"Ladda ned"</string>
+    <string name="hms_update_message" priority="translator">"Uppdatera till den senaste versionen av HMS Core om du vill använda den här funktionen. Vill du uppdatera nu?"</string>
+    <string name="hms_update_message_new" priority="LT">"Denna tjänst kräver den senaste versionen av följande app:\n\n%1$s"</string>
+    <string name="hms_update_nettype" priority="LT">"Ingen Wi-Fi-anslutning. Vill du ladda ned med mobildata?"</string>
+    <string name="hms_update_title" priority="translator">"HMS Core"</string>
+    <string msgid="730395136688082741" name="search_menu_title">"Sök"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="upsdk_app_download_info_new" priority="translator">"Installera"</string>
+    <string name="upsdk_app_download_installing" priority="translator">"Laddar ned %s …"</string>
+    <string name="upsdk_app_size" priority="translator">"Storlek"</string>
+    <string name="upsdk_app_version" priority="translator">"Version"</string>
+    <string name="upsdk_appstore_install" priority="translator">"%s behövs för att uppdatera den här appen. Vill du installera nu?"</string>
+    <string name="upsdk_cancel" priority="translator">"Avbryt"</string>
+    <string name="upsdk_checking_update_prompt" priority="LT">"Söker efter uppdateringar …"</string>
+    <string name="upsdk_choice_update" priority="LT">"Uppdatering tillgänglig. Ladda ned och installera den senaste versionen."</string>
+    <string name="upsdk_detail" priority="translator">"Detaljer"</string>
+    <string name="upsdk_getting_message_fail_prompt_toast" priority="translator">"Kan inte hämta information. Försök igen senare."</string>
+    <string name="upsdk_mobile_dld_warn" priority="translator">"Du är för tillfället ansluten till ett mobilnätverk. Nedladdning nu förbrukar %1$s data."</string>
+    <string name="upsdk_no_available_network_prompt_toast" priority="translator">"Ingen internetanslutning. Kontrollera dina nätverksinställningar."</string>
+    <string name="upsdk_ota_app_name" priority="LT">"App"</string>
+    <string name="upsdk_ota_cancel" priority="translator">"Senare"</string>
+    <string name="upsdk_ota_force_cancel_new" priority="LT">"Lämna"</string>
+    <string name="upsdk_ota_notify_updatebtn" priority="translator">"Uppdatera"</string>
+    <string name="upsdk_ota_title" priority="translator">"Ny version"</string>
+    <string name="upsdk_storage_utils" priority="LT">"%1$s MB"</string>
+    <string name="upsdk_third_app_dl_cancel_download_prompt_ex" priority="translator">"Avbryta installationen?"</string>
+    <string name="upsdk_third_app_dl_install_failed" priority="translator">"Installationen misslyckades."</string>
+    <string name="upsdk_third_app_dl_sure_cancel_download" priority="translator">"Ja"</string>
+    <string name="upsdk_update_check_no_new_version" priority="LT">"Din version är uppdaterad."</string>
+</resources>

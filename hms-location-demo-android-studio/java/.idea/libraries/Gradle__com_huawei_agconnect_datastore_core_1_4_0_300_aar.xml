@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.huawei.agconnect:datastore-core:1.4.0.300@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d2569037c36151e5537e57ce9788edce/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d2569037c36151e5537e57ce9788edce/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.agconnect/datastore-core/1.4.0.300/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/datastore-core-1.4.0.300-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.agconnect/datastore-core/1.4.0.300/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/datastore-core-1.4.0.300-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

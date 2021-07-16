@@ -1,0 +1,249 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="AddGeoFence" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical">
+    <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:paddingTop="10dp"
+            android:text="RoundArea" />
+            <LinearLayout
+                android:paddingLeft="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="11"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="latitude([-90,90])" />
+                <EditText
+                    android:id="@+id/setlatitude"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned|numberDecimal"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="longitude([-180,180])" />
+                <EditText
+                    android:id="@+id/setlongitude"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned|numberDecimal"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="radius" />
+                <EditText
+                    android:id="@+id/setradius"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="60"
+                    android:inputType="numberDecimal"/>
+            </LinearLayout>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="UniqueId"
+                     />
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="11"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <EditText
+                        android:id="@+id/setUniqueId"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:paddingTop="10dp"
+                    android:text="Conversions"
+                     />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="11"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/setConversions"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="ValidContinueTime"
+                     />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="11"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <EditText
+                        android:id="@+id/setValidContinueTime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1000000"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="DwellDelayTime"
+                     />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="11"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/setDwellDelayTime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10000"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="NotificationInterval"
+                    />
+                <LinearLayout
+                    android:paddingLeft="10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="11"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/setNotificationInterval"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="100"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/getCurrentLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="get Current Location" />
+            <Button
+                android:id="@+id/geofence_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Geofence" />
+            <Button
+                android:id="@+id/showGeoList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="show GeoList" />
+
+            <FrameLayout
+                android:id="@+id/framelog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+{
+  "applications": [],
+  "services": [
+    {
+      "name": "com.huawei.cloud.networkcheck",
+      "routeBy": "unconditional",
+      "servings": [
+        {
+          "addresses": {
+            "HttpsBak": "https://connectivitycheck.cbg-app.huawei.com.cn/",
+            "HttpsMain": "https://connectivitycheck.platform.dbankcloud.com/"
+          }
+        }
+      ],
+      "countryOrAreaGroups": []
+    }
+  ],
+  "countryOrAreaGroups": []
+}

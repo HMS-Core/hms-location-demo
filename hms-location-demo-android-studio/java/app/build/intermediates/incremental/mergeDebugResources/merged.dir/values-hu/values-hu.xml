@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="7903180715631665059" name="abc_action_bar_home_description">"Ugrás a főoldalra"</string>
+    <string msgid="6794660482873516081" name="abc_action_bar_up_description">"Fel"</string>
+    <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"További lehetőségek"</string>
+    <string msgid="2571498368472823490" name="abc_action_mode_done">"Kész"</string>
+    <string msgid="3732416590524162402" name="abc_activity_chooser_view_see_all">"Az összes megtekintése"</string>
+    <string msgid="1798588241954930982" name="abc_activitychooserview_choose_application">"Válasszon alkalmazást"</string>
+    <string msgid="3403923230105792483" name="abc_capital_off">"KI"</string>
+    <string msgid="7831734969929204599" name="abc_capital_on">"BE"</string>
+    <string msgid="5725160506500770567" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="944415252197684443" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="129742188101734366" name="abc_menu_delete_shortcut_label">"Delete"</string>
+    <string msgid="6840127756824236027" name="abc_menu_enter_shortcut_label">"Enter"</string>
+    <string msgid="4974283687810130415" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="8046416353848716905" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="3271697756921353410" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="2304645930658438191" name="abc_menu_space_shortcut_label">"Szóköz"</string>
+    <string msgid="8327365089695024394" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="3570106412128999382" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="940844115270746197" name="abc_search_hint">"Keresés…"</string>
+    <string msgid="1769270744562318534" name="abc_searchview_description_clear">"Lekérdezés törlése"</string>
+    <string msgid="908784302972860853" name="abc_searchview_description_query">"Keresési lekérdezés"</string>
+    <string msgid="5466662225065974044" name="abc_searchview_description_search">"Keresés"</string>
+    <string msgid="8203855622131699655" name="abc_searchview_description_submit">"Lekérdezés küldése"</string>
+    <string msgid="3478748990613108725" name="abc_searchview_description_voice">"Hangalapú keresés"</string>
+    <string msgid="2650565705514630347" name="abc_shareactionprovider_share_with">"Megosztás a következővel:"</string>
+    <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Megosztás a következő alkalmazással: <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Összecsukás"</string>
+    <string name="hms_abort" priority="translator">"Leállítás"</string>
+    <string name="hms_abort_message" priority="translator">"Leállítja a letöltést?"</string>
+    <string name="hms_bindfaildlg_message" priority="translator">"%1$s nem tudja használni a HMS Core-t. Indítsa el az Optimalizálót (Telefonkezelő), vagy lépjen a Beállításokba és engedélyezze a(z) %2$s összes jogosultságát (beleértve az automatikus indítást és másodlagos indítást), majd próbálja újra."</string>
+    <string name="hms_cancel" priority="translator">"Mégse"</string>
+    <string name="hms_check_failure" priority="translator">"Frissítések keresése sikertelen."</string>
+    <string name="hms_checking" priority="translator">"Frissítések keresése..."</string>
+    <string name="hms_confirm" priority="translator">"OK"</string>
+    <string name="hms_download_failure" priority="translator">"A HMS Core csomag letöltése sikertelen."</string>
+    <string name="hms_download_no_space" priority="translator">"Nincs elég tárhely. A letöltés nem fejezhető be."</string>
+    <string name="hms_download_retry" priority="translator">"Letöltés sikertelen. Újrapróbálja?"</string>
+    <string name="hms_downloading_loading" priority="LT">"Letöltés"</string>
+    <string name="hms_install" priority="translator">"Telepítés"</string>
+    <string name="hms_install_message" priority="translator">"A HMS Core telepítve kell legyen a funkció használatához. Telepíti?"</string>
+    <string name="hms_is_spoof" priority="LT">"Úgy tűnik, hogy az Ön készülékére a HMS Core (%1$s) nem hivatalos verziója van telepítve. Távolítsa el a HMS Core-t a Beállításokban, majd nyissa meg ismét az alkalmazást a hivatalos verzió telepítéséhez."</string>
+    <string name="hms_retry" priority="translator">"Újra"</string>
+    <string name="hms_spoof_hints" priority="LT">"Megjegyzés"</string>
+    <string name="hms_update" priority="translator">"Frissítés"</string>
+    <string name="hms_update_continue" priority="LT">"Letöltés"</string>
+    <string name="hms_update_message" priority="translator">"A funkció használatához frissítsen a HMS Core legfrissebb verzióra. Frissíti most?"</string>
+    <string name="hms_update_message_new" priority="LT">"A szolgáltatásnak szüksége van az alábbi alkalmazás legfrissebb verziójára:\n\n%1$s"</string>
+    <string name="hms_update_nettype" priority="LT">"Nincs Wi-Fi kapcsolat. Letöltés mobil adatforgalommal?"</string>
+    <string name="hms_update_title" priority="translator">"HMS Core"</string>
+    <string msgid="730395136688082741" name="search_menu_title">"Keresés"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="upsdk_app_download_info_new" priority="translator">"Telepítés"</string>
+    <string name="upsdk_app_download_installing" priority="translator">"%s letöltése…"</string>
+    <string name="upsdk_app_size" priority="translator">"Méret"</string>
+    <string name="upsdk_app_version" priority="translator">"Verzió"</string>
+    <string name="upsdk_appstore_install" priority="translator">"Az alkalmazás frissítéséhez a(z) %s szükséges. Telepíti most?"</string>
+    <string name="upsdk_cancel" priority="translator">"Mégse"</string>
+    <string name="upsdk_checking_update_prompt" priority="LT">"Frissítések keresése..."</string>
+    <string name="upsdk_choice_update" priority="LT">"Frissítés érhető el. Töltse le, és telepítse a legfrissebb verziót."</string>
+    <string name="upsdk_detail" priority="translator">"Részletek"</string>
+    <string name="upsdk_getting_message_fail_prompt_toast" priority="translator">"Információ lekérése sikertelen. Próbálja újra később."</string>
+    <string name="upsdk_mobile_dld_warn" priority="translator">"Ön jelenleg mobilhálózatra csatlakozik. A letöltés most %1$s adatforgalmat vesz igénybe."</string>
+    <string name="upsdk_no_available_network_prompt_toast" priority="translator">"Nincs internetkapcsolat. Ellenőrizze a hálózati beállításait."</string>
+    <string name="upsdk_ota_app_name" priority="LT">"Alkalmazás"</string>
+    <string name="upsdk_ota_cancel" priority="translator">"Később"</string>
+    <string name="upsdk_ota_force_cancel_new" priority="LT">"Kilépés"</string>
+    <string name="upsdk_ota_notify_updatebtn" priority="translator">"Frissítés"</string>
+    <string name="upsdk_ota_title" priority="translator">"Új verzió"</string>
+    <string name="upsdk_storage_utils" priority="LT">"%1$s MB"</string>
+    <string name="upsdk_third_app_dl_cancel_download_prompt_ex" priority="translator">"Megszakítja a telepítést?"</string>
+    <string name="upsdk_third_app_dl_install_failed" priority="translator">"Telepítés sikertelen."</string>
+    <string name="upsdk_third_app_dl_sure_cancel_download" priority="translator">"Igen"</string>
+    <string name="upsdk_update_check_no_new_version" priority="Reviewed">"A verziója naprakész."</string>
+</resources>

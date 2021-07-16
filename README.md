@@ -1,4 +1,4 @@
-# hms-location-demo
+# HUAWEI Location Kit Sample
 
 ## Table of Contents
 
@@ -7,10 +7,9 @@
  * [Installation](#installation)
  * [Supported Environments](#supported-environments)
  * [Sample Code](#sample-code)
- * [Result](#result)
  * [License](#license)
- 
- 
+
+
 ## Introduction
 Android sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.The following describes of Android sample code.
 
@@ -25,7 +24,7 @@ You can use the "gradlew build" command to build the project directly.
 You should create an app in AppGallery Connect, and obtain the file of agconnect-services.json and add to the project. You should also generate a signing certificate fingerprint and add the certificate file to the project, and add configuration to build.gradle. See the Configuring App Information in AppGallery Connect guide to configure app in AppGallery Connect.
 
 ## Installation
- 
+
 1. Clone or download this project and open the downloaded folder in Android Studio or compatible IDE.
 2. use IDE's functionality to install configured project on to your device.
 
@@ -35,19 +34,6 @@ You should create an app in AppGallery Connect, and obtain the file of agconnect
 ## Sample Code
 1. Invoke the addGeofence method of GeoFenceData to add a geo-fence. The code location is in the addGeofence method of the  src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java fle.
 2. location broadcast receiver.The code is stored in src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java
-
-## Result
-**Home**
-
-<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/home.jpg width = 20% height = 20%>
-
-**Location get last**
-
-<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/locationgetlast.jpg width = 20% height = 20%>
-
-**Location hd**
-
-<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/locationhd.jpg width = 20% height = 20%>
 
 ## Question or issues
 If you want to evaluate more about HMS Core,

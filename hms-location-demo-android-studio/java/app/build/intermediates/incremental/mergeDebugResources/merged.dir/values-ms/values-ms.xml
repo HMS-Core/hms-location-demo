@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="7903180715631665059" name="abc_action_bar_home_description">"Navigasi laman utama"</string>
+    <string msgid="6794660482873516081" name="abc_action_bar_up_description">"Navigasi ke atas"</string>
+    <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"Lagi pilihan"</string>
+    <string msgid="2571498368472823490" name="abc_action_mode_done">"Selesai"</string>
+    <string msgid="3732416590524162402" name="abc_activity_chooser_view_see_all">"Lihat semua"</string>
+    <string msgid="1798588241954930982" name="abc_activitychooserview_choose_application">"Pilih apl"</string>
+    <string msgid="3403923230105792483" name="abc_capital_off">"MATI"</string>
+    <string msgid="7831734969929204599" name="abc_capital_on">"HIDUP"</string>
+    <string msgid="5725160506500770567" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="944415252197684443" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="129742188101734366" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="6840127756824236027" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="4974283687810130415" name="abc_menu_function_shortcut_label">"Fungsi+"</string>
+    <string msgid="8046416353848716905" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="3271697756921353410" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="2304645930658438191" name="abc_menu_space_shortcut_label">"ruang"</string>
+    <string msgid="8327365089695024394" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="3570106412128999382" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="940844115270746197" name="abc_search_hint">"Cari…"</string>
+    <string msgid="1769270744562318534" name="abc_searchview_description_clear">"Kosongkan pertanyaan"</string>
+    <string msgid="908784302972860853" name="abc_searchview_description_query">"Pertanyaan carian"</string>
+    <string msgid="5466662225065974044" name="abc_searchview_description_search">"Cari"</string>
+    <string msgid="8203855622131699655" name="abc_searchview_description_submit">"Serah pertanyaan"</string>
+    <string msgid="3478748990613108725" name="abc_searchview_description_voice">"Carian suara"</string>
+    <string msgid="2650565705514630347" name="abc_shareactionprovider_share_with">"Kongsi dengan"</string>
+    <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Kongsi dengan <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Runtuhkan"</string>
+    <string name="hms_abort" priority="translator">"Hentikan"</string>
+    <string name="hms_abort_message" priority="translator">"Hentikan muat turun?"</string>
+    <string name="hms_bindfaildlg_message" priority="translator">"%1$s tidak dapat menggunakan HMS Core. Sila lancarkan Pengoptimum (Pengurus Telefon) atau pergi ke Tetapan, dayakan semua kebenaran untuk %2$s (termasuk auto-lancar dan pelancaran sekunder), dan cuba lagi."</string>
+    <string name="hms_cancel" priority="translator">"Batalkan"</string>
+    <string name="hms_check_failure" priority="translator">"Gagal menyemak kemas kini."</string>
+    <string name="hms_checking" priority="translator">"Menyemak kemas kini..."</string>
+    <string name="hms_confirm" priority="translator">"OK"</string>
+    <string name="hms_download_failure" priority="translator">"Gagal memuat turun pakej HMS Core."</string>
+    <string name="hms_download_no_space" priority="translator">"Tiada ruang kosong yang cukup. Muat turun tidak dapat diselesaikan."</string>
+    <string name="hms_download_retry" priority="translator">"Muat turun gagal. Cuba lagi?"</string>
+    <string name="hms_downloading_loading" priority="LT">"Memuat turun"</string>
+    <string name="hms_install" priority="translator">"Pasang"</string>
+    <string name="hms_install_message" priority="translator">"HMS Core mesti dipasang untuk menggunakan fungsi ini. Pasang?"</string>
+    <string name="hms_is_spoof" priority="LT">"HMS Core (%1$s) yang dipasang pada peranti anda kelihatannya bukan versi yang rasmi. Sila nyahpasang HMS Core dari Tetapan dan kembali ke aplikasi ini untuk memasang versi rasmi."</string>
+    <string name="hms_retry" priority="translator">"Cuba lagi"</string>
+    <string name="hms_spoof_hints" priority="LT">"Nota"</string>
+    <string name="hms_update" priority="translator">"Kemas kini"</string>
+    <string name="hms_update_continue" priority="LT">"Muat turun"</string>
+    <string name="hms_update_message" priority="translator">"Kemas kini kepada versi terkini HMS Core untuk menggunakan fungsi ini. Kemas kini sekarang?"</string>
+    <string name="hms_update_message_new" priority="LT">"Perkhidmatan ini memerlukan versi terkini aplikasi yang berikut:\n\n%1$s"</string>
+    <string name="hms_update_nettype" priority="LT">"Tiada sambungan Wi-Fi. Muat turun dengan data mudah alih?"</string>
+    <string name="hms_update_title" priority="translator">"HMS Core"</string>
+    <string msgid="730395136688082741" name="search_menu_title">"Cari"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="upsdk_app_download_info_new" priority="translator">"Pasang"</string>
+    <string name="upsdk_app_download_installing" priority="translator">"Memuat turun %s.."</string>
+    <string name="upsdk_app_size" priority="translator">"Saiz"</string>
+    <string name="upsdk_app_version" priority="translator">"Versi"</string>
+    <string name="upsdk_appstore_install" priority="translator">"%s diperlukan untuk mengemas kini aplikasi ini. Pasang sekarang?"</string>
+    <string name="upsdk_cancel" priority="translator">"Batalkan"</string>
+    <string name="upsdk_checking_update_prompt" priority="LT">"Menyemak kemas kini..."</string>
+    <string name="upsdk_choice_update" priority="LT">"Kemas kini tersedia. Sila muat turun dan pasang versi terkini."</string>
+    <string name="upsdk_detail" priority="translator">"Butiran"</string>
+    <string name="upsdk_getting_message_fail_prompt_toast" priority="translator">"Tidak dapat mendapatkan balik maklumat. Sila cuba sebentar lagi."</string>
+    <string name="upsdk_mobile_dld_warn" priority="translator">"Sekarang anda disambungkan ke rangkaian mudah alih. Memuat turun sekarang akan menggunakan %1$s data."</string>
+    <string name="upsdk_no_available_network_prompt_toast" priority="translator">"Tiada sambungan Internet. Sila semak tetapan rangkaian anda."</string>
+    <string name="upsdk_ota_app_name" priority="LT">"Aplikasi"</string>
+    <string name="upsdk_ota_cancel" priority="translator">"Kemudian"</string>
+    <string name="upsdk_ota_force_cancel_new" priority="LT">"Keluar"</string>
+    <string name="upsdk_ota_notify_updatebtn" priority="translator">"Kemas kini"</string>
+    <string name="upsdk_ota_title" priority="translator">"Versi baru"</string>
+    <string name="upsdk_storage_utils" priority="LT">"%1$s MB"</string>
+    <string name="upsdk_third_app_dl_cancel_download_prompt_ex" priority="translator">"Batalkan pemasangan?"</string>
+    <string name="upsdk_third_app_dl_install_failed" priority="translator">"Pemasangan gagal."</string>
+    <string name="upsdk_third_app_dl_sure_cancel_download" priority="translator">"Ya"</string>
+    <string name="upsdk_update_check_no_new_version" priority="LT">"Versi anda adalah yang terkini."</string>
+</resources>

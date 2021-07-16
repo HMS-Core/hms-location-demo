@@ -1,0 +1,12 @@
+{
+  "transitions":
+  [{
+    "transitionType": 0,
+    "activityType": 3
+    },
+    {
+      "transitionType": 1,
+      "activityType": 3
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="7903180715631665059" name="abc_action_bar_home_description">"Liigu avalehele"</string>
+    <string msgid="6794660482873516081" name="abc_action_bar_up_description">"Liigu üles"</string>
+    <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"Rohkem valikuid"</string>
+    <string msgid="2571498368472823490" name="abc_action_mode_done">"Valmis"</string>
+    <string msgid="3732416590524162402" name="abc_activity_chooser_view_see_all">"Kuva kõik"</string>
+    <string msgid="1798588241954930982" name="abc_activitychooserview_choose_application">"Valige rakendus"</string>
+    <string msgid="3403923230105792483" name="abc_capital_off">"VÄLJAS"</string>
+    <string msgid="7831734969929204599" name="abc_capital_on">"SEES"</string>
+    <string msgid="5725160506500770567" name="abc_menu_alt_shortcut_label">"Alt +"</string>
+    <string msgid="944415252197684443" name="abc_menu_ctrl_shortcut_label">"Ctrl +"</string>
+    <string msgid="129742188101734366" name="abc_menu_delete_shortcut_label">"kustuta"</string>
+    <string msgid="6840127756824236027" name="abc_menu_enter_shortcut_label">"sisestusklahv"</string>
+    <string msgid="4974283687810130415" name="abc_menu_function_shortcut_label">"Funktsiooniklahv +"</string>
+    <string msgid="8046416353848716905" name="abc_menu_meta_shortcut_label">"Meta +"</string>
+    <string msgid="3271697756921353410" name="abc_menu_shift_shortcut_label">"Tõstuklahv +"</string>
+    <string msgid="2304645930658438191" name="abc_menu_space_shortcut_label">"tühik"</string>
+    <string msgid="8327365089695024394" name="abc_menu_sym_shortcut_label">"Sym +"</string>
+    <string msgid="3570106412128999382" name="abc_prepend_shortcut_label">"Menüü +"</string>
+    <string msgid="940844115270746197" name="abc_search_hint">"Otsige …"</string>
+    <string msgid="1769270744562318534" name="abc_searchview_description_clear">"Päringu tühistamine"</string>
+    <string msgid="908784302972860853" name="abc_searchview_description_query">"Otsingupäring"</string>
+    <string msgid="5466662225065974044" name="abc_searchview_description_search">"Otsing"</string>
+    <string msgid="8203855622131699655" name="abc_searchview_description_submit">"Päringu esitamine"</string>
+    <string msgid="3478748990613108725" name="abc_searchview_description_voice">"Häälotsing"</string>
+    <string msgid="2650565705514630347" name="abc_shareactionprovider_share_with">"Jaga:"</string>
+    <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Jagamine rakendusega <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Ahendamine"</string>
+    <string name="hms_abort" priority="translator">"Peata"</string>
+    <string name="hms_abort_message" priority="translator">"Peatada allalaadimine?"</string>
+    <string name="hms_bindfaildlg_message" priority="translator">"%1$s ei saa HMS Core'i kasutada. Käivitage Optimeerija (Telefonihaldur) või minge menüüsse Sätted, lubage teenuse %2$s kõik õigused (sh automaatkäivitus ja teisene käivitus) ja proovige uuesti."</string>
+    <string name="hms_cancel" priority="translator">"Tühista"</string>
+    <string name="hms_check_failure" priority="translator">"Värskenduste kontrollimine nurjus."</string>
+    <string name="hms_checking" priority="translator">"Värskenduste kontrollimine…"</string>
+    <string name="hms_confirm" priority="translator">"OK"</string>
+    <string name="hms_download_failure" priority="translator">"HMS Core'i paketi allalaadimine nurjus."</string>
+    <string name="hms_download_no_space" priority="translator">"Pole piisavalt vaba ruumi. Allalaadimist ei saa lõpetada."</string>
+    <string name="hms_download_retry" priority="translator">"Allalaadimine nurjus. Kas proovida uuesti?"</string>
+    <string name="hms_downloading_loading" priority="LT">"Allalaadimine"</string>
+    <string name="hms_install" priority="translator">"Installi"</string>
+    <string name="hms_install_message" priority="translator">"Selle funktsiooni kasutamiseks peab HMS Core olema installitud. Installida?"</string>
+    <string name="hms_is_spoof" priority="LT">"Paistab, et teie seadmesse on installitud HMS Core’i mitteametlik versioon (%1$s). Desinstallige sätetes HMS Core ja naaske ametliku versiooni installimiseks sellesse rakendusse."</string>
+    <string name="hms_retry" priority="translator">"Proovi uuesti"</string>
+    <string name="hms_spoof_hints" priority="LT">"Märkus"</string>
+    <string name="hms_update" priority="translator">"Värskenda"</string>
+    <string name="hms_update_continue" priority="LT">"Laadi alla"</string>
+    <string name="hms_update_message" priority="translator">"Selle funktsiooni kasutamiseks värskendage HMS Core uusimale versioonile. Kas värskendada kohe?"</string>
+    <string name="hms_update_message_new" priority="LT">"See teenus vajab järgmise rakenduse uusimat versiooni:\n\n%1$s"</string>
+    <string name="hms_update_nettype" priority="LT">"Wi-Fi-ühendust ei ole. Kas laadida alla mobiilandmeside abil?"</string>
+    <string name="hms_update_title" priority="translator">"HMS Core"</string>
+    <string msgid="730395136688082741" name="search_menu_title">"Otsing"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="upsdk_app_download_info_new" priority="translator">"Installi"</string>
+    <string name="upsdk_app_download_installing" priority="translator">"Teenuse %s allalaadimine…"</string>
+    <string name="upsdk_app_size" priority="translator">"Maht"</string>
+    <string name="upsdk_app_version" priority="translator">"Versioon"</string>
+    <string name="upsdk_appstore_install" priority="translator">"Selle rakenduse värskendamiseks on vaja teenust %s. Kas installida kohe?"</string>
+    <string name="upsdk_cancel" priority="translator">"Tühista"</string>
+    <string name="upsdk_checking_update_prompt" priority="LT">"Värskenduste otsimine…"</string>
+    <string name="upsdk_choice_update" priority="LT">"Saadaval on värskendus. Laadige alla ja installige uusim versioon."</string>
+    <string name="upsdk_detail" priority="translator">"Üksikasjad"</string>
+    <string name="upsdk_getting_message_fail_prompt_toast" priority="translator">"Andmeid ei saa hankida. Proovige hiljem uuesti."</string>
+    <string name="upsdk_mobile_dld_warn" priority="translator">"Olete hetkel mobiilivõrguga ühendatud. Praegu allalaadimine kasutab %1$s andmemahtu."</string>
+    <string name="upsdk_no_available_network_prompt_toast" priority="translator">"Interneti-ühendus puudub. Kontrollige võrgusätteid."</string>
+    <string name="upsdk_ota_app_name" priority="LT">"Rakendus"</string>
+    <string name="upsdk_ota_cancel" priority="translator">"Hiljem"</string>
+    <string name="upsdk_ota_force_cancel_new" priority="LT">"Välju"</string>
+    <string name="upsdk_ota_notify_updatebtn" priority="translator">"Värskenda"</string>
+    <string name="upsdk_ota_title" priority="translator">"Uus versioon"</string>
+    <string name="upsdk_storage_utils" priority="LT">"%1$s MB"</string>
+    <string name="upsdk_third_app_dl_cancel_download_prompt_ex" priority="translator">"Tühistada installimine?"</string>
+    <string name="upsdk_third_app_dl_install_failed" priority="translator">"Installimine nurjus."</string>
+    <string name="upsdk_third_app_dl_sure_cancel_download" priority="translator">"Jah"</string>
+    <string name="upsdk_update_check_no_new_version" priority="Reviewed">"Teie versioon on ajakohane."</string>
+</resources>

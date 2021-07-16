@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.huawei.hmssdksample2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="29" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="com.huawei.hms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA" /> <!-- 如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <queries>
+        <package android:name="com.huawei.hms" />
+        <package android:name="com.huawei.hwid" />
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/AppTheme" >
+
+        <!-- 配置数据元，当用户手机上未安装HMS Core（APK）或者版本过低时，引导用户安装或升级HMS Core -->
+        <meta-data
+            android:name="com.huawei.hms.client.channel.androidMarket"
+            android:value="false" />
+
+        <activity android:name="com.huawei.hmssample2.NavigationContextStateActivity" />
+        <activity android:name="com.huawei.hmssample2.location.fusedlocation.CheckSettingActivity" />
+        <activity android:name="com.huawei.hmssample2.geofence.OperateGeoFenceActivity" />
+        <activity android:name="com.huawei.hmssample2.geofence.GeoFenceActivity" />
+        <activity android:name="com.huawei.hmssample2.HuaweiLocationActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- RequestLocationUpdatesWithCallback -->
+        <activity
+            android:name="com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesWithCallbackActivity"
+            android:configChanges="orientation|screenSize" /> <!-- RequestLocationUpdatesWithIntent -->
+        <activity
+            android:name="com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesWithIntentActivity"
+            android:configChanges="orientation|screenSize" /> <!-- GetLastLocation -->
+        <activity
+            android:name="com.huawei.hmssample2.location.fusedlocation.GetLastLocationActivity"
+            android:configChanges="orientation|screenSize" /> <!-- GetLocationAvailability -->
+        <activity
+            android:name="com.huawei.hmssample2.location.fusedlocation.GetLocationAvailabilityActivity"
+            android:configChanges="orientation|screenSize" /> <!-- SetMockMode -->
+        <activity
+            android:name="com.huawei.hmssample2.location.fusedlocation.SetMockModeActivity"
+            android:configChanges="orientation|screenSize" /> <!-- SetMockLocation -->
+        <activity
+            android:name="com.huawei.hmssample2.location.fusedlocation.SetMockLocationActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name="com.huawei.hmssample2.activity.ActivityConversionActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name="com.huawei.hmssample2.activity.ActivityIdentificationActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name="com.huawei.hmssample2.location.fusedlocation.RequestLocationUpdatesHDWithCallbackActivity"
+            android:configChanges="orientation|screenSize" /> <!-- LocationBroadcastReceiver -->
+        <receiver
+            android:name="com.huawei.hmssample2.location.fusedlocation.LocationBroadcastReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.huawei.hmssample.location.LocationBroadcastReceiver.ACTION_PROCESS_LOCATION" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.huawei.hmssample2.geofence.GeoFenceBroadcastReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.huawei.hms.update.provider.UpdateProvider"
+            android:authorities="com.huawei.hmssdksample2.hms.update.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+        <!-- 声明Kit SDK的名称和版本号 -->
+        <!-- Declare the SDK name and version -->
+        <meta-data
+            android:name="com.huawei.hms.client.service.name:location"
+            android:value="location:SDK-VERSION" /> <!-- 声明对Kit服务依赖的最低API Level -->
+        <!-- Declare minSdkVersion required for using the kit -->
+        <meta-data
+            android:name="com.huawei.hms.min_api_level:location:location"
+            android:value="1" /> <!-- 关掉打点上报初始化 -->
+        <!-- Disable reporting of O&M logs -->
+        <meta-data
+            android:name="com.huawei.hms.client.bi.setting"
+            android:value="true" />
+        <meta-data
+            android:name="com.huawei.hms.min_api_level:com.huawei.hms:location:location"
+            android:value="1" />
+        <meta-data
+            android:name="com.huawei.hms.client.service.name:hianalytics"
+            android:value="hianalytics:5.2.0.301" />
+        <meta-data
+            android:name="com.huawei.hms.min_api_level:hianalytics:hianalytics"
+            android:value="1" />
+
+        <receiver
+            android:name="com.huawei.hms.analytics.receiver.HiAnalyticsSvcEvtReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.huawei.hms.analytics.pps.event" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.huawei.hms.aaid.InitProvider"
+            android:authorities="com.huawei.hmssdksample2.aaidinitprovider"
+            android:exported="false"
+            android:initOrder="500" />
+
+        <meta-data
+            android:name="com.huawei.hms.client.service.name:opendevice"
+            android:value="opendevice:5.1.1.300" />
+        <meta-data
+            android:name="com.huawei.hms.min_api_level:opendevice:push"
+            android:value="1" /> <!-- 为后续统计第三方app集成了哪些Kit，因此需要Kit在自己的AndroidManifest.xml文件中定义业务标签元数据 -->
+        <meta-data
+            android:name="com.huawei.hms.client.service.name:base"
+            android:value="base:5.3.0.301" /> <!-- SDK依赖的HMSCore的最低api level元数据 -->
+        <meta-data
+            android:name="com.huawei.hms.min_api_level:base:hmscore"
+            android:value="1" /> <!-- 用于判断是否集成了本lib -->
+        <meta-data
+            android:name="availableLoaded"
+            android:value="yes" />
+
+        <activity
+            android:name="com.huawei.hms.activity.BridgeActivity"
+            android:configChanges="orientation|locale|layoutDirection|fontScale|screenSize|smallestScreenSize|screenLayout|uiMode"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="behind"
+            android:theme="@style/Base_Translucent" >
+            <meta-data
+                android:name="hwc-theme"
+                android:value="androidhwext:style/Theme.Emui.Translucent" />
+        </activity>
+        <activity
+            android:name="com.huawei.hms.activity.EnableServiceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout"
+            android:exported="false" >
+        </activity>
+
+        <provider
+            android:name="com.huawei.hms.device.provider.CheckHmsProvider"
+            android:authorities="com.huawei.hmssdksample2.hms.device.validate.spoofprovider"
+            android:exported="false"
+            android:grantUriPermissions="false" />
+
+        <service
+            android:name="com.huawei.agconnect.core.ServiceDiscovery"
+            android:exported="false" >
+            <meta-data
+                android:name="com.huawei.agconnect.credential.CredentialServiceRegistrar:500"
+                android:value="com.huawei.agconnect.core.ServiceRegistrar" />
+        </service>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <provider
+            android:name="com.huawei.agconnect.core.provider.AGConnectInitializeProvider"
+            android:authorities="com.huawei.hmssdksample2.AGCInitializeProvider"
+            android:exported="false" />
+
+        <activity
+            android:name="com.huawei.updatesdk.service.otaupdate.AppUpdateActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <meta-data
+                android:name="hwc-theme"
+                android:value="androidhwext:style/Theme.Emui.Translucent.NoTitleBar" />
+        </activity>
+        <activity
+            android:name="com.huawei.updatesdk.support.pm.PackageInstallerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <meta-data
+                android:name="hwc-theme"
+                android:value="androidhwext:style/Theme.Emui.Translucent" />
+        </activity>
+
+        <provider
+            android:name="com.huawei.updatesdk.fileprovider.UpdateSdkFileProvider"
+            android:authorities="com.huawei.hmssdksample2.updateSdk.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+        </provider> <!-- 服务meta-data配置 -->
+        <meta-data
+            android:name="networkservice_ai"
+            android:value="com.huawei.hms.network.ai.AIPolicyService" /> <!-- 服务meta-data配置 -->
+        <meta-data
+            android:name="networkservice_config"
+            android:value="com.huawei.hms.network.conf.api.ConfigService" /> <!-- 服务meta-data配置 -->
+        <meta-data
+            android:name="networkservice_dns"
+            android:value="com.huawei.hms.network.dns.DNSService" /> <!-- 声明kit sdk服务名和版本号apiLevel -->
+        <meta-data
+            android:name="com.huawei.hms.client.service.name:network-api"
+            android:value="network-api:5.0.2.300" /> <!-- 声明kit sdk所依赖的最小kit apk的apiLevel，最小为2 -->
+        <meta-data
+            android:name="com.huawei.hms.min_api_level:network-api:huawei_module_networkkit"
+            android:value="5" />
+        <meta-data
+            android:name="com.huawei.hms.client.service.name:dynamic-api"
+            android:value="dynamic-api:1.0.17.300" />
+        <meta-data
+            android:name="com.huawei.hms.min_api_level:dynamic-api:huawei_module_dynamicloader"
+            android:value="6" />
+    </application>
+
+</manifest>

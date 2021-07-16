@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">LocationKotlinSample</string>
+    <string name="fuse_location">requestLocationUpdates with callback</string>
+    <string name="geo_fance">GeoFence</string>
+    <string name="mock_mode">set Mock MODE</string>
+    <string name="hwlocation_setMockLocation">setMockLocation</string>
+    <string name="hwlocation_setMockMode">setMockMode</string>
+    <string name="hwlocation_mockWarning">Enable the mobile phone to allow mock location \nand  set mockmode true</string>
+    <string name="mock_location">set Mock Location</string>
+    <string name="location_hd">LocationHD</string>
+    <string name="get_last_location">getLastLocation</string>
+    <string name="hwlocation_getLocationAvailability">getLocationAvailability</string>
+    <string name="hwlocation_activity">Location Activity Update</string>
+    <string name="hwlocation_activity_transition">ActivityTransition Update</string>
+    <string name="hwlocation_getNavigationContextState">GetNavigationContextState</string>
+    <string name="sample_hwlocation_description">Huawei Location Demo</string>
+    <string name="hwlocation_activity_getNavigationState">GetNavigationContextState</string>
+
+    <!-- Activity detection strings -->
+    <string name="id_already_exit">ID already exist,please remove and add it again!</string>
+    <string name="no_new_request_add">no new request to add!</string>
+    <string name="no_such_intent">no such intent!</string>
+    <string name="no_pending_intent_send">no pending Intent to send!</string>
+    <string name="request_location_updates_with_intent">requestLocationUpdates with intent</string>
+    <string name="check_settings">CheckSettings</string>
+</resources>

@@ -1,5 +1,5 @@
-##  HMS Location Kit Demo for Android
-English | [中文](https://github.com/HMS-Core/hms-location-demo/blob/master/hms-location-demo-android-studio/README_ZH.md)
+#  HUAWEI Location Kit Sample for Android
+English | [中文](README_ZH.md)
 
 ## Table of Contents
 
@@ -10,13 +10,11 @@ English | [中文](https://github.com/HMS-Core/hms-location-demo/blob/master/hms
  * [Sample Code](#sample-code)
  * [Result](#result)
  * [License](#license)
- 
- 
+
+
 ## Introduction
 HUAWEI Location Kit sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.
 
-You also can use HMS Toolkit to quickly integrate the kit and run the demo project, as well as debug the app using a remote device for free. For details, please visit https://developer.huawei.com/consumer/en/doc/development/Tools-Guides/getting-started-0000001077381096.
-   
 ## Getting Started
 We also provide an sample to demonstrate the use of LocationKit SDK for Android.
 This sample uses the Gradle build system.
@@ -26,7 +24,7 @@ You can use the "gradlew build" command to build the project directly.
 You should create an app in AppGallery Connect, and obtain the file of agconnect-services.json and add to the project. You should also generate a signing certificate fingerprint and add the certificate file to the project, and add configuration to build.gradle. See the Configuring App Information in AppGallery Connect guide to configure app in AppGallery Connect.
 
 ## Installation
- 
+
 1. Clone or download this project and open the downloaded folder in Android Studio or compatible IDE.
 2. use IDE's functionality to install configured project on to your device.
 
@@ -40,15 +38,15 @@ You should create an app in AppGallery Connect, and obtain the file of agconnect
 ## Result
 **Home**
 
-<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/home.jpg width = 20% height = 20%>
+![Home](images/home.jpg)
 
 **Location get last**
 
-<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/locationgetlast.jpg width = 20% height = 20%>
+![Locationgetlast](images/locationgetlast.jpg)
 
 **Location hd**
 
-<img src=https://github.com/HMS-Core/hms-location-demo-android-studio/blob/master/images/locationhd.jpg width = 20% height = 20%>
+![Locationgetlast](images/locationhd.jpg)
 
 ## Question or issues
 If you want to evaluate more about HMS Core,

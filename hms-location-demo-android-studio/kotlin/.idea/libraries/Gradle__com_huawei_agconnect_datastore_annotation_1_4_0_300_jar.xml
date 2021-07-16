@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.huawei.agconnect:datastore-annotation:1.4.0.300@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.agconnect/datastore-annotation/1.4.0.300/4cdb22d3b0e32f50a123c0f27a67b87c0458c6c7/datastore-annotation-1.4.0.300.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.agconnect/datastore-annotation/1.4.0.300/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/datastore-annotation-1.4.0.300-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.agconnect/datastore-annotation/1.4.0.300/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/datastore-annotation-1.4.0.300-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

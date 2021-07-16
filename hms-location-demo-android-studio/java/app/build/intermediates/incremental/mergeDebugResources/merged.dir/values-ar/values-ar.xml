@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="7903180715631665059" name="abc_action_bar_home_description">"التوجه إلى المنزل"</string>
+    <string msgid="6794660482873516081" name="abc_action_bar_up_description">"التنقل إلى أعلى"</string>
+    <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"خيارات أكثر"</string>
+    <string msgid="2571498368472823490" name="abc_action_mode_done">"تم"</string>
+    <string msgid="3732416590524162402" name="abc_activity_chooser_view_see_all">"عرض الكل"</string>
+    <string msgid="1798588241954930982" name="abc_activitychooserview_choose_application">"اختيار تطبيق"</string>
+    <string msgid="3403923230105792483" name="abc_capital_off">"إيقاف"</string>
+    <string msgid="7831734969929204599" name="abc_capital_on">"تفعيل"</string>
+    <string msgid="5725160506500770567" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="944415252197684443" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="129742188101734366" name="abc_menu_delete_shortcut_label">"حذف"</string>
+    <string msgid="6840127756824236027" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="4974283687810130415" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="8046416353848716905" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="3271697756921353410" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="2304645930658438191" name="abc_menu_space_shortcut_label">"فضاء"</string>
+    <string msgid="8327365089695024394" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="3570106412128999382" name="abc_prepend_shortcut_label">"القائمة+"</string>
+    <string msgid="940844115270746197" name="abc_search_hint">"بحث…"</string>
+    <string msgid="1769270744562318534" name="abc_searchview_description_clear">"محو طلب البحث"</string>
+    <string msgid="908784302972860853" name="abc_searchview_description_query">"طلب بحث"</string>
+    <string msgid="5466662225065974044" name="abc_searchview_description_search">"البحث"</string>
+    <string msgid="8203855622131699655" name="abc_searchview_description_submit">"إرسال طلب البحث"</string>
+    <string msgid="3478748990613108725" name="abc_searchview_description_voice">"بحث صوتي"</string>
+    <string msgid="2650565705514630347" name="abc_shareactionprovider_share_with">"مشاركة مع"</string>
+    <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"مشاركة مع <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"تصغير"</string>
+    <string name="hms_abort" priority="translator">"إيقاف"</string>
+    <string name="hms_abort_message" priority="translator">"هل تريد إيقاف التنزيل؟"</string>
+    <string name="hms_bindfaildlg_message" priority="translator">"\"%1$s\" غير قادر على استخدام خدمات HMS Core. يُرجى تشغيل مدير الهاتف أو الانتقال إلى الإعدادات، وتشغيل جميع أذونات %2$s (بما في ذلك التشغيل التلقائي، والتشغيل الثانوي)، وإعادة المحاولة."</string>
+    <string name="hms_cancel" priority="translator">"إلغاء"</string>
+    <string name="hms_check_failure" priority="translator">"تعذر التحقق من وجود تحديثات."</string>
+    <string name="hms_checking" priority="translator">"جارِ التحقق من وجود تحديثات..."</string>
+    <string name="hms_confirm" priority="translator">"حسنًا"</string>
+    <string name="hms_download_failure" priority="translator">"تعذر تنزيل حزمة خدمات HMS Core."</string>
+    <string name="hms_download_no_space" priority="translator">"لا يمكن استكمال التنزيل لعدم وجود مساحة تخزينية كافية."</string>
+    <string name="hms_download_retry" priority="translator">"تعذر التنزيل. هل تريد المحاولة مجددًا؟"</string>
+    <string name="hms_downloading_loading" priority="LT">"قيد التنزيل..."</string>
+    <string name="hms_install" priority="translator">"تثبيت"</string>
+    <string name="hms_install_message" priority="translator">"يجب تثبيت خدمات HMS Core لاستخدام هذه الميزة. هل تريد تثبيتها؟"</string>
+    <string name="hms_is_spoof" priority="LT">"يبدو أنك ثبّت إصدارًا غير رسمي من HMS Core (%1$s)‎ على جهازك. يُرجى إزالة تثبيت إصدار HMS Core من الإعدادات والعودة إلى هذا التطبيق لتثبيت الإصدار الرسمي."</string>
+    <string name="hms_retry" priority="translator">"إعادة المحاولة"</string>
+    <string name="hms_spoof_hints" priority="LT">"تنويه"</string>
+    <string name="hms_update" priority="translator">"تحديث"</string>
+    <string name="hms_update_continue" priority="LT">"تنزيل"</string>
+    <string name="hms_update_message" priority="translator">"قم بتحديث خدمات HMS Core إلى أحدث إصدار متوفر لكي تتمكن من استخدام هذه الميزة. هل تريد التحديث الآن؟"</string>
+    <string name="hms_update_message_new" priority="LT">"هذه الخدمة تحتاج إلى وجود أحدث إصدار للتطبيق التالي:\n\n%1$s"</string>
+    <string name="hms_update_nettype" priority="LT">"جهازك غير متصل بشبكة لاسلكية. هل تريد التنزيل باستخدام بيانات الجوال؟"</string>
+    <string name="hms_update_title" priority="translator">"HMS Core"</string>
+    <string msgid="730395136688082741" name="search_menu_title">"البحث"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="upsdk_app_download_info_new" priority="translator">"تثبيت"</string>
+    <string name="upsdk_app_download_installing" priority="translator">"جاري تنزيل \"%s\"..."</string>
+    <string name="upsdk_app_size" priority="translator">"الحجم:"</string>
+    <string name="upsdk_app_version" priority="LT">"الإصدار:"</string>
+    <string name="upsdk_appstore_install" priority="translator">"مطلوب تثبيت \"%s\" لتتمكن من تحديث هذا التطبيق. هل تريد تثبيته الآن؟"</string>
+    <string name="upsdk_cancel" priority="translator">"إلغاء"</string>
+    <string name="upsdk_checking_update_prompt" priority="LT">"جارِ التحقق من وجود تحديثات..."</string>
+    <string name="upsdk_choice_update" priority="LT">"هناك تحديث متوفر، يُرجى تنزيل وتثبيت أحدث إصدار."</string>
+    <string name="upsdk_detail" priority="translator">"التفاصيل"</string>
+    <string name="upsdk_getting_message_fail_prompt_toast" priority="translator">"غير قادر على الحصول على المعلومات، يُرجى إعادة المحاولة لاحقًا"</string>
+    <string name="upsdk_mobile_dld_warn" priority="translator">"أنت الآن متصل بشبكة بيانات الجوال، وتنزيل هذا المحتوى الآن سيؤدي إلى استهلاك %1$s من بيانات الجوال."</string>
+    <string name="upsdk_no_available_network_prompt_toast" priority="translator">"غير متصل بالإنترنت، يُرجى التحقق من إعدادات الشبكة لديك"</string>
+    <string name="upsdk_ota_app_name" priority="LT">"اسم التطبيق:"</string>
+    <string name="upsdk_ota_cancel" priority="translator">"لاحقًا"</string>
+    <string name="upsdk_ota_force_cancel_new" priority="LT">"خروج"</string>
+    <string name="upsdk_ota_notify_updatebtn" priority="translator">"تحديث"</string>
+    <string name="upsdk_ota_title" priority="translator">"إصدار جديد"</string>
+    <string name="upsdk_storage_utils" priority="translator">"%1$s م.ب"</string>
+    <string name="upsdk_third_app_dl_cancel_download_prompt_ex" priority="translator">"هل تريد إلغاء التثبيت؟"</string>
+    <string name="upsdk_third_app_dl_install_failed" priority="translator">"تعذر التثبيت"</string>
+    <string name="upsdk_third_app_dl_sure_cancel_download" priority="translator">"نعم"</string>
+    <string name="upsdk_update_check_no_new_version" priority="LT">"أنت الآن تستخدم أحدث إصدار"</string>
+</resources>

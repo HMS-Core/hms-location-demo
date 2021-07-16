@@ -58,7 +58,7 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         TableLayout tableLayout = (TableLayout) findViewById(R.id.callback_table_layout_show);
         String locationRequestJson =
-            "{\"priority\": 102,\"interval\": 5000,\"fastestInterval\": 5000,\"isFastestIntervalExplicitlySet\": false,\"expirationTime\": 9223372036854775807,\"expirationDuration\": 9223372036854775807,\"numUpdates\": 2147483647,\"smallestDisplacement\": 0,\"maxWaitTime\": 0}";
+            "{\"priority\": 200,\"interval\": 5000,\"fastestInterval\": 5000,\"isFastestIntervalExplicitlySet\": false,\"expirationTime\": 9223372036854775807,\"expirationDuration\": 9223372036854775807,\"numUpdates\": 2147483647,\"smallestDisplacement\": 0,\"maxWaitTime\": 0}";
         initDataDisplayView(TAG, tableLayout, locationRequestJson);
         findViewById(R.id.btn_remove_hd).setOnClickListener(this);
         findViewById(R.id.btn_hd).setOnClickListener(this);
@@ -180,7 +180,7 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 Log.d(TAG, ((EditText) rows[i].getChildAt(1)).getText().toString());
             }
         }
-        locationRequest.setPriority(Integer.parseInt("".equals(paramList.get(0)) ? "102" : paramList.get(0)));
+        locationRequest.setPriority(Integer.parseInt("".equals(paramList.get(0)) ? "200" : paramList.get(0)));
         locationRequest.setInterval(Long.parseLong("".equals(paramList.get(1)) ? "5000" : paramList.get(1)));
         locationRequest.setFastestInterval(Long.parseLong("".equals(paramList.get(2)) ? "5000" : paramList.get(2)));
         locationRequest
@@ -190,9 +190,6 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         locationRequest.setNumUpdates(Integer.parseInt("".equals(paramList.get(6)) ? "2147483647" : paramList.get(6)));
         locationRequest.setSmallestDisplacement(Float.parseFloat("".equals(paramList.get(7)) ? "0" : paramList.get(7)));
         locationRequest.setMaxWaitTime(Long.parseLong("".equals(paramList.get(8)) ? "0" : paramList.get(8)));
-        locationRequest.setNeedAddress(Boolean.parseBoolean("".equals(paramList.get(9)) ? "false" : paramList.get(9)));
-        locationRequest.setLanguage("".equals(paramList.get(10)) ? "zh" : paramList.get(10));
-        locationRequest.setCountryCode("".equals(paramList.get(11)) ? "CN" : paramList.get(11));
 
     }
 
@@ -206,7 +203,7 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
             // 是否有位置语义结果
             if (TextUtils.isEmpty(hwLocation.getCountryName())) {
                 return;
-            }
+            }  
             boolean hdbBinary = false;
             Map<String, Object> extraInfo = hwLocation.getExtraInfo();
             int sourceType = 0;
@@ -232,11 +229,16 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
 
     private void logLocation(List<Location> locations) {
         String hdFlag = "";
+        String hdSecurity = "";
         if (locations == null || locations.isEmpty()) {
-            Log.i(TAG, "getLocationWithHd callback location is empty");
+            Log.i(TAG, "getLocationWithHd callback locations is empty");
             return;
         }
         for (Location location : locations) {
+            if (location == null) {
+                Log.i(TAG, "getLocationWithHd callback location is empty");
+                return;
+            }
             boolean hdbBinary = false;
             Bundle extraInfo = location.getExtras();
             int sourceType = 0;
@@ -244,14 +246,41 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 sourceType = extraInfo.getInt("SourceType", -1);
                 hdbBinary = getBinaryFlag(sourceType);
             }
+            int hDSecurityType = location.getExtras().getInt("HDSecurityType", -1);
+            int hDEncryptType = location.getExtras().getInt("HDEncryptType", -1);
             if (hdbBinary) {
                 hdFlag = "result is HD";
+                if (hDEncryptType == 1) {
+                    String key = "XXXXXXXXXXXXXXX"; // 解密算法SM4ECB,具体解密密钥请联系商务人员XXX,接入流程请参考相关文档
+                    String Latitude = location.getExtras().getString("HDEncryptLat");
+                    String Longitude = location.getExtras().getString("HDEncryptLng");
+                    String mLatitude = myDecrypt(Latitude, key);
+                    String mLongitude = myDecrypt(Longitude, key);
+                    try {
+                        location.setLatitude(Double.parseDouble(mLatitude));
+                        location.setLongitude(Double.parseDouble(mLongitude));
+                    } catch (Exception e) {
+                        LocationLog.i(TAG, "failed to convert the data type.");
+                    }
+                }
+            }
+            if (hDSecurityType == 0) {
+                hdSecurity = "non-biased, non-encrypted, high-precision WGS84";
+            }
+            if (hDSecurityType == 1) {
+                hdSecurity = "high precision with biased encryption GCJ02";
             }
             LocationLog.i(TAG,
                 "[old]location result : " + "\n" + "Longitude = " + location.getLongitude() + "\n" + "Latitude = "
                     + location.getLatitude() + "\n" + "Accuracy = " + location.getAccuracy() + "\n" + "SourceType = "
-                    + sourceType + "\n" + hdFlag);
+                    + sourceType + "\n" + hdFlag + "\n" + hdSecurity);
         }
+    }
+
+    private String myDecrypt(String Latitude, String key) {
+        // 具体解密方法请自行查询，这里暂不提供
+        String decrypt = "XXXXXXXXXXX";
+        return decrypt;
     }
 
     private boolean getBinaryFlag(int sourceType) {

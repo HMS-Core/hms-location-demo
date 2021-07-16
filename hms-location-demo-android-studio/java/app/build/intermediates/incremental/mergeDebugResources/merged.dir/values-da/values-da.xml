@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="7903180715631665059" name="abc_action_bar_home_description">"Find hjem"</string>
+    <string msgid="6794660482873516081" name="abc_action_bar_up_description">"Gå op"</string>
+    <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"Flere valgmuligheder"</string>
+    <string msgid="2571498368472823490" name="abc_action_mode_done">"Udfør"</string>
+    <string msgid="3732416590524162402" name="abc_activity_chooser_view_see_all">"Se alle"</string>
+    <string msgid="1798588241954930982" name="abc_activitychooserview_choose_application">"Vælg en app"</string>
+    <string msgid="3403923230105792483" name="abc_capital_off">"FRA"</string>
+    <string msgid="7831734969929204599" name="abc_capital_on">"TIL"</string>
+    <string msgid="5725160506500770567" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="944415252197684443" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="129742188101734366" name="abc_menu_delete_shortcut_label">"slet"</string>
+    <string msgid="6840127756824236027" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="4974283687810130415" name="abc_menu_function_shortcut_label">"Fn+"</string>
+    <string msgid="8046416353848716905" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="3271697756921353410" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="2304645930658438191" name="abc_menu_space_shortcut_label">"mellemrum"</string>
+    <string msgid="8327365089695024394" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="3570106412128999382" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="940844115270746197" name="abc_search_hint">"Søg…"</string>
+    <string msgid="1769270744562318534" name="abc_searchview_description_clear">"Ryd forespørgsel"</string>
+    <string msgid="908784302972860853" name="abc_searchview_description_query">"Søgeforespørgsel"</string>
+    <string msgid="5466662225065974044" name="abc_searchview_description_search">"Søg"</string>
+    <string msgid="8203855622131699655" name="abc_searchview_description_submit">"Indsend forespørgsel"</string>
+    <string msgid="3478748990613108725" name="abc_searchview_description_voice">"Talesøgning"</string>
+    <string msgid="2650565705514630347" name="abc_shareactionprovider_share_with">"Del med"</string>
+    <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Del med <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Skjul"</string>
+    <string name="hms_abort" priority="translator">"Stop"</string>
+    <string name="hms_abort_message" priority="translator">"Vil du stoppe download?"</string>
+    <string name="hms_bindfaildlg_message" priority="translator">"%1$s kan ikke bruge HMS Core. Start Optimizer (Telefon-styring) eller gå til Indstillinger, aktivér alle tilladelser for %2$s (inkl. automatisk start og sekundær start), og prøv igen."</string>
+    <string name="hms_cancel" priority="translator">"Annuller"</string>
+    <string name="hms_check_failure" priority="translator">"Kunne ikke søge efter opdateringer."</string>
+    <string name="hms_checking" priority="translator">"Søger efter opdateringer..."</string>
+    <string name="hms_confirm" priority="translator">"OK"</string>
+    <string name="hms_download_failure" priority="translator">"Kunne ikke downloade HMS Core-pakken."</string>
+    <string name="hms_download_no_space" priority="translator">"Ikke nok ledig plads. Download kan ikke fuldføres."</string>
+    <string name="hms_download_retry" priority="translator">"Download mislykkedes. Vil du prøve igen?"</string>
+    <string name="hms_downloading_loading" priority="LT">"Henter"</string>
+    <string name="hms_install" priority="translator">"Installer"</string>
+    <string name="hms_install_message" priority="translator">"HMS Core skal være installeret for at benytte denne funktion. Installér?"</string>
+    <string name="hms_is_spoof" priority="LT">"Det ser ud til, at du har en uofficiel version af HMS Core (%1$s) installeret på din enhed. Afinstaller HMS Core fra Indstillinger, og vend tilbage til denne app for at installere den officielle version."</string>
+    <string name="hms_retry" priority="translator">"Prøv igen"</string>
+    <string name="hms_spoof_hints" priority="LT">"Bemærk"</string>
+    <string name="hms_update" priority="translator">"Opdater"</string>
+    <string name="hms_update_continue" priority="LT">"Hent"</string>
+    <string name="hms_update_message" priority="translator">"Opdatér til den nyeste version af HMS Core for at kunne benytte denne funktion. Opdatér nu?"</string>
+    <string name="hms_update_message_new" priority="LT">"Denne tjeneste kræver den nyeste version af følgende app:\n\n%1$s"</string>
+    <string name="hms_update_nettype" priority="LT">"Ingen Wi-Fi-forbindelse. Hent ved hjælp af mobildata?"</string>
+    <string name="hms_update_title" priority="translator">"HMS Core"</string>
+    <string msgid="730395136688082741" name="search_menu_title">"Søg"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="upsdk_app_download_info_new" priority="translator">"Installer"</string>
+    <string name="upsdk_app_download_installing" priority="translator">"Henter %s…"</string>
+    <string name="upsdk_app_size" priority="translator">"Størrelse"</string>
+    <string name="upsdk_app_version" priority="translator">"Version"</string>
+    <string name="upsdk_appstore_install" priority="translator">"%s kræves for at opdatere denne app. Installer nu?"</string>
+    <string name="upsdk_cancel" priority="translator">"Annuller"</string>
+    <string name="upsdk_checking_update_prompt" priority="LT">"Søger efter opdateringer…"</string>
+    <string name="upsdk_choice_update" priority="LT">"Opdatering tilgængelig. Download og installér den nyeste version."</string>
+    <string name="upsdk_detail" priority="translator">"Detaljer"</string>
+    <string name="upsdk_getting_message_fail_prompt_toast" priority="translator">"Kunne ikke hente information. Prøv igen senere."</string>
+    <string name="upsdk_mobile_dld_warn" priority="translator">"Du er i øjeblikket tilsluttet et mobilnetværk. Hvis du henter nu, bruges der %1$s data."</string>
+    <string name="upsdk_no_available_network_prompt_toast" priority="translator">"Ingen internetforbindelse. Kontrollér netværksindstillingerne."</string>
+    <string name="upsdk_ota_app_name" priority="LT">"App"</string>
+    <string name="upsdk_ota_cancel" priority="translator">"Senere"</string>
+    <string name="upsdk_ota_force_cancel_new" priority="LT">"Afslut"</string>
+    <string name="upsdk_ota_notify_updatebtn" priority="translator">"Opdatér"</string>
+    <string name="upsdk_ota_title" priority="translator">"Ny version"</string>
+    <string name="upsdk_storage_utils" priority="LT">"%1$s MB"</string>
+    <string name="upsdk_third_app_dl_cancel_download_prompt_ex" priority="translator">"Vil du annullere installationen?"</string>
+    <string name="upsdk_third_app_dl_install_failed" priority="translator">"Installationen mislykkedes."</string>
+    <string name="upsdk_third_app_dl_sure_cancel_download" priority="translator">"Ja"</string>
+    <string name="upsdk_update_check_no_new_version" priority="LT">"Din version er opdateret."</string>
+</resources>

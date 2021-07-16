@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="output_information_id" type="id"/>
+    <item name="longitude_key" type="id"/>
+    <item name="longitude_value" type="id"/>
+    <item name="latitude_key" type="id"/>
+    <item name="latitude_value" type="id"/>
+    <item name="priority_key" type="id"/>
+    <item name="priority_value" type="id"/>
+    <item name="interval_key" type="id"/>
+    <item name="interval_value" type="id"/>
+    <item name="fastestInterval_key" type="id"/>
+    <item name="fastestInterval_value" type="id"/>
+    <item name="expirationTime_key" type="id"/>
+    <item name="expirationTime_value" type="id"/>
+    <item name="expirationDuration_key" type="id"/>
+    <item name="expirationDuration_value" type="id"/>
+    <item name="numUpdates_key" type="id"/>
+    <item name="numUpdates_value" type="id"/>
+    <item name="smallestDisplacement_key" type="id"/>
+    <item name="smallestDisplacement_value" type="id"/>
+    <item name="maxWaitTime_key" type="id"/>
+    <item name="maxWaitTime_value" type="id"/>
+    <item name="needAddress_key" type="id"/>
+    <item name="needAddress_value" type="id"/>
+    <item name="language_key" type="id"/>
+    <item name="language_value" type="id"/>
+    <item name="countryCode_key" type="id"/>
+    <item name="countryCode_value" type="id"/>
+    <item name="isFastestIntervalExplicitlySet_key" type="id"/>
+    <item name="isFastestIntervalExplicitlySet_value" type="id"/>
+    <item name="alwaysShow_key" type="id"/>
+    <item name="alwaysShow_value" type="id"/>
+    <item name="needBle_key" type="id"/>
+    <item name="needBle_value" type="id"/>
+</resources>
