@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_title_margin"
     android:paddingTop="@dimen/activity_title_margin"
     android:paddingRight="@dimen/activity_title_margin"
-    tools:context="com.huawei.hmssample2.location.fusedlocation.GetLastLocationActivity">
+    tools:context="com.huawei.locationsample6.location.fusedlocation.GetLastLocationActivity">
 
     <TextView
         style="@style/TitleStyle"

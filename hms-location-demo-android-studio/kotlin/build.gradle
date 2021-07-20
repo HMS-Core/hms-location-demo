@@ -4,16 +4,16 @@ buildscript {
     ext.kotlin_version = '1.3.72'
     repositories {
         google()
-        //jcenter 2021å¹´3æœˆå·²ä¸å¯ç”¨ï¼ŒæœåŠ¡æ›´æ–°æ·»åŠ mavenCentral
+        //jcenter 2021Äê3ÔÂÒÑ²»¿ÉÓÃ£¬·şÎñ¸üĞÂÌí¼ÓmavenCentral
         jcenter()
         mavenCentral()
+        maven { url 'http://szg1.artifactory.inhuawei.com/artifactory/sz-maven-public/' }
         maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.huawei.agconnect:agcp:1.4.2.300'
-
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -22,9 +22,10 @@ buildscript {
 allprojects {
     repositories {
         google()
-        //jcenter 2021å¹´3æœˆå·²ä¸å¯ç”¨ï¼ŒæœåŠ¡æ›´æ–°æ·»åŠ mavenCentral
+        //jcenter 2021Äê3ÔÂÒÑ²»¿ÉÓÃ£¬·şÎñ¸üĞÂÌí¼ÓmavenCentral
         jcenter()
         mavenCentral()
+        maven { url 'http://szg1.artifactory.inhuawei.com/artifactory/sz-maven-public/' }
         maven { url 'https://developer.huawei.com/repo/' }
     }
 }

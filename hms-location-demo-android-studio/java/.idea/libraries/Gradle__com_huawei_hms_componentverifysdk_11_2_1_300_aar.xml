@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.huawei.hms:componentverifysdk:11.2.1.300@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ae2c4642981332c57f659540f2c557b9/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d11b60eb397d28b7116ab9f66c4afd9/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ae2c4642981332c57f659540f2c557b9/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ae2c4642981332c57f659540f2c557b9/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d11b60eb397d28b7116ab9f66c4afd9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4d11b60eb397d28b7116ab9f66c4afd9/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.hms/componentverifysdk/11.2.1.300/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/componentverifysdk-11.2.1.300-javadoc.jar!/" />

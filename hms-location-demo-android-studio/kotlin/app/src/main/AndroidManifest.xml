@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hms.locationkit">
+    package="com.hms.locationsample6">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -27,53 +27,53 @@
             android:name="com.huawei.hms.client.channel.androidMarket"
             android:value="false" />
 
-        <activity android:name=".fusedlocation.CheckSettingsActivity"/>
-        <activity android:name=".fusedlocation.RequestLocationUpdateWithIntentActivity" />
-        <activity android:name=".activity.LocationMainActivity">
+        <activity android:name="com.hms.locationsample6.fusedlocation.CheckSettingsActivity"/>
+        <activity android:name="com.hms.locationsample6.fusedlocation.RequestLocationUpdateWithIntentActivity" />
+        <activity android:name="com.hms.locationsample6.activity.LocationMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fusedlocation.RequestLocationUpdatesWithCallbackActivity" />
-        <activity android:name=".geofence.OperateGeoFenceActivity" />
-        <activity android:name=".geofence.GeoFenceActivity" />
+        <activity android:name="com.hms.locationsample6.fusedlocation.RequestLocationUpdatesWithCallbackActivity" />
+        <activity android:name="com.hms.locationsample6.geofence.OperateGeoFenceActivity" />
+        <activity android:name="com.hms.locationsample6.geofence.GeoFenceActivity" />
         <activity
-            android:name=".fusedlocation.SetMockModeActivity"
+            android:name="com.hms.locationsample6.fusedlocation.SetMockModeActivity"
             android:configChanges="orientation|screenSize" /> <!-- SetMockLocation -->
         <activity
-            android:name=".fusedlocation.SetMockLocationActivity"
+            android:name="com.hms.locationsample6.fusedlocation.SetMockLocationActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".fusedlocation.GetLastLocationActivity"
+            android:name="com.hms.locationsample6.fusedlocation.GetLastLocationActivity"
             android:configChanges="orientation|screenSize" /> <!-- GetLocationAvailability -->
         <activity
-            android:name=".fusedlocation.RequestLocationUpdatesHDWithCallbackActivity"
+            android:name="com.hms.locationsample6.fusedlocation.RequestLocationUpdatesHDWithCallbackActivity"
             android:configChanges="orientation|screenSize" /> <!-- LocationBroadcastReceiver -->
         <activity
-            android:name=".fusedlocation.GetLocationAvailabilityActivity"
+            android:name="com.hms.locationsample6.fusedlocation.GetLocationAvailabilityActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".useractivity.ActivityConversionActivity"
+            android:name="com.hms.locationsample6.useractivity.ActivityConversionActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".fusedlocation.NavigationContextStateActivity"
+            android:name="com.hms.locationsample6.fusedlocation.NavigationContextStateActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".useractivity.ActivityIdentificationActivity"
+            android:name="com.hms.locationsample6.useractivity.ActivityIdentificationActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".activity.BaseActivity" />
+        <activity android:name="com.hms.locationsample6.activity.BaseActivity" />
 
         <receiver
-            android:name=".geofence.GeoFenceBroadcastReceiver"
+            android:name="com.hms.locationsample6.geofence.GeoFenceBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".fusedlocation.LocationBroadcastReceiver"
+            android:name="com.hms.locationsample6.fusedlocation.LocationBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.huawei.hmssample.location.LocationBroadcastReceiver.ACTION_PROCESS_LOCATION" />

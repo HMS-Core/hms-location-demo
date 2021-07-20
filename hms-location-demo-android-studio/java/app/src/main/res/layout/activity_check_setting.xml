@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.huawei.hmssample2.location.fusedlocation.CheckSettingActivity">
+    tools:context="com.huawei.locationsample6.location.fusedlocation.CheckSettingActivity">
 
     <Button
         android:layout_margin="10dp"

@@ -4,13 +4,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    lintOptions {
+        abortOnError false
+    }
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
-        applicationId "com.hms.locationkit"
+        applicationId "com.huawei.locationsample6"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -22,10 +25,11 @@ android {
     }
     signingConfigs {
         config {
-            storeFile file('xx.xx')
-            keyAlias 'xxx'
-            keyPassword 'xxx'
-            storePassword 'xxx'
+            storeFile file('../android.keystore')
+            keyAlias 'android.keystore'
+            keyPassword 'android'
+            storePassword 'android'
+            v2SigningEnabled true
         }
     }
     buildTypes {
@@ -34,7 +38,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+        }
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 
 }
 

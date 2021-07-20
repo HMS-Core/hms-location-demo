@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.huawei.hmf:tasks:1.4.1.300@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1f3f029913d327c19b8b526ab045e2fd/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1f3f029913d327c19b8b526ab045e2fd/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f17ccc634520f0645cb94d61d59d2f73/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f17ccc634520f0645cb94d61d59d2f73/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.hmf/tasks/1.4.1.300/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/tasks-1.4.1.300-javadoc.jar!/" />

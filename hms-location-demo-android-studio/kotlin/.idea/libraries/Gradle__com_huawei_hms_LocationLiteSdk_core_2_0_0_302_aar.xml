@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.huawei.hms.LocationLiteSdk:core:2.0.0.302@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/07a3cbe3c951d85bc91f80b42e735f80/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/07a3cbe3c951d85bc91f80b42e735f80/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.hms.LocationLiteSdk/core/2.0.0.302/da39a3ee5e6b4b0d3255bfef95601890afd80709/core-2.0.0.302-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

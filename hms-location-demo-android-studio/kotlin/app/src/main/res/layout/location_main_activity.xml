@@ -24,14 +24,6 @@
             android:text="@string/request_location_updates_with_intent" />
 
         <Button
-            android:id="@+id/geo_fance_location"
-            style="@style/ButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="geoFenceLocation"
-            android:text="@string/geo_fance" />
-
-        <Button
             android:id="@+id/fuse_location"
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
@@ -91,6 +83,13 @@
             style="@style/ButtonStyle"
             android:onClick="activityTransitionUpdate"
             android:text="@string/hwlocation_activity_transition" />
+        <Button
+            android:id="@+id/geo_fance_location"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="geoFenceLocation"
+            android:text="@string/geo_fance" />
 
         <Button
             android:id="@+id/get_navigation_context_state"

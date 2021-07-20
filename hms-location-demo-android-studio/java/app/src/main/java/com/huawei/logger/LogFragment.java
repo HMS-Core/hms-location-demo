@@ -29,7 +29,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
-import com.huawei.hmssample2.Constant;
+import com.huawei.locationsample6.Constant;
 
 /**
  * the fragment will be used to show log info, the useful info will print on screen.

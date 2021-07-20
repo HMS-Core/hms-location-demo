@@ -1,10 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.huawei.hms:stats:5.3.0.301@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c27fc84d46526eb6c6004867e8df9110/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c27fc84d46526eb6c6004867e8df9110/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a73a91b2cbfbf4f95a97faccdd678ce/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6a73a91b2cbfbf4f95a97faccdd678ce/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.hms/stats/5.3.0.301/da39a3ee5e6b4b0d3255bfef95601890afd80709/stats-5.3.0.301-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

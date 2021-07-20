@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.huawei.agconnect:agconnect-https:1.4.0.300@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e42f36cd344f6e4c79f508bc95814de/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e42f36cd344f6e4c79f508bc95814de/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/848bfe8e658caba2bd44b8a04542edf2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/848bfe8e658caba2bd44b8a04542edf2/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.huawei.agconnect/agconnect-https/1.4.0.300/b04f3ee8f5e43fa3b162981b50bb72fe1acabb33/agconnect-https-1.4.0.300-javadoc.jar!/" />

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.huawei.hms:dynamic-api:1.0.17.300@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0d3f2bda61e332eb1900adbd92a3c3f2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0d3f2bda61e332eb1900adbd92a3c3f2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0883a7a977903345bdd7ad9ab8a73c6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0883a7a977903345bdd7ad9ab8a73c6/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
