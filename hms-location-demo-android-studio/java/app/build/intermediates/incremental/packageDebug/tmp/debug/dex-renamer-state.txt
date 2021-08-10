@@ -1,4 +1,0 @@
-#Thu Jul 15 10:37:16 CST 2021
-base.0=E\:\\sdk_demo\\github\\hms-location-demo\\hms-location-demo-android-studio\\locationkit-java-sample\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
