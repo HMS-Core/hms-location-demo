@@ -24,3 +24,7 @@
 -keep class com.huawei.hianalytics.**{*;}
 -keep class com.huawei.updatesdk.**{*;}
 -keep class com.huawei.hms.**{*;}
+-keep class * extends com.huawei.location.router.LocationApiRequest{ *; }
+-keep class * extends com.huawei.hms.core.aidl.IMessageEntity{ *; }
+-keep public class com.huawei.location.nlp.network.** {*; }
+-keep class com.huawei.wisesecurity.ucs.**{*;}
