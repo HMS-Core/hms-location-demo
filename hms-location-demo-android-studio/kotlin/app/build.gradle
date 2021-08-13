@@ -35,11 +35,29 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.config
-            minifyEnabled false
+            //开启混淆
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+            packagingOptions {
+                //CPU架构为 ARMv7 ARMv8
+                doNotStrip "*/arm64-v8a/libucs-credential.so"
+                doNotStrip "*/armeabi-v7a/libucs-credential.so"
+                //CPU架构为 x86
+                doNotStrip "*/x86/libucs-credential.so"
+                doNotStrip "*/x86_64/libucs-credential.so"
+            }
         }
         debug {
             debuggable true
+            packagingOptions {
+                //CPU架构为 ARMv7 ARMv8
+                doNotStrip "*/arm64-v8a/libucs-credential.so"
+                doNotStrip "*/armeabi-v7a/libucs-credential.so"
+                //CPU架构为 x86
+                doNotStrip "*/x86/libucs-credential.so"
+                doNotStrip "*/x86_64/libucs-credential.so"
+            }
         }
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
