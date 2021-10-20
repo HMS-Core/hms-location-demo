@@ -4,13 +4,13 @@ buildscript {
     repositories {
         maven { url 'https://developer.huawei.com/repo/' }
         google()
-        //jcenter 2021年3月已不可用，服务更新添加mavenCentral
+        //jcenter is no longer available in March 2021, service update adds mavenCentral
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.3'
-        classpath 'com.huawei.agconnect:agcp:1.4.2.300'
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
     }
 }
 
@@ -18,7 +18,7 @@ allprojects {
     repositories {
         maven { url 'https://developer.huawei.com/repo/' }
         google()
-        //jcenter 2021年3月已不可用，服务更新添加mavenCentral
+        //jcenter is no longer available in March 2021, service update adds mavenCentral
         jcenter()
         mavenCentral()
     }

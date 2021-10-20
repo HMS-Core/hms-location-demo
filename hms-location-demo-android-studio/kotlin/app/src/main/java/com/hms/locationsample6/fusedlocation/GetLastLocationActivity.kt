@@ -63,7 +63,7 @@ class GetLastLocationActivity : BaseActivity(), View.OnClickListener {
                 )
                 return@OnSuccessListener
             }).addOnFailureListener { e: Exception ->
-                // 处理未安装HMS Core（APK）时，引导用户安装或升级HMS Core
+                // Guide users to install or upgrade the HMS Core when the HMS Core (APK) is not installed on Huawei mobile phones.
                 if (e is ResolvableApiException) {
                     val apiException = e
                     LocationLog.e(
@@ -73,7 +73,9 @@ class GetLastLocationActivity : BaseActivity(), View.OnClickListener {
                     try {
                         apiException.startResolutionForResult(this@GetLastLocationActivity, 2009)
                     } catch (ex: SendIntentException) {
-                        ex.printStackTrace()
+                        LocationLog.e(
+                            TAG, "getLastLocation sendIntentException:${ex.message}"
+                        )
                     }
                 } else {
                     LocationLog.e(

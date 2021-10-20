@@ -38,7 +38,7 @@
             android:text="VEHICLE[100]" />
 
         <LinearLayout
-            android:id="@+id/activityIN_VEHICLE"
+            android:id="@+id/activity_in_vehicle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -67,7 +67,7 @@
             android:text="BIKE[101]" />
 
         <LinearLayout
-            android:id="@+id/activityON_BICYCLE"
+            android:id="@+id/activity_on_bicycle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -96,7 +96,7 @@
             android:text="FOOT[102]" />
 
         <LinearLayout
-            android:id="@+id/activityON_FOOT"
+            android:id="@+id/activity_on_foot"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -125,7 +125,7 @@
             android:text="STILL[103]" />
 
         <LinearLayout
-            android:id="@+id/activitySTILL"
+            android:id="@+id/activity_still"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -154,7 +154,7 @@
             android:text="OTHERS[104]" />
 
         <LinearLayout
-            android:id="@+id/activityUNKNOWN"
+            android:id="@+id/activity_unknown"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -183,7 +183,7 @@
             android:text="WALKING[107]" />
 
         <LinearLayout
-            android:id="@+id/activityWALKING"
+            android:id="@+id/activity_walking"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -212,7 +212,7 @@
             android:text="RUNNING[108]" />
 
         <LinearLayout
-            android:id="@+id/activityRunning"
+            android:id="@+id/activity_running"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

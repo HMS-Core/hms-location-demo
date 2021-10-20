@@ -83,14 +83,15 @@ public class LogView extends TextView implements LogNode {
         outputBuilder.append(" ");
         outputBuilder.append(msg);
         outputBuilder.append((char) 13).append((char) 10);
-
-        ((Activity) getContext()).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                appendToLog(outputBuilder.toString());
-            }
-        });
-
+        if (getContext() instanceof Activity) {
+            Activity activity = (Activity) getContext();
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    appendToLog(outputBuilder.toString());
+                }
+            });
+        }
         if (mNext != null) {
             mNext.println(priority, tag, msg, tr);
         }

@@ -111,7 +111,10 @@ class RequestLocationUpdatesWithCallbackActivity : BaseActivity(), View.OnClickL
                 requestPermissions(this, strings, 1)
             }
         } else {
-            if (checkSelfPermission(this@RequestLocationUpdatesWithCallbackActivity, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && checkSelfPermission(
+            if (checkSelfPermission(
+                    this@RequestLocationUpdatesWithCallbackActivity,
+                    ACCESS_FINE_LOCATION
+                ) != PERMISSION_GRANTED && checkSelfPermission(
                     this@RequestLocationUpdatesWithCallbackActivity,
                     ACCESS_COARSE_LOCATION
                 ) != PERMISSION_GRANTED && checkSelfPermission(
@@ -141,20 +144,29 @@ class RequestLocationUpdatesWithCallbackActivity : BaseActivity(), View.OnClickL
             val locationSettingsRequest = builder.build()
             // check devices settings before request location updates.
             //Before requesting location update, invoke checkLocationSettings to check device settings.
-            val locationSettingsResponseTask: Task<LocationSettingsResponse> = settingsClient.checkLocationSettings(locationSettingsRequest)
+            val locationSettingsResponseTask: Task<LocationSettingsResponse> =
+                settingsClient.checkLocationSettings(locationSettingsRequest)
 
             locationSettingsResponseTask.addOnSuccessListener { locationSettingsResponse: LocationSettingsResponse? ->
-                    Log.i(TAG, "check location settings success  {$locationSettingsResponse}")
-                    // request location updates
-                    fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.getMainLooper())
-                        .addOnSuccessListener {
-                            LocationLog.i(TAG, "requestLocationUpdatesWithCallback onSuccess")
-                        }
-                        .addOnFailureListener { e ->
-                            LocationLog.e(TAG, "requestLocationUpdatesWithCallback onFailure:${e.message}")
-                        }
-                }
-                .addOnFailureListener { e: Exception -> LocationLog.e(TAG, "checkLocationSetting onFailure:${e.message}")
+                Log.i(TAG, "check location settings success  {$locationSettingsResponse}")
+                // request location updates
+                fusedLocationProviderClient.requestLocationUpdates(
+                    mLocationRequest,
+                    mLocationCallback,
+                    Looper.getMainLooper()
+                )
+                    .addOnSuccessListener {
+                        LocationLog.i(TAG, "requestLocationUpdatesWithCallback onSuccess")
+                    }
+                    .addOnFailureListener { e ->
+                        LocationLog.e(
+                            TAG,
+                            "requestLocationUpdatesWithCallback onFailure:${e.message}"
+                        )
+                    }
+            }
+                .addOnFailureListener { e: Exception ->
+                    LocationLog.e(TAG, "checkLocationSetting onFailure:${e.message}")
                     when ((e as ApiException).statusCode) {
                         LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> try {
                             val rae = e as ResolvableApiException

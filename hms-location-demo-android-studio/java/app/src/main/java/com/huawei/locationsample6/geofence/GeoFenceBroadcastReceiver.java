@@ -49,9 +49,11 @@ public class GeoFenceBroadcastReceiver extends BroadcastReceiver {
                 if (geofenceData != null) {
                     int errorCode = geofenceData.getErrorCode();
                     int conversion = geofenceData.getConversion();
-                    ArrayList<Geofence> list = (ArrayList<Geofence>) geofenceData.getConvertingGeofenceList();
+                    ArrayList<Geofence> list = new ArrayList<>();
+                    if (geofenceData.getConvertingGeofenceList() instanceof ArrayList) {
+                        list = (ArrayList<Geofence>) geofenceData.getConvertingGeofenceList();
+                    }
                     Location myLocation = geofenceData.getConvertingLocation();
-                    boolean status = geofenceData.isSuccess();
                     sb.append("errorcode: " + errorCode + next);
                     sb.append("conversion: " + conversion + next);
                     if (list != null) {
@@ -62,6 +64,7 @@ public class GeoFenceBroadcastReceiver extends BroadcastReceiver {
                     if (myLocation != null) {
                         sb.append("location is :" + myLocation.getLongitude() + " " + myLocation.getLatitude() + next);
                     }
+                    boolean status = geofenceData.isSuccess();
                     sb.append("is successful :" + status);
                     LocationLog.i(TAG, sb.toString());
                 }

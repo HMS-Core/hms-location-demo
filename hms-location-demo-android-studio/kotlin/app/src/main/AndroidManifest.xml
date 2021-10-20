@@ -3,6 +3,7 @@
     package="com.hms.locationsample6">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -18,16 +19,17 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--配置数据元，当用户手机上未安装HMS Core（APK）或者版本过低时，引导用户安装或升级HMS Core-->
+        <!--Configure data elements. If the HMS Core (APK) is not installed on the subscriber's mobile phone or the HMS Core version is too early, instruct the subscriber to install or upgrade the HMS Core.-->
         <meta-data
             android:name="com.huawei.hms.client.channel.androidMarket"
             android:value="false" />
 
-        <activity android:name="com.hms.locationsample6.fusedlocation.CheckSettingsActivity"/>
+        <activity android:name="com.hms.locationsample6.fusedlocation.CheckSettingsActivity" />
         <activity android:name="com.hms.locationsample6.fusedlocation.RequestLocationUpdateWithIntentActivity" />
         <activity android:name="com.hms.locationsample6.activity.LocationMainActivity">
             <intent-filter>

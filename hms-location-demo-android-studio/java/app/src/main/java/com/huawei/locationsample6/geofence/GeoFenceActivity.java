@@ -48,6 +48,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
+    public String TAG = "GeoFenceActivity";
+
+    LocationCallback mLocationCallbacks;
+
+    LocationRequest mLocationRequest;
+
     private EditText setlatitude;
 
     private EditText setlongitude;
@@ -64,15 +70,9 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
 
     private EditText setNotificationInterval;
 
-    LocationCallback mLocationCallbacks;
-
-    LocationRequest mLocationRequest;
-
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
     private SettingsClient mSettingsClient;
-
-    public String TAG = "GeoFenceActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,14 +196,19 @@ public class GeoFenceActivity extends LocationBaseActivity implements View.OnCli
                 @Override
                 public void onFailure(Exception e) {
                     LocationLog.e(TAG, "checkLocationSetting onFailures:" + e.getMessage());
-                    int statusCodes = ((ApiException) e).getStatusCode();
+                    int statusCodes = 0;
+                    if (e instanceof ApiException) {
+                        statusCodes = ((ApiException) e).getStatusCode();
+                    }
                     switch (statusCodes) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                             try {
                                 // When the startResolutionForResult is invoked, a dialog box is displayed, asking you
                                 // to open the corresponding permission.
-                                ResolvableApiException raes = (ResolvableApiException) e;
-                                raes.startResolutionForResult(GeoFenceActivity.this, 0);
+                                if (e instanceof ResolvableApiException) {
+                                    ResolvableApiException raes = (ResolvableApiException) e;
+                                    raes.startResolutionForResult(GeoFenceActivity.this, 0);
+                                }
                             } catch (IntentSender.SendIntentException sie) {
                                 Log.e(TAG, "PendingIntent unable to execute request");
                             }
@@ -263,11 +268,11 @@ class Data {
 }
 
 class GeoFenceData {
-    private static int requestCode = 0;
-
     static ArrayList<Geofence> geofences = new ArrayList<Geofence>();
 
     static Geofence.Builder geoBuild = new Geofence.Builder();
+
+    private static int requestCode = 0;
 
     public static void addGeofence(Data data) {
         if (checkStyle(geofences, data.uniqueId) == false) {

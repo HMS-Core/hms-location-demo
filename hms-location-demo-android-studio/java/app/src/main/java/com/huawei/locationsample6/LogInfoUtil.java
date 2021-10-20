@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 功能描述
+ * LogInfoUtil
  *
  * @since 2020-07-29
  */
@@ -107,9 +107,9 @@ public class LogInfoUtil {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                // 从intent中获取设备
+                // Obtain the device from the intent.
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                // 判断是否配对过
+                // Determine whether pairing has been performed.
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
                     String devicesStr = "[" + "Name: " + device.getName() + ", Address: " + device.getAddress()
                         + ", BondState: " + device.getBondState();
@@ -119,14 +119,16 @@ public class LogInfoUtil {
                     devicesStr += "]";
                     Log.i(TAG + "-Bluetooth", devicesStr);
                 }
-                // 搜索完成
+                // Search Complete.
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 Log.i(TAG + "-Bluetooth", "end");
+            } else {
+                Log.i(TAG + "-Bluetooth", "receive");
             }
         }
     };
 
-    public synchronized static void getLogInfo(final Context context) {
+    public static synchronized void getLogInfo(final Context context) {
         Log.i(TAG, "getLogInfo start");
         if (!isLocationEnabled(context)) {
             Log.i(TAG, "isLocationEnabled is false");
@@ -163,17 +165,17 @@ public class LogInfoUtil {
             Log.i(TAG + "-Bluetooth", "Bluetooth is not found");
             return;
         }
-        // 判断是否打开蓝牙
+        // Determine whether to enable Bluetooth.
         if (!mBluetoothAdapter.isEnabled()) {
             Log.i(TAG + "-Bluetooth", "Bluetooth is off");
             return;
         }
-        // 获取已经配对的设备
+        // Obtaining Paired Devices.
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-        // 判断是否有配对过的设备
+        // Check whether there are paired devices.
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
-                // 遍历到列表中
+                // Traverse to the list
                 StringBuilder pairedDevicesStr = new StringBuilder("getBondedDevices: [");
                 pairedDevicesStr.append("Name: ")
                     .append(device.getName())
@@ -189,7 +191,7 @@ public class LogInfoUtil {
             }
         }
         IntentFilter intent = new IntentFilter();
-        intent.addAction(BluetoothDevice.ACTION_FOUND); // 用BroadcastReceiver来取得搜索结果
+        intent.addAction(BluetoothDevice.ACTION_FOUND); // Use BroadcastReceiver to get search results
         intent.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         intent.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         if (isRegisterReceiverBle) {
@@ -197,19 +199,19 @@ public class LogInfoUtil {
         }
         context.registerReceiver(broadcastReceiver, intent);
         isRegisterReceiverBle = true;
-        // 判断是否在搜索,如果在搜索，就取消搜索
+        // Determines whether the search is in progress. If the search is in progress, cancels the search.
         if (mBluetoothAdapter.isDiscovering()) {
             mBluetoothAdapter.cancelDiscovery();
         }
-        // 开始搜索
+        // Start Search
         mBluetoothAdapter.startDiscovery();
     }
 
     /**
-     * 判断定位服务是否开启
+     * Check whether the location service is enabled.
      *
-     * @param context 上下文
-     * @return true 表示开启
+     * @param context context
+     * @return true enabled
      */
     public static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
@@ -230,7 +232,7 @@ public class LogInfoUtil {
 
     private static void getGPSInfo(final Context context) {
         Log.i(TAG + "-GPS", "getGPSInfo start");
-        // 获取位置管理服务
+        // Obtaining the Location Management Service
         if (ActivityCompat.checkSelfPermission(context,
             Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
             && ActivityCompat.checkSelfPermission(context,
@@ -238,22 +240,27 @@ public class LogInfoUtil {
             Log.i(TAG, "checkSelfPermission ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION false：");
             return;
         }
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        // 设置监听器，自动更新的最小时间为间隔N秒(1秒为1*1000，这样写主要为了方便)或最小位移变化超过N米
-        // 实时获取位置提供者provider中的数据，一旦发生位置变化 立即通知应用程序locationListener
+        if (context.getSystemService(Context.LOCATION_SERVICE) instanceof LocationManager) {
+            locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        }
+        // Set the minimum interval for automatic update of the listener to N seconds. (1 second is 1 x 1000, which is
+        // mainly for convenience.) or the minimum displacement change exceeds N m
+        // Obtains data from the location provider in real time and notifies the application locationListener once the
+        // location changes.
         locationManager.requestLocationUpdates("gps", 10000, 0, locationListener);
-        // 监听卫星，statusListener为响应函数
+        // Satellite listening. The statusListener is the response function.
         locationManager.addGpsStatusListener(new GpsStatus.Listener() {
             @Override
             public void onGpsStatusChanged(int event) {
-                // 触发事件event
+                // Triggering event event
                 switch (event) {
                     case GpsStatus.GPS_EVENT_STARTED:
                         break;
-                    // 第一次定位时间
+                    // First Positioning Time
                     case GpsStatus.GPS_EVENT_FIRST_FIX:
                         break;
-                    // 收到卫星信息，并调用DrawMap()函数，进行卫星信号解析并显示到屏幕上
+                    // Receives satellite information, invokes the DrawMap() function, parses satellite signals, and
+                    // displays them on the screen.
                     case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
                         logGPSResult(context);
                         break;
@@ -274,11 +281,12 @@ public class LogInfoUtil {
     private static LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            // 通过GPS获取位置，新的位置信息放在location中，调用updateToNewLocation函数显示位置信息
+            // Obtain the location through GPS, place the new location information in location, and invoke the
+            // updateToNewLocation function to display the location information.
             Log.i(TAG, "Longitude:" + location.getLongitude() + ",Latitude:" + location.getLatitude());
         }
 
-        // 当Provider不可用时调用下面的函数
+        // Call the following function when the provider is unavailable
         @Override
         public void onProviderDisabled(String arg0) {
         }
@@ -293,7 +301,8 @@ public class LogInfoUtil {
     };
 
     private static void logGPSResult(Context context) {
-        // 获取卫星信息，gpsStatus为卫星响应函数中获得的卫星GpsStatus类型变量
+        // Obtains satellite information. gpsStatus is the satellite GpsStatus variable obtained in the satellite
+        // response function.
         if (ActivityCompat.checkSelfPermission(context,
             Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.i(TAG + "-GPS", "checkSelfPermission ACCESS_FINE_LOCATION false ");
@@ -301,7 +310,7 @@ public class LogInfoUtil {
         }
         GpsStatus gpsStatus = locationManager.getGpsStatus(null);
         Iterable<GpsSatellite> allSatellites = gpsStatus.getSatellites();
-        // 遍历获取每颗卫星的信息
+        // Traversal to obtain information about each satellite
         for (GpsSatellite satellite : allSatellites) {
             Log.i(TAG + "-GPS",
                 "[" + "mHasEphemeris=" + satellite.hasEphemeris() + ", mHasAlmanac=" + satellite.hasAlmanac()
@@ -313,13 +322,15 @@ public class LogInfoUtil {
     private static boolean isRegisterReceiver = false;
 
     /**
-     * 获取当前连接的wifi名称
+     * Obtains the Wi-Fi name of the current connection.
      *
-     * @param context 上下文
+     * @param context context
      */
     private static void getWIFIInfo(Context context) {
         Log.i(TAG, "getWIFIInfo start");
-        wifiMgr = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (context.getApplicationContext().getSystemService(Context.WIFI_SERVICE) instanceof WifiInfo) {
+            wifiMgr = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        }
         if (wifiMgr == null) {
             Log.i(TAG + "-WIFI", "WifiManager is null");
             return;
@@ -342,7 +353,10 @@ public class LogInfoUtil {
             Log.i(TAG + "-Cell", "checkSelfPermission ACCESS_COARSE_LOCATION false ");
             return;
         }
-        TelephonyManager tel = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager tel = null;
+        if (context.getSystemService(Context.TELEPHONY_SERVICE) instanceof TelephonyManager) {
+            tel = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        }
         if (tel == null || tel.getAllCellInfo() == null) {
             Log.i(TAG + "-Cell", "getCellInfo fail TelephonyManager is null");
             return;

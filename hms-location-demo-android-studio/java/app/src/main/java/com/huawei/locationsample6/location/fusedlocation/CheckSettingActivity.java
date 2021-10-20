@@ -117,7 +117,10 @@ public class CheckSettingActivity extends LocationBaseActivity implements View.O
                             @Override
                             public void onFailure(Exception e) {
                                 LocationLog.i(TAG, "checkLocationSetting onFailure:" + e.getMessage());
-                                int statusCode = ((ApiException) e).getStatusCode();
+                                int statusCode = 0;
+                                if (e instanceof ApiException) {
+                                    statusCode = ((ApiException) e).getStatusCode();
+                                }
                                 switch (statusCode) {
                                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                                         android.util.Log.i(TAG,
@@ -126,8 +129,10 @@ public class CheckSettingActivity extends LocationBaseActivity implements View.O
                                         try {
                                             // Show the dialog by calling startResolutionForResult(), and check the
                                             // result in onActivityResult().
-                                            ResolvableApiException rae = (ResolvableApiException) e;
-                                            rae.startResolutionForResult(CheckSettingActivity.this, 0);
+                                            if (e instanceof ResolvableApiException) {
+                                                ResolvableApiException rae = (ResolvableApiException) e;
+                                                rae.startResolutionForResult(CheckSettingActivity.this, 0);
+                                            }
                                         } catch (IntentSender.SendIntentException sie) {
                                             android.util.Log.i(TAG, "PendingIntent unable to execute request.");
                                         }

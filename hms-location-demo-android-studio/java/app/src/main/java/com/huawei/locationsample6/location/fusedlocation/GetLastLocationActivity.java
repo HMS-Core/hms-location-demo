@@ -73,13 +73,15 @@ public class GetLastLocationActivity extends LocationBaseActivity implements OnC
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception e) {
+                    // Guide users to install or upgrade the HMS Core when the HMS Core (APK) is not installed on Huawei
+                    // devices.
                     if (e instanceof ResolvableApiException) {
                         ResolvableApiException apiException = (ResolvableApiException) e;
                         LocationLog.e(TAG, "getLastLocation onFailure:" + apiException.getStatusCode());
                         try {
                             apiException.startResolutionForResult(GetLastLocationActivity.this, 2009);
                         } catch (IntentSender.SendIntentException ex) {
-                            ex.printStackTrace();
+                            LocationLog.e(TAG, "getLastLocation onFailure:" + ex.getMessage());
                         }
                     } else {
                         LocationLog.e(TAG, "getLastLocation onFailure:" + e.getMessage());

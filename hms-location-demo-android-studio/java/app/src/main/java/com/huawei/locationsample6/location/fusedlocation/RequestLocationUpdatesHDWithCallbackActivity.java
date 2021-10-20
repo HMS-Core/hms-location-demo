@@ -172,22 +172,28 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         ArrayList<String> paramList = new ArrayList<String>();
         TableRow[] rows = new TableRow[tableLayout.getChildCount()];
         for (int i = 0; i < rows.length; i++) {
-            rows[i] = (TableRow) tableLayout.getChildAt(i);
-            if (rows[i].getChildAt(1) instanceof EditText) {
-                paramList.add(((EditText) rows[i].getChildAt(1)).getText().toString());
-                Log.d(TAG, ((EditText) rows[i].getChildAt(1)).getText().toString());
+            if (tableLayout.getChildAt(i) instanceof TableRow) {
+                rows[i] = (TableRow) tableLayout.getChildAt(i);
+                if (rows[i].getChildAt(1) instanceof EditText) {
+                    EditText editText = (EditText) rows[i].getChildAt(1);
+                    paramList.add(editText.getText().toString());
+                }
             }
         }
-        locationRequest.setPriority(Integer.parseInt("".equals(paramList.get(0)) ? "200" : paramList.get(0)));
-        locationRequest.setInterval(Long.parseLong("".equals(paramList.get(1)) ? "5000" : paramList.get(1)));
-        locationRequest.setFastestInterval(Long.parseLong("".equals(paramList.get(2)) ? "5000" : paramList.get(2)));
-        locationRequest
-            .setExpirationTime(Long.parseLong("".equals(paramList.get(4)) ? "9223372036854775807" : paramList.get(4)));
-        locationRequest.setExpirationDuration(
-            Long.parseLong("".equals(paramList.get(5)) ? "9223372036854775807" : paramList.get(5)));
-        locationRequest.setNumUpdates(Integer.parseInt("".equals(paramList.get(6)) ? "2147483647" : paramList.get(6)));
-        locationRequest.setSmallestDisplacement(Float.parseFloat("".equals(paramList.get(7)) ? "0" : paramList.get(7)));
-        locationRequest.setMaxWaitTime(Long.parseLong("".equals(paramList.get(8)) ? "0" : paramList.get(8)));
+        if (!paramList.isEmpty()) {
+            locationRequest.setPriority(Integer.parseInt("".equals(paramList.get(0)) ? "200" : paramList.get(0)));
+            locationRequest.setInterval(Long.parseLong("".equals(paramList.get(1)) ? "5000" : paramList.get(1)));
+            locationRequest.setFastestInterval(Long.parseLong("".equals(paramList.get(2)) ? "5000" : paramList.get(2)));
+            locationRequest.setExpirationTime(
+                Long.parseLong("".equals(paramList.get(4)) ? "9223372036854775807" : paramList.get(4)));
+            locationRequest.setExpirationDuration(
+                Long.parseLong("".equals(paramList.get(5)) ? "9223372036854775807" : paramList.get(5)));
+            locationRequest
+                .setNumUpdates(Integer.parseInt("".equals(paramList.get(6)) ? "2147483647" : paramList.get(6)));
+            locationRequest
+                .setSmallestDisplacement(Float.parseFloat("".equals(paramList.get(7)) ? "0" : paramList.get(7)));
+            locationRequest.setMaxWaitTime(Long.parseLong("".equals(paramList.get(8)) ? "0" : paramList.get(8)));
+        }
     }
 
     private void logHwLocation(List<HWLocation> hwLocations) {
@@ -225,11 +231,9 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
 
     private void logLocation(List<Location> locations) {
         String hdFlag = "";
-        String hdSecurity = "";
         if (locations == null || locations.isEmpty()) {
             Log.i(TAG, "getLocationWithHd callback locations is empty");
             return;
-
         }
         for (Location location : locations) {
             if (location == null) {
@@ -248,11 +252,12 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
             if (hdbBinary) {
                 hdFlag = "result is HD";
                 if (hDEncryptType == 1) {
-                    String key = "XXXXXXXXXXXXXXX"; // 解密算法SM4ECB,具体解密密钥请联系商务人员XXX,接入流程请参考相关文档
-                    String Latitude = location.getExtras().getString("HDEncryptLat");
-                    String Longitude = location.getExtras().getString("HDEncryptLng");
-                    String mLatitude = myDecrypt(Latitude, key);
-                    String mLongitude = myDecrypt(Longitude, key);
+                    // Decryption algorithm SM4ECB
+                    String key = "XXXXXXXXXXXXXXX";
+                    String latitude = location.getExtras().getString("HDEncryptLat");
+                    String longitude = location.getExtras().getString("HDEncryptLng");
+                    String mLatitude = myDecrypt(latitude, key);
+                    String mLongitude = myDecrypt(longitude, key);
                     try {
                         location.setLatitude(Double.parseDouble(mLatitude));
                         location.setLongitude(Double.parseDouble(mLongitude));
@@ -261,6 +266,7 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                     }
                 }
             }
+            String hdSecurity = "";
             if (hDSecurityType == 0) {
                 hdSecurity = "non-biased, non-encrypted, high-precision WGS84";
             }
@@ -275,7 +281,7 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
     }
 
     private String myDecrypt(String Latitude, String key) {
-        // 具体解密方法请自行查询，这里暂不提供
+        // For details about the decryption method, see.
         String decrypt = "XXXXXXXXXXX";
         return decrypt;
     }

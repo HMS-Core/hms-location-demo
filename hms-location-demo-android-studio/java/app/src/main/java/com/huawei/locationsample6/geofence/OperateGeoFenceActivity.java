@@ -38,7 +38,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class OperateGeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
-    public static final ArrayList<RequestList> requestList = new ArrayList<RequestList>();
+    public static final ArrayList<RequestList> REQUEST_LIST = new ArrayList<RequestList>();
 
     public String TAG = "operateGeoFenceActivity";
 
@@ -66,11 +66,11 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         findViewById(R.id.removeGeofence).setOnClickListener(this);
         findViewById(R.id.removeWithID).setOnClickListener(this);
         findViewById(R.id.removeWithIntent).setOnClickListener(this);
-        removeWithPendingIntentInput = (EditText) findViewById(R.id.removeWithPendingIntentInput);
-        removeWithIDInput = (EditText) findViewById(R.id.removeWithIDInput);
-        trigger = (EditText) findViewById(R.id.trigger);
-        geoFenceData = (TextView) findViewById(R.id.GeoFenceData);
-        geoRequestData = (TextView) findViewById(R.id.GeoRequestData);
+        removeWithPendingIntentInput = findViewById(R.id.removeWithPendingIntentInput);
+        removeWithIDInput = findViewById(R.id.removeWithIDInput);
+        trigger = findViewById(R.id.trigger);
+        geoFenceData = findViewById(R.id.GeoFenceData);
+        geoRequestData = findViewById(R.id.GeoRequestData);
         geofenceService = new GeofenceService(this);
         addLogFragment();
     }
@@ -157,10 +157,10 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
 
     public PendingIntent findIntentByID(int a) {
         PendingIntent intent = null;
-        for (int i = requestList.size() - 1; i >= 0; i--) {
-            if (requestList.get(i).requestCode == a) {
-                intent = requestList.get(i).pendingIntent;
-                requestList.remove(i);
+        for (int i = REQUEST_LIST.size() - 1; i >= 0; i--) {
+            if (REQUEST_LIST.get(i).requestCode == a) {
+                intent = REQUEST_LIST.get(i).pendingIntent;
+                REQUEST_LIST.remove(i);
             }
         }
         return intent;
@@ -194,16 +194,16 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         String s = removeWithIDInput.getText().toString();
         String[] str = s.split(" ");
         List<String> list = new ArrayList<>();
-        List<String> geofenceList =new ArrayList<>();
+        List<String> geofenceList = new ArrayList<>();
         Collections.addAll(list, str);
-        for (int i=0;i<requestList.size();i++){
-            for (int j=0;j<requestList.get(i).geofences.size();j++){
-                geofenceList.add(requestList.get(i).geofences.get(j).getUniqueId());
+        for (int i = 0; i < REQUEST_LIST.size(); i++) {
+            for (int j = 0; j < REQUEST_LIST.get(i).geofences.size(); j++) {
+                geofenceList.add(REQUEST_LIST.get(i).geofences.get(j).getUniqueId());
             }
         }
-        for (int i=0;i<list.size();i++){
-            if (!geofenceList.contains(list.get(i))){
-                LocationLog.i(TAG,"delete ID not found.");
+        for (int i = 0; i < list.size(); i++) {
+            if (!geofenceList.contains(list.get(i))) {
+                LocationLog.i(TAG, "delete ID not found.");
                 return;
             }
         }
@@ -226,8 +226,8 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
     }
 
     public void listRemoveID(String[] str) {
-        for (int i = 0; i < requestList.size(); i++) {
-            requestList.get(i).removeID(str);
+        for (int i = 0; i < REQUEST_LIST.size(); i++) {
+            REQUEST_LIST.get(i).removeID(str);
         }
     }
 
@@ -236,7 +236,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
             geoRequestData.setText("no new request to add!");
             return;
         }
-        if (requestList.isEmpty()) {
+        if (REQUEST_LIST.isEmpty()) {
             geoRequestData.setText("no pengdingIntent to send!");
             return;
         }
@@ -255,7 +255,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
             geofenceRequest.setInitConversions(5);
             LocationLog.d(TAG, "default trigger is 5");
         }
-        RequestList temp = requestList.get(requestList.size() - 1);
+        RequestList temp = REQUEST_LIST.get(REQUEST_LIST.size() - 1);
         PendingIntent pendingIntent = temp.pendingIntent;
         try {
             geofenceService.createGeofenceList(geofenceRequest.build(), pendingIntent)
@@ -278,8 +278,8 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
     }
 
     public boolean checkUniqueID() {
-        for (int i = 0; i < requestList.size(); i++) {
-            if (requestList.get(i).checkID() == true)
+        for (int i = 0; i < REQUEST_LIST.size(); i++) {
+            if (REQUEST_LIST.get(i).checkID() == true)
                 return true;
         }
         return false;
@@ -301,14 +301,14 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
 
     public void setList(PendingIntent intent, int code, ArrayList<Geofence> geofences) {
         RequestList temp = new RequestList(intent, code, geofences);
-        requestList.add(temp);
+        REQUEST_LIST.add(temp);
     }
 
     public void getRequestMessage() {
         StringBuilder buf = new StringBuilder();
         String s = "";
-        for (int i = 0; i < requestList.size(); i++) {
-            buf.append(requestList.get(i).show());
+        for (int i = 0; i < REQUEST_LIST.size(); i++) {
+            buf.append(REQUEST_LIST.get(i).show());
         }
         s = buf.toString();
         if (s.equals("")) {
@@ -334,7 +334,7 @@ class RequestList {
 
     public ArrayList<Geofence> geofences;
 
-    public RequestList(PendingIntent pendingIntent, int requestCode, ArrayList<Geofence> geofences) {
+    RequestList(PendingIntent pendingIntent, int requestCode, ArrayList<Geofence> geofences) {
         this.pendingIntent = pendingIntent;
         this.requestCode = requestCode;
         this.geofences = geofences;
@@ -344,8 +344,7 @@ class RequestList {
         StringBuilder buf = new StringBuilder();
         String s = "";
         for (int i = 0; i < geofences.size(); i++) {
-            buf.append("PendingIntent: " + requestCode + " UniqueID: " + geofences.get(i).getUniqueId()
-                + "\n");
+            buf.append("PendingIntent: " + requestCode + " UniqueID: " + geofences.get(i).getUniqueId() + "\n");
         }
         s = buf.toString();
         return s;

@@ -39,7 +39,7 @@ public class LogCatWrapper implements LogNode {
             useMsg = "";
         }
         if (tr != null) {
-            useMsg += "\n" + android.util.Log.getStackTraceString(tr);
+            useMsg += System.lineSeparator() + android.util.Log.getStackTraceString(tr);
         }
         android.util.Log.println(priority, tag, useMsg);
         if (mNext != null) {

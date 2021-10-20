@@ -114,27 +114,32 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
                             }
                         });
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(Exception e) {
-                            LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
-                            int statusCode = ((ApiException) e).getStatusCode();
-                            switch (statusCode) {
-                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                    try {
-                                        //When the startResolutionForResult is invoked, a dialog box is displayed, asking you to open the corresponding permission.
-                                        ResolvableApiException rae = (ResolvableApiException) e;
-                                        rae.startResolutionForResult(RequestLocationUpdatesWithIntentActivity.this, 0);
-                                    } catch (IntentSender.SendIntentException sie) {
-                                        LocationLog.e(TAG, "PendingIntent unable to execute request.");
-                                    }
-                                    break;
-                                default:
-                                    break;
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
+                    int statusCode = 0;
+                    if (e instanceof ApiException) {
+                        statusCode = ((ApiException) e).getStatusCode();
+                    }
+                    switch (statusCode) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                // When the startResolutionForResult is invoked, a dialog box is displayed, asking you
+                                // to open the corresponding permission.
+                                if (e instanceof ResolvableApiException) {
+                                    ResolvableApiException rae = (ResolvableApiException) e;
+                                    rae.startResolutionForResult(RequestLocationUpdatesWithIntentActivity.this, 0);
+                                }
+                            } catch (IntentSender.SendIntentException sie) {
+                                LocationLog.e(TAG, "PendingIntent unable to execute request.");
                             }
-                        }
-                    });
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
         } catch (Exception e) {
             LocationLog.e(TAG, "requestLocationUpdatesWithIntent exception:" + e.getMessage());
         }
@@ -184,6 +189,5 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
         } catch (Exception e) {
             Log.e(TAG, "RequestLocationUpdatesWithIntentActivity Exception:" + e);
         }
-
     }
 }

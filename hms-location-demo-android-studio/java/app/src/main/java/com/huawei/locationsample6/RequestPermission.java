@@ -40,7 +40,9 @@ public class RequestPermission {
                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 String[] strings =
                     {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-                ActivityCompat.requestPermissions((Activity) context, strings, 1);
+                if (context instanceof Activity) {
+                    ActivityCompat.requestPermissions((Activity) context, strings, 1);
+                }
             }
         } else {
             if (ActivityCompat.checkSelfPermission(context,
@@ -51,7 +53,9 @@ public class RequestPermission {
                     "android.permission.ACCESS_BACKGROUND_LOCATION") != PackageManager.PERMISSION_GRANTED) {
                 String[] strings = {Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION, "android.permission.ACCESS_BACKGROUND_LOCATION"};
-                ActivityCompat.requestPermissions((Activity) context, strings, 2);
+                if (context instanceof Activity) {
+                    ActivityCompat.requestPermissions((Activity) context, strings, 2);
+                }
             }
         }
     }
@@ -62,14 +66,18 @@ public class RequestPermission {
             if (ActivityCompat.checkSelfPermission(context,
                 "com.huawei.hms.permission.ACTIVITY_RECOGNITION") != PackageManager.PERMISSION_GRANTED) {
                 String[] permissions = {"com.huawei.hms.permission.ACTIVITY_RECOGNITION"};
-                ActivityCompat.requestPermissions((Activity) context, permissions, 1);
+                if (context instanceof Activity) {
+                    ActivityCompat.requestPermissions((Activity) context, permissions, 1);
+                }
                 LocationLog.i(TAG, "requestActivityTransitionButtonHandler: apply permission");
             }
         } else {
             if (ActivityCompat.checkSelfPermission(context,
                 "android.permission.ACTIVITY_RECOGNITION") != PackageManager.PERMISSION_GRANTED) {
                 String[] permissions = {"android.permission.ACTIVITY_RECOGNITION"};
-                ActivityCompat.requestPermissions((Activity) context, permissions, 2);
+                if (context instanceof Activity) {
+                    ActivityCompat.requestPermissions((Activity) context, permissions, 2);
+                }
                 LocationLog.i(TAG, "requestActivityTransitionButtonHandler: apply permission");
             }
         }

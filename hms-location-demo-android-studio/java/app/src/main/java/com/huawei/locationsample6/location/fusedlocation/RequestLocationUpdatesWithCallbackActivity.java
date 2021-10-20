@@ -47,8 +47,10 @@ import java.util.List;
 
 /**
  * Example of Using requestLocationUpdates and removeLocationUpdates.
- * Requests a location update and calls back on the specified Looper thread. This method requires that the requester process exist for continuous callback.
- * If you still want to receive the callback after the process is killed, see requestLocationUpdates (LocationRequest request,PendingIntent callbackIntent)
+ * Requests a location update and calls back on the specified Looper thread. This method requires that the requester
+ * process exist for continuous callback.
+ * If you still want to receive the callback after the process is killed, see requestLocationUpdates (LocationRequest
+ * request,PendingIntent callbackIntent)
  *
  * @since 2020-5-11
  */
@@ -87,8 +89,8 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
                         if (!locations.isEmpty()) {
                             for (Location location : locations) {
                                 LocationLog.i(TAG,
-                                        "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
-                                                + "," + location.getLatitude() + "," + location.getAccuracy());
+                                    "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
+                                        + "," + location.getLatitude() + "," + location.getAccuracy());
                             }
                         }
                     }
@@ -141,14 +143,19 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
                 @Override
                 public void onFailure(Exception e) {
                     LocationLog.e(TAG, "checkLocationSetting onFailure:" + e.getMessage());
-                    int statusCode = ((ApiException) e).getStatusCode();
+                    int statusCode = 0;
+                    if (e instanceof ApiException) {
+                        statusCode = ((ApiException) e).getStatusCode();
+                    }
                     switch (statusCode) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                             try {
                                 // When the startResolutionForResult is invoked, a dialog box is displayed, asking you
                                 // to open the corresponding permission.
-                                ResolvableApiException rae = (ResolvableApiException) e;
-                                rae.startResolutionForResult(RequestLocationUpdatesWithCallbackActivity.this, 0);
+                                if (e instanceof ResolvableApiException) {
+                                    ResolvableApiException rae = (ResolvableApiException) e;
+                                    rae.startResolutionForResult(RequestLocationUpdatesWithCallbackActivity.this, 0);
+                                }
                             } catch (IntentSender.SendIntentException sie) {
                                 Log.e(TAG, "PendingIntent unable to execute request.");
                             }

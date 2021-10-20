@@ -36,9 +36,15 @@ public class LoggerActivity extends Activity {
      * initialize log info
      */
     private void initializeLogging() {
-        LogFragment logFragment = (LogFragment) getFragmentManager().findFragmentById(R.id.framelog);
+        LogFragment logFragment = null;
+        if (getFragmentManager().findFragmentById(R.id.framelog) instanceof LogFragment) {
+            logFragment = (LogFragment) getFragmentManager().findFragmentById(R.id.framelog);
+        }
+
         LogCatWrapper logcat = new LogCatWrapper();
-        logcat.setNext(logFragment.getLogView());
+        if (logFragment != null) {
+            logcat.setNext(logFragment.getLogView());
+        }
         LocationLog.setLogNode(logcat);
     }
 }

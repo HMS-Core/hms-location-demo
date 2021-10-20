@@ -77,5 +77,6 @@
                 style="@style/ButtonStyle"
                 android:text="CheckSetting" />
 
+
     </LinearLayout>
 </ScrollView>

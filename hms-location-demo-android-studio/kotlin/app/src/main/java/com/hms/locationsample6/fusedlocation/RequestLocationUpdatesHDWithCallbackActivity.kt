@@ -205,8 +205,9 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
             if (hdbBinary) {
                 hdFlag = "result is HD"
                 if (hDEncryptType == 1) {
+                    // Decryption algorithm SM4ECB. For details about the decryption key, contact commercial personnel XXX. For details about the access process, see related documents.
                     val key =
-                        "XXXXXXXXXXXXXXX" // 解密算法SM4ECB,具体解密密钥请联系商务人员XXX,接入流程请参考相关文档
+                        "XXXXXXXXXXXXXXX"
                     val sLatitude = location.extras.getString("HDEncryptLat")
                     val sLongitude = location.extras.getString("HDEncryptLng")
                     val mLatitude: String? = sLatitude?.let { myDecrypt(it, key) }
@@ -244,7 +245,7 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
     }
 
     private fun myDecrypt(Latitude: String, key: String): String {
-        // 具体解密方法请自行查询，这里暂不提供
+        // For details about the decryption method, you can query the decryption method.
         return "XXXXXXXXXXX"
     }
 

@@ -66,21 +66,18 @@ public class LocationBaseActivity extends LoggerActivity {
             Iterator iterator = jsonObject.keys();
             while (iterator.hasNext()) {
                 String key = (String) iterator.next();
-                String value = jsonObject.getString(key);
-
                 TableRow tableRow = new TableRow(getBaseContext());
-
                 TextView textView = new TextView(getBaseContext());
                 textView.setText(key);
                 textView.setTextColor(Color.GRAY);
                 textView.setId(getBaseContext().getResources()
-                        .getIdentifier(key + "_key", "id", getBaseContext().getPackageName()));
+                    .getIdentifier(key + "_key", "id", getBaseContext().getPackageName()));
                 tableRow.addView(textView);
-
                 EditText editText = new EditText(getBaseContext());
+                String value = jsonObject.getString(key);
                 editText.setText(value);
                 editText.setId(getBaseContext().getResources()
-                        .getIdentifier(key + "_value", "id", getBaseContext().getPackageName()));
+                    .getIdentifier(key + "_value", "id", getBaseContext().getPackageName()));
                 editText.setTextColor(Color.DKGRAY);
                 if (!key.equals("isFastestIntervalExplicitlySet") && !key.equals("needAddress")
                     && !key.equals("language") && !key.equals("countryCode") && !key.equals("alwaysShow")

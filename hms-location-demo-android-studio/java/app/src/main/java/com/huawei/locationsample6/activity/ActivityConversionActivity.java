@@ -40,6 +40,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityConversionActivity extends LocationBaseActivity implements View.OnClickListener {
+    public String TAG = "ActivityTransitionConvert";
+
+    public ActivityIdentificationService activityIdentificationService;
+
+    public ActivityConversionRequest activityTransitionRequest;
+
+    public List<ActivityConversionInfo> transitions;
+
     private CheckBox IN_VEHICLE_IN;
 
     private CheckBox WALKING_IN;
@@ -64,14 +72,6 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
 
     private CheckBox RUNNING_OUT;
 
-    public String TAG = "ActivityTransitionConvert";
-
-    public ActivityIdentificationService activityIdentificationService;
-
-    public ActivityConversionRequest activityTransitionRequest;
-
-    public List<ActivityConversionInfo> transitions;
-
     private PendingIntent pendingIntent;
 
     @Override
@@ -80,18 +80,18 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
         setContentView(R.layout.activity_transition);
         activityIdentificationService = ActivityIdentification.getService(this);
         RequestPermission.requestActivityTransitionPermission(this);
-        IN_VEHICLE_IN = (CheckBox) findViewById(R.id.IN_VEHICLE_IN);
-        IN_VEHICLE_OUT = (CheckBox) findViewById(R.id.IN_VEHICLE_OUT);
-        ON_BICYCLE_IN = (CheckBox) findViewById(R.id.ON_BICYCLE_IN);
-        ON_BICYCLE_OUT = (CheckBox) findViewById(R.id.ON_BICYCLE_OUT);
-        ON_FOOT_IN = (CheckBox) findViewById(R.id.ON_FOOT_IN);
-        ON_FOOT_OUT = (CheckBox) findViewById(R.id.ON_FOOT_OUT);
-        STILL_IN = (CheckBox) findViewById(R.id.STILL_IN);
-        STILL_OUT = (CheckBox) findViewById(R.id.STILL_OUT);
-        WALKING_IN = (CheckBox) findViewById(R.id.WALKING_IN);
-        WALKING_OUT = (CheckBox) findViewById(R.id.WALKING_OUT);
-        RUNNING_IN = (CheckBox) findViewById(R.id.RUNNING_IN);
-        RUNNING_OUT = (CheckBox) findViewById(R.id.RUNNING_OUT);
+        IN_VEHICLE_IN = findViewById(R.id.IN_VEHICLE_IN);
+        IN_VEHICLE_OUT = findViewById(R.id.IN_VEHICLE_OUT);
+        ON_BICYCLE_IN = findViewById(R.id.ON_BICYCLE_IN);
+        ON_BICYCLE_OUT = findViewById(R.id.ON_BICYCLE_OUT);
+        ON_FOOT_IN = findViewById(R.id.ON_FOOT_IN);
+        ON_FOOT_OUT = findViewById(R.id.ON_FOOT_OUT);
+        STILL_IN = findViewById(R.id.STILL_IN);
+        STILL_OUT = findViewById(R.id.STILL_OUT);
+        WALKING_IN = findViewById(R.id.WALKING_IN);
+        WALKING_OUT = findViewById(R.id.WALKING_OUT);
+        RUNNING_IN = findViewById(R.id.RUNNING_IN);
+        RUNNING_OUT = findViewById(R.id.RUNNING_OUT);
         findViewById(R.id.btnSubmit).setOnClickListener(this);
         findViewById(R.id.btnMove).setOnClickListener(this);
         addLogFragment();
@@ -158,7 +158,6 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
             });
         } catch (Exception e) {
             LocationLog.e(TAG, "createActivityConversionUpdates exception:" + e.getMessage());
-
         }
     }
 

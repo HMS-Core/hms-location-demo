@@ -16,6 +16,7 @@
 
 package com.huawei.locationsample6.activity;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,13 +38,9 @@ import com.huawei.logger.LocationLog;
 import java.util.List;
 
 public class ActivityIdentificationActivity extends LocationBaseActivity implements View.OnClickListener {
-    public String TAG = "ActivityTransitionUpdate";
+    private static final int PROGRESS_BAR_ORIGIN_WIDTH = 100;
 
-    private final static int PROGRESS_BAR_ORIGIN_WIDTH = 100;
-
-    private final static int enlarge = 6;
-
-    public ActivityIdentificationService activityIdentificationService;
+    private static final int ENLARGE = 6;
 
     private static LinearLayout.LayoutParams type0;
 
@@ -59,19 +56,30 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
 
     private static LinearLayout.LayoutParams type8;
 
+    @SuppressLint("StaticFieldLeak")
     private static LinearLayout activityIN_VEHICLE;
 
+    @SuppressLint("StaticFieldLeak")
     private static LinearLayout activityON_BICYCLE;
 
+    @SuppressLint("StaticFieldLeak")
     private static LinearLayout activityON_FOOT;
 
+    @SuppressLint("StaticFieldLeak")
     private static LinearLayout activitySTILL;
 
+    @SuppressLint("StaticFieldLeak")
     private static LinearLayout activityUNKNOWN;
 
+    @SuppressLint("StaticFieldLeak")
     private static LinearLayout activityWALKING;
 
+    @SuppressLint("StaticFieldLeak")
     private static LinearLayout activityRunning;
+
+    public ActivityIdentificationService activityIdentificationService;
+
+    public String TAG = "ActivityTransitionUpdate";
 
     private PendingIntent pendingIntent;
 
@@ -83,23 +91,36 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
         RequestPermission.requestActivityTransitionPermission(this);
         findViewById(R.id.requestActivityTransitionUpdate).setOnClickListener(this);
         findViewById(R.id.removeActivityTransitionUpdate).setOnClickListener(this);
-        activityIN_VEHICLE = (LinearLayout) findViewById(R.id.activityIN_VEHICLE);
-        type0 = (LinearLayout.LayoutParams) activityIN_VEHICLE.getLayoutParams();
-        activityON_BICYCLE = (LinearLayout) findViewById(R.id.activityON_BICYCLE);
-        type1 = (LinearLayout.LayoutParams) activityON_BICYCLE.getLayoutParams();
-        activityON_FOOT = (LinearLayout) findViewById(R.id.activityON_FOOT);
-        type2 = (LinearLayout.LayoutParams) activityON_FOOT.getLayoutParams();
-        activitySTILL = (LinearLayout) findViewById(R.id.activitySTILL);
-        type3 = (LinearLayout.LayoutParams) activitySTILL.getLayoutParams();
-        activityUNKNOWN = (LinearLayout) findViewById(R.id.activityUNKNOWN);
-        type4 = (LinearLayout.LayoutParams) activityUNKNOWN.getLayoutParams();
-        activityWALKING = (LinearLayout) findViewById(R.id.activityWALKING);
-        type7 = (LinearLayout.LayoutParams) activityWALKING.getLayoutParams();
-        activityRunning = (LinearLayout) findViewById(R.id.activityRunning);
-        type8 = (LinearLayout.LayoutParams) activityRunning.getLayoutParams();
+        activityIN_VEHICLE = findViewById(R.id.activity_in_vehicle);
+        if (activityIN_VEHICLE.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type0 = (LinearLayout.LayoutParams) activityIN_VEHICLE.getLayoutParams();
+        }
+        activityON_BICYCLE = findViewById(R.id.activity_on_bicycle);
+        if (activityON_BICYCLE.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type1 = (LinearLayout.LayoutParams) activityON_BICYCLE.getLayoutParams();
+        }
+        activityON_FOOT = findViewById(R.id.activity_on_foot);
+        if (activityON_FOOT.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type2 = (LinearLayout.LayoutParams) activityON_FOOT.getLayoutParams();
+        }
+        activitySTILL = findViewById(R.id.activity_still);
+        if (activitySTILL.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type3 = (LinearLayout.LayoutParams) activitySTILL.getLayoutParams();
+        }
+        activityUNKNOWN = findViewById(R.id.activity_unknown);
+        if (activityUNKNOWN.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type4 = (LinearLayout.LayoutParams) activityUNKNOWN.getLayoutParams();
+        }
+        activityWALKING = findViewById(R.id.activity_walking);
+        if (activityWALKING.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type7 = (LinearLayout.LayoutParams) activityWALKING.getLayoutParams();
+        }
+        activityRunning = findViewById(R.id.activity_running);
+        if (activityRunning.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type8 = (LinearLayout.LayoutParams) activityRunning.getLayoutParams();
+        }
         addLogFragment();
         reSet();
-
     }
 
     public void requestActivityUpdates(long detectionIntervalMillis) {
@@ -190,31 +211,31 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
             try {
                 switch (type) {
                     case ActivityIdentificationData.VEHICLE:
-                        type0.width = type0.width + value * enlarge;
+                        type0.width = type0.width + value * ENLARGE;
                         activityIN_VEHICLE.setLayoutParams(type0);
                         break;
                     case ActivityIdentificationData.BIKE:
-                        type1.width = type1.width + value * enlarge;
+                        type1.width = type1.width + value * ENLARGE;
                         activityON_BICYCLE.setLayoutParams(type1);
                         break;
                     case ActivityIdentificationData.FOOT:
-                        type2.width = type2.width + value * enlarge;
+                        type2.width = type2.width + value * ENLARGE;
                         activityON_FOOT.setLayoutParams(type2);
                         break;
                     case ActivityIdentificationData.STILL:
-                        type3.width = type3.width + value * enlarge;
+                        type3.width = type3.width + value * ENLARGE;
                         activitySTILL.setLayoutParams(type3);
                         break;
                     case ActivityIdentificationData.OTHERS:
-                        type4.width = type4.width + value * enlarge;
+                        type4.width = type4.width + value * ENLARGE;
                         activityUNKNOWN.setLayoutParams(type4);
                         break;
                     case ActivityIdentificationData.WALKING:
-                        type7.width = type7.width + value * enlarge;
+                        type7.width = type7.width + value * ENLARGE;
                         activityWALKING.setLayoutParams(type7);
                         break;
                     case ActivityIdentificationData.RUNNING:
-                        type8.width = type8.width + value * enlarge;
+                        type8.width = type8.width + value * ENLARGE;
                         activityRunning.setLayoutParams(type8);
                         break;
                     default:
