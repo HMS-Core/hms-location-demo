@@ -67,6 +67,9 @@
         <activity
             android:name=".location.fusedlocation.RequestLocationUpdatesHDWithCallbackActivity"
             android:configChanges="orientation|screenSize" /> <!-- LocationBroadcastReceiver -->
+        <activity
+            android:name=".WriteLogActivity"
+            android:configChanges="orientation|screenSize" />
 
         <receiver
             android:name=".location.fusedlocation.LocationBroadcastReceiver"

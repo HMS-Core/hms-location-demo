@@ -65,6 +65,7 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         findViewById(R.id.locationHD).setOnClickListener(this);
         findViewById(R.id.getNavigationContextState).setOnClickListener(this);
         findViewById(R.id.check_setting).setOnClickListener(this);
+        findViewById(R.id.write_log).setOnClickListener(this);
 
         // You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service
         // is unavailable.
@@ -145,6 +146,9 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
                 break;
             case R.id.check_setting:
                 startIntent(CheckSettingActivity.class);
+                break;
+            case R.id.write_log:
+                startIntent(WriteLogActivity.class);
                 break;
             default:
                 throw new IllegalArgumentException("view error:" + id);

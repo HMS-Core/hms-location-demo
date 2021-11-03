@@ -39,7 +39,7 @@ import com.huawei.locationsample6.JsonDataUtil;
 import com.huawei.locationsample6.R;
 import com.huawei.logger.LocationLog;
 
-public class CheckSettingActivity extends LocationBaseActivity implements View.OnClickListener {
+public class CheckSettingActivity extends LocationBaseActivity {
     private static final String TAG = "CheckSettingActivity";
 
     private SettingsClient settingsClient;
@@ -49,21 +49,14 @@ public class CheckSettingActivity extends LocationBaseActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_setting);
         settingsClient = LocationServices.getSettingsClient(this);
-        findViewById(R.id.checkLocationSetting).setOnClickListener(this);
         TableLayout tableLayout = findViewById(R.id.check_setting_table_layout_show);
         String settingJson = JsonDataUtil.getJson(this, "CheckLocationSettings.json", true);
         initDataDisplayView(TAG, tableLayout, settingJson);
         addLogFragment();
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.checkLocationSetting) {
-            checkSettings();
-        }
-    }
 
-    private void checkSettings() {
+    public void checkSettings(View view) {
         new Thread() {
             @Override
             public void run() {

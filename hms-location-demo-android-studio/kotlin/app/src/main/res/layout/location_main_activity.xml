@@ -103,6 +103,12 @@
             android:onClick="checkSettings"
             android:text="@string/check_settings" />
 
+        <Button
+            android:id="@+id/write_log"
+            style="@style/ButtonStyle"
+            android:onClick="writeLog"
+            android:text="WriteLog" />
+
     </LinearLayout>
 
 

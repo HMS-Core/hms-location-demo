@@ -218,6 +218,18 @@ class LocationMainActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * click listener setLogConfig
+     * Base on Click your activity WriteLogActivity
+     * will start
+     */
+    fun writeLog(view: View) {
+        Log.d("click", "ButtonClick  {$view}")
+        startActivity(Intent(this, WriteLogActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        })
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,

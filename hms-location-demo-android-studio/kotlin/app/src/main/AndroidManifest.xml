@@ -66,6 +66,9 @@
             android:name="com.hms.locationsample6.useractivity.ActivityIdentificationActivity"
             android:configChanges="orientation|screenSize" />
         <activity android:name="com.hms.locationsample6.activity.BaseActivity" />
+        <activity
+            android:name=".activity.WriteLogActivity"
+            android:configChanges="orientation|screenSize" />
 
         <receiver
             android:name="com.hms.locationsample6.geofence.GeoFenceBroadcastReceiver"

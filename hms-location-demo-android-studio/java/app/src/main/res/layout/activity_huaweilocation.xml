@@ -77,6 +77,10 @@
                 style="@style/ButtonStyle"
                 android:text="CheckSetting" />
 
+        <Button
+            android:id="@+id/write_log"
+            style="@style/ButtonStyle"
+            android:text="WriteLog" />
 
     </LinearLayout>
 </ScrollView>
