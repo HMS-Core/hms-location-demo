@@ -29,7 +29,7 @@ You should create an app in AppGallery Connect, and obtain the file of agconnect
 2. use IDE's functionality to install configured project on to your device.
 
 ## Supported Environments
-   HMS Core (APK) 4.0.3 or later has been installed on Huawei Android phones.
+   Huawei phones with EMUI 5.0 or later, Huawei tablets, or non-Huawei phones with Android 5.1 or later.
 
 ## Sample Code
 1. Invoke the addGeofence method of GeoFenceData to add a geo-fence. The code location is in the addGeofence method of the  src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java fle.
