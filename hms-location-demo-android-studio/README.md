@@ -1,63 +1,39 @@
-#  HUAWEI Location Kit Sample for Android
+#  HMS Core Location Kit Sample Code (Android)
 English | [中文](README_ZH.md)
 
-## Table of Contents
-
- * [Introduction](#introduction)
- * [Getting Started](#getting-started)
- * [Installation](#installation)
- * [Supported Environments](#supported-environments)
- * [Sample Code](#sample-code)
- * [Result](#result)
- * [License](#license)
-
+## Contents
+ * [Introduction](#Introduction)
+ * [Preparations](#Preparations)
+ * [Installation](#Installation)
+ * [Environment Requirements](#Environment-Requirements)
+ * [Sample Code](#Sample-Code)
+ * [Result](#Result)
+ * [Technical Support](#Technical-Support)
+ * [License](#License)
 
 ## Introduction
-HUAWEI Location Kit sample code encapsulates APIs of the HUAWEI Location Kit. It provides many sample programs for your reference or usage.
-
-## Getting Started
-We also provide an sample to demonstrate the use of LocationKit SDK for Android.
-This sample uses the Gradle build system.
-First download the demo by cloning this repository or downloading an archived snapshot.
-In Android Studio, use the "Open an existing Android Studio project", and select the directory of "huawei-location-android-demo".
-You can use the "gradlew build" command to build the project directly.
-You should create an app in AppGallery Connect, and obtain the file of agconnect-services.json and add to the project. You should also generate a signing certificate fingerprint and add the certificate file to the project, and add configuration to build.gradle. See the Configuring App Information in AppGallery Connect guide to configure app in AppGallery Connect.
-
+The sample code encapsulates APIs of HMS Core Location Kit, and provides many sample programs for your reference or use.
+## Preparations
+The sample code is built using Gradle to demonstrate how to use the Location SDK for Android. First, download the sample code by cloning this repository or downloading the archived snapshot. In Android Studio, click **Open an existing Android Studio project** and select the directory where the **locationkit-java-sample** file is located. You can use the **gradlew build** command to directly build the project. Then, you need to create an app in AppGallery Connect, obtain the **agconnect-services.json** file, and add it to the project. You also need to generate a signing certificate fingerprint, add the signing certificate file to the project, and add related configurations to the **build.gradle** file. For details, please refer to "Configuring App Information in AppGallery Connect" in the official development guide.
 ## Installation
-
-1. Clone or download this project and open the downloaded folder in Android Studio or compatible IDE.
-2. use IDE's functionality to install configured project on to your device.
-
-## Supported Environments
-   Huawei phones with EMUI 5.0 or later, Huawei tablets, or non-Huawei phones with Android 5.1 or later.
-
+1.	Clone or download the project and open it using Android Studio or a compatible IDE.
+2.	Use the IDE to install the configured project on your device.
+## Environment Requirements
+A Huawei phone or tablet running EMUI 5.0 or later, or a non-Huawei phone running Android 5.1 or later
 ## Sample Code
-1. Invoke the addGeofence method of GeoFenceData to add a geo-fence. The code location is in the addGeofence method of the  src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java fle.
-2. location broadcast receiver.The code is stored in src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java
-
+1.	Call the **addGeofence** method of **GeoFenceData** to add a geofence.  The code is stored in the **src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java** file.
+2.	Define a broadcast receiver. The code is stored in the **src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java** file.
 ## Result
-**Home**
+<img src="images/home.jpg" width = 20% height = 20%> <img src="images/locationgetlast.jpg" width = 20% height = 20%> <img src="images/locationhd.jpg" width = 20% height = 20%>
 
-![Home](images/home.jpg)
+## Technical Support
+You can visit the [Reddit community](https://www.reddit.com/r/HuaweiDevelopers/) to obtain the latest information about HMS Core and communicate with other developers.
 
-**Location get last**
+If you have any questions about the sample code, try the following:
+- Visit [Stack Overflow](https://stackoverflow.com/questions/tagged/huawei-mobile-services?tab=Votes), submit your questions, and tag them with `huawei-mobile-services`. Huawei experts will answer your questions.
+- Visit the HMS Core section in the [HUAWEI Developer Forum](https://forums.developer.huawei.com/forumPortal/en/home?fid=0101187876626530001?ha_source=hms1) and communicate with other developers.
 
-![Locationgetlast](images/locationgetlast.jpg)
+If you encounter any issues when using the sample code, submit your [issues](https://github.com/HMS-Core/hms-location-demo-android-studio/issues) or submit a [pull request](https://github.com/HMS-Core/hms-location-demo-android-studio/pulls).
 
-**Location hd**
-
-![Locationgetlast](images/locationhd.jpg)
-
-## Question or issues
-If you want to evaluate more about HMS Core,
-[r/HMSCore on Reddit](https://www.reddit.com/r/HuaweiDevelopers/) is for you to keep up with latest news about HMS Core, and to exchange insights with other developers.
-
-If you have questions about how to use HMS samples, try the following options:
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/huawei-mobile-services?tab=Votes) is the best place for any programming questions. Be sure to tag your question with 
-`huawei-mobile-services`.
-- [Huawei Developer Forum](https://forums.developer.huawei.com/forumPortal/en/home?fid=0101187876626530001) HMS Core Module is great for general questions, or seeking recommendations and opinions.
-
-If you run into a bug in our samples, please submit an [issue](https://github.com/HMS-Core/hms-location-demo-android-studio/issues) to the Repository. Even better you can submit a [Pull Request](https://github.com/HMS-Core/hms-location-demo-android-studio/pulls) with a fix.
-
-##  License
-huawei-location-android-demo is licensed under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+## License
+The sample code is licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
