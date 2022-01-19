@@ -42,6 +42,18 @@
                     android:layout_height="wrap_content"
                     android:text="removeLocationHd" />
 
+            <Button
+                android:id="@+id/btn_indoorHd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="IndoorHD_HW" />
+
+            <Button
+                android:id="@+id/btn_remove_indoorHd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="removeLocationIndoorHd" />
+
             <TableLayout
                     android:id="@+id/callback_table_layout_show"
                     android:layout_width="match_parent"

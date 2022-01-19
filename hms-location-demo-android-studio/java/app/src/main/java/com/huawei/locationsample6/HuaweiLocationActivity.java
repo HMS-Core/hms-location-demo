@@ -39,6 +39,7 @@ import com.huawei.locationsample6.location.fusedlocation.RequestLocationUpdatesW
 import com.huawei.locationsample6.location.fusedlocation.RequestLocationUpdatesWithIntentActivity;
 import com.huawei.locationsample6.location.fusedlocation.SetMockLocationActivity;
 import com.huawei.locationsample6.location.fusedlocation.SetMockModeActivity;
+import com.huawei.locationsample6.location.fusedlocation.GeocoderActivity;
 
 /**
  * Demonstration of Huawei Location Service Usage
@@ -66,6 +67,7 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
         findViewById(R.id.getNavigationContextState).setOnClickListener(this);
         findViewById(R.id.check_setting).setOnClickListener(this);
         findViewById(R.id.write_log).setOnClickListener(this);
+        findViewById(R.id.geocoder).setOnClickListener(this);
 
         // You must have the ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission. Otherwise, the location service
         // is unavailable.
@@ -121,6 +123,9 @@ public class HuaweiLocationActivity extends Activity implements OnClickListener 
                     break;
                 case R.id.location_activity_transition_update:
                     startIntent(ActivityConversionActivity.class);
+                    break;
+                case R.id.geocoder:
+                    startIntent(GeocoderActivity.class);
                     break;
                 default:
                     otherClick(v.getId());

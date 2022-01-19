@@ -76,7 +76,7 @@ class WriteLogActivity : BaseActivity(), View.OnClickListener {
             )
             ActivityCompat.requestPermissions(this, strings, 1)
         }
-        val absolutePath = getSDPath(this)
+        val absolutePath =getSDPath(this)
         etFilePath!!.setText("$absolutePath/log")
     }
 

@@ -43,6 +43,8 @@ import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
+import com.huawei.location.lite.common.util.ExecutorUtil;
+
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
@@ -134,8 +136,7 @@ public class LogInfoUtil {
             Log.i(TAG, "isLocationEnabled is false");
             return;
         }
-
-        new Thread(new Runnable() {
+        ExecutorUtil.getInstance().execute(new Runnable() {
             @Override
             public void run() {
                 Looper.prepare();
@@ -149,7 +150,7 @@ public class LogInfoUtil {
                     Log.e(TAG, "getLogInfo error : " + e.getMessage());
                 }
             }
-        }).start();
+        });
     }
 
     public static void removeLogInfo() {

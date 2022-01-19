@@ -23,6 +23,7 @@
             android:onClick="requestLocationUpdatesWithIntent"
             android:text="@string/request_location_updates_with_intent" />
 
+
         <Button
             android:id="@+id/fuse_location"
             style="@style/ButtonStyle"
@@ -83,6 +84,7 @@
             style="@style/ButtonStyle"
             android:onClick="activityTransitionUpdate"
             android:text="@string/hwlocation_activity_transition" />
+
         <Button
             android:id="@+id/geo_fance_location"
             style="@style/ButtonStyle"
@@ -109,6 +111,11 @@
             android:onClick="writeLog"
             android:text="WriteLog" />
 
+        <Button
+            android:id="@+id/geocoder"
+            style="@style/ButtonStyle"
+            android:onClick="geocoder"
+            android:text="geocoder" />
     </LinearLayout>
 
 

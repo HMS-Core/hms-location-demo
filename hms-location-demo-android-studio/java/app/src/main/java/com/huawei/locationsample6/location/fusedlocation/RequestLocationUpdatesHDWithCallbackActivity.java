@@ -37,6 +37,7 @@ import com.huawei.hms.location.LocationCallback;
 import com.huawei.hms.location.LocationRequest;
 import com.huawei.hms.location.LocationResult;
 import com.huawei.hms.location.LocationServices;
+import com.huawei.location.lite.common.util.ExecutorUtil;
 import com.huawei.locationsample6.JsonDataUtil;
 import com.huawei.locationsample6.R;
 import com.huawei.logger.LocationLog;
@@ -46,9 +47,11 @@ import java.util.List;
 import java.util.Map;
 
 public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseActivity implements View.OnClickListener {
-    private static final String TAG = "RequestLocationUpdatesHDWithCallbackActivity";
+    private static final String TAG = "LocationWithHd";
 
     LocationCallback mLocationHDCallback;
+
+    LocationCallback mLocationIndoorCallback;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -62,6 +65,8 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         initDataDisplayView(TAG, tableLayout, locationRequestJson);
         findViewById(R.id.btn_remove_hd).setOnClickListener(this);
         findViewById(R.id.btn_hd).setOnClickListener(this);
+        findViewById(R.id.btn_remove_indoorHd).setOnClickListener(this);
+        findViewById(R.id.btn_indoorHd).setOnClickListener(this);
         addLogFragment();
         if (ActivityCompat.checkSelfPermission(this,
             android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -82,13 +87,19 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
             case R.id.btn_remove_hd:
                 removeLocationHd();
                 break;
+            case R.id.btn_indoorHd:
+                getLocationWithIndoor();
+                break;
+            case R.id.btn_remove_indoorHd:
+                removeLocationIndoor();
+                break;
             default:
                 break;
         }
     }
 
     private void removeLocationHd() {
-        new Thread() {
+        ExecutorUtil.getInstance().execute(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -109,12 +120,38 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                     LocationLog.e(TAG, "removeLocationHd exception:" + e.getMessage());
                 }
             }
-        }.start();
+        });
+        Log.i(TAG, "call removeLocationUpdatesWithCallback success.");
+    }
+
+    private void removeLocationIndoor() {
+        ExecutorUtil.getInstance().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    fusedLocationProviderClient.removeLocationUpdates(mLocationIndoorCallback)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                LocationLog.i(TAG, "removeLocationIndoor onSuccess");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                LocationLog.i(TAG, "removeLocationIndoor onFailure:" + e.getMessage());
+                            }
+                        });
+                } catch (Exception e) {
+                    LocationLog.e(TAG, "removeLocationIndoor exception:" + e.getMessage());
+                }
+            }
+        });
         Log.i(TAG, "call removeLocationUpdatesWithCallback success.");
     }
 
     private void getLocationWithHd() {
-        new Thread() {
+        ExecutorUtil.getInstance().execute(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -156,7 +193,53 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                     LocationLog.i(TAG, "getLocationWithHd exception :" + e.getMessage());
                 }
             }
-        }.start();
+        });
+    }
+
+    private void getLocationWithIndoor() {
+        ExecutorUtil.getInstance().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    LocationRequest locationRequest = new LocationRequest();
+                    setLocationRequest(locationRequest);
+                    if (null == mLocationIndoorCallback) {
+                        mLocationIndoorCallback = new LocationCallback() {
+                            @Override
+                            public void onLocationResult(LocationResult locationResult) {
+                                Log.i(TAG, "getLocationWithIndoor callback onLocationResult print");
+                                logResultIndoor(locationResult);
+                            }
+
+                            @Override
+                            public void onLocationAvailability(LocationAvailability locationAvailability) {
+                                Log.i(TAG, "getLocationWithIndoor callback onLocationAvailability print");
+                                if (locationAvailability != null) {
+                                    boolean flag = locationAvailability.isLocationAvailable();
+                                    LocationLog.i(TAG, "onLocationAvailability isLocationAvailable:" + flag);
+                                }
+                            }
+                        };
+                    }
+                    fusedLocationProviderClient
+                        .requestLocationUpdatesEx(locationRequest, mLocationIndoorCallback, Looper.getMainLooper())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                LocationLog.i(TAG, "getLocationWithIndoor onSuccess");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                LocationLog.i(TAG, "getLocationWithIndoor onFailure:" + e.getMessage());
+                            }
+                        });
+                } catch (Exception e) {
+                    LocationLog.i(TAG, "getLocationWithIndoor exception :" + e.getMessage());
+                }
+            }
+        });
     }
 
     private void logResult(LocationResult locationRequest) {
@@ -164,6 +247,14 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
             Log.i(TAG, "getLocationWithHd callback  onLocationResult locationResult is not null");
             logLocation(locationRequest.getLocations());
             logHwLocation(locationRequest.getHWLocationList());
+        }
+    }
+
+    private void logResultIndoor(LocationResult locationResult) {
+        if (locationResult != null) {
+            Log.i(TAG, "getLocationWithHd callback  onLocationResult locationResult is not null");
+            logLocationIndoor(locationResult.getLocations());
+            logHwLocationIndoor(locationResult.getHWLocationList());
         }
     }
 
@@ -277,6 +368,90 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 "[old]location result : " + "\n" + "Longitude = " + location.getLongitude() + "\n" + "Latitude = "
                     + location.getLatitude() + "\n" + "Accuracy = " + location.getAccuracy() + "\n" + "SourceType = "
                     + sourceType + "\n" + hdFlag + "\n" + hdSecurity);
+        }
+    }
+
+    private void logHwLocationIndoor(List<HWLocation> hwLocations) {
+        if (hwLocations == null || hwLocations.isEmpty()) {
+            Log.i(TAG, "getLocationWithHd callback hwLocations is empty");
+            return;
+        }
+        for (HWLocation hwLocation : hwLocations) {
+            if (hwLocation == null) {
+                Log.i(TAG, "getLocationWithHd callback hwLocation is empty");
+                return;
+            }
+            LocationLog.i(TAG,
+                "[new]location result : " + "Longitude = " + hwLocation.getLongitude() + System.lineSeparator()
+                    + "Latitude = " + hwLocation.getLatitude() + System.lineSeparator() + "Accuracy = "
+                    + hwLocation.getAccuracy());
+            Map<String, Object> maps = hwLocation.getExtraInfo();
+            parseIndoorLocation(maps);
+        }
+    }
+
+    private void logLocationIndoor(List<Location> locations) {
+        if (locations == null || locations.isEmpty()) {
+            Log.i(TAG, "getLocationWithHd callback locations is empty");
+            return;
+        }
+        for (Location location : locations) {
+            if (location == null) {
+                Log.i(TAG, "getLocationWithHd callback location is empty");
+                return;
+            }
+            LocationLog.i(TAG,
+                "[old]location result : " + System.lineSeparator() + "Longitude = " + location.getLongitude()
+                    + System.lineSeparator() + "Latitude = " + location.getLatitude() + System.lineSeparator()
+                    + "Accuracy = " + location.getAccuracy());
+            Bundle extraInfo = location.getExtras();
+            parseIndoorLocation(extraInfo);
+        }
+    }
+
+    // Parsing Indoor Location Result Information
+    public void parseIndoorLocation(Map<String, Object> maps) {
+        if (maps != null && !maps.isEmpty()) {
+            if (maps.containsKey("isHdNlpLocation")) {
+                Object object = maps.get("isHdNlpLocation");
+                if (object instanceof Boolean) {
+                    boolean isIndoorLocation = (boolean) object;
+                    if (isIndoorLocation) {
+                        // buildingId:Building ID (For details, see [Currently Supported Buildings])
+                        String buildingId = (String) maps.get("buildingId");
+                        // floor:Floor ID
+                        // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact
+                        // the operation personnel.)
+                        int floor = (int) maps.get("floor");
+                        // floorAcc:Floor confidence (value range: 0-100)
+                        int floorAcc = (int) maps.get("floorAcc");
+                        LocationLog.i(TAG,
+                            "[new]location result : " + System.lineSeparator() + "buildingId = " + buildingId
+                                + System.lineSeparator() + "floor = " + floor + System.lineSeparator() + "floorAcc = "
+                                + floorAcc);
+                    }
+                }
+            }
+        }
+    }
+
+    // Parsing Indoor Location Result Information
+    public void parseIndoorLocation(Bundle extraInfo) {
+        if (extraInfo == null) {
+            return;
+        }
+        if (extraInfo.getBoolean("isHdNlpLocation", false)) {
+            // Parsing Indoor Location Result Information
+            String buildingId = extraInfo.getString("buildingId", "");
+            // floor:Floor ID
+            // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact the operation
+            // personnel.)
+            int floor = extraInfo.getInt("floor", Integer.MIN_VALUE);
+            // floorAcc:Floor confidence (value range: 0-100)
+            int floorAcc = extraInfo.getInt("floorAcc", Integer.MIN_VALUE);
+            LocationLog.i(TAG, "[old]location result : " + System.lineSeparator() + "buildingId = " + buildingId
+                + System.lineSeparator() + "floor = " + floor + System.lineSeparator() + "floorAcc = " + floorAcc);
+
         }
     }
 

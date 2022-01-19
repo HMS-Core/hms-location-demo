@@ -35,6 +35,7 @@ import com.huawei.hms.location.LocationSettingsResponse;
 import com.huawei.hms.location.LocationSettingsStates;
 import com.huawei.hms.location.LocationSettingsStatusCodes;
 import com.huawei.hms.location.SettingsClient;
+import com.huawei.location.lite.common.util.ExecutorUtil;
 import com.huawei.locationsample6.JsonDataUtil;
 import com.huawei.locationsample6.R;
 import com.huawei.logger.LocationLog;
@@ -57,7 +58,7 @@ public class CheckSettingActivity extends LocationBaseActivity {
 
 
     public void checkSettings(View view) {
-        new Thread() {
+        ExecutorUtil.getInstance().execute(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -139,7 +140,7 @@ public class CheckSettingActivity extends LocationBaseActivity {
                     LocationLog.i(TAG, "checkLocationSetting exception:" + e.getMessage());
                 }
             }
-        }.start();
+        });
     }
 
     @Override

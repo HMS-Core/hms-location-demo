@@ -58,6 +58,11 @@
                 android:text="@string/hwlocation_activity_transition" />
 
         <Button
+                android:id="@+id/geocoder"
+                style="@style/ButtonStyle"
+                android:text="geocoder" />
+
+        <Button
                 android:id="@+id/GeoFence"
                 style="@style/ButtonStyle"
                 android:text="GeoFence" />

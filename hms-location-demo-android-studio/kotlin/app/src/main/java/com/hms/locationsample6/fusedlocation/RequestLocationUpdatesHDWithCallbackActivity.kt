@@ -41,6 +41,7 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     private var mLocationHDCallback: LocationCallback? = null
+    private var mLocationIndoorCallback: LocationCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,8 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
         initDataDisplayView(tableLayout, locationRequestJson)
         btn_remove_hd.setOnClickListener(this)
         btn_hd.setOnClickListener(this)
+        btn_indoorHd.setOnClickListener(this)
+        btn_remove_indoorHd.setOnClickListener(this)
         addLogFragment()
         if (ActivityCompat.checkSelfPermission(
                 this@RequestLocationUpdatesHDWithCallbackActivity,
@@ -76,6 +79,8 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
         when (v.id) {
             R.id.btn_hd -> getLocationWithHd()
             R.id.btn_remove_hd -> removeLocationHd()
+            R.id.btn_indoorHd -> getLocationWithIndoor()
+            R.id.btn_remove_indoorHd -> removeLocationIndoor()
         }
     }
 
@@ -94,6 +99,21 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                     }
             } catch (e: Exception) {
                 LocationLog.e(TAG, "removeLocationHd exception:${e.message}")
+            }
+        }
+        Log.i(TAG, "call removeLocationUpdatesWithCallback success.")
+    }
+
+    private fun removeLocationIndoor() {
+        GlobalScope.launch {
+            try {
+                fusedLocationProviderClient.removeLocationUpdates(mLocationIndoorCallback)
+                    .addOnSuccessListener { LocationLog.i(TAG, "removeLocationIndoor onSuccess") }
+                    .addOnFailureListener { e ->
+                        LocationLog.i(TAG, "removeLocationIndoor onFailure:${e.message}")
+                    }
+            } catch (e: Exception) {
+                LocationLog.e(TAG, "removeLocationIndoor exception:${e.message}")
             }
         }
         Log.i(TAG, "call removeLocationUpdatesWithCallback success.")
@@ -143,6 +163,54 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
         }
     }
 
+    private fun getLocationWithIndoor() {
+        GlobalScope.launch {
+            try {
+                val locationRequest = LocationRequest()
+                val jsonString: String = JsonDataUtil.getJson(
+                    this@RequestLocationUpdatesHDWithCallbackActivity,
+                    "LocationRequestHd.json",
+                    true
+                )
+                handleData(locationRequest, jsonString)
+                if (null == mLocationIndoorCallback) {
+                    mLocationIndoorCallback = object : LocationCallback() {
+                        override fun onLocationResult(locationResult: LocationResult) {
+                            Log.i(TAG, "getLocationWithIndoor callback onLocationResult print")
+                            logResultIndoor(locationResult)
+                        }
+
+                        override fun onLocationAvailability(locationAvailability: LocationAvailability) {
+                            Log.i(
+                                TAG,
+                                "getLocationWithIndoor callback onLocationAvailability print"
+                            )
+                            locationAvailability?.let {
+                                val flag = locationAvailability.isLocationAvailable
+                                LocationLog.i(
+                                    TAG,
+                                    "onLocationAvailability isLocationAvailable:$flag"
+                                )
+                            }
+                        }
+                    }
+                }
+                fusedLocationProviderClient.requestLocationUpdatesEx(
+                    locationRequest, mLocationIndoorCallback,
+                    Looper.getMainLooper()
+                ).addOnSuccessListener {
+                    LocationLog.i(TAG, "getLocationWithIndoor onSuccess")
+                }.addOnFailureListener { e ->
+                    LocationLog.i(TAG, "getLocationWithIndoor onFailure:" + e.message)
+                }
+            } catch (e: Exception) {
+                LocationLog.i(
+                    TAG, "getLocationWithIndoor exception :" + e.message
+                )
+            }
+        }
+    }
+
     private fun logResult(locationRequest: LocationResult?) {
         locationRequest?.let {
             Log.i(TAG, "getLocationWithHd callback  onLocationResult locationResult is not null")
@@ -174,6 +242,109 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
             }
         }
     }
+
+    private fun logHwLocationIndoor(hwLocations: List<HWLocation>?) {
+        if (hwLocations == null || hwLocations.isEmpty()) {
+            Log.i(TAG, "getLocationWithHd callback hwLocations is empty")
+            return
+        }
+        for (hwLocation in hwLocations) {
+            if (hwLocation == null) {
+                Log.i(TAG, "getLocationWithHd callback hwLocation is empty")
+                return
+            }
+            LocationLog.i(
+                TAG,
+                """
+                    [new]location result : Longitude = ${hwLocation.longitude}
+                    Latitude = ${hwLocation.latitude}
+                    Accuracy = ${hwLocation.accuracy}
+                    """.trimIndent()
+            )
+            val maps = hwLocation.extraInfo
+            parseIndoorLocation(maps)
+        }
+    }
+
+    private fun logResultIndoor(locationResult: LocationResult?) {
+        if (locationResult != null) {
+            Log.i(
+                TAG,
+                "getLocationWithHd callback  onLocationResult locationResult is not null"
+            )
+            logLocationIndoor(locationResult.locations)
+            logHwLocationIndoor(locationResult.hwLocationList)
+        }
+    }
+
+    private fun logLocationIndoor(locations: List<Location>?) {
+        if (locations == null || locations.isEmpty()) {
+            Log.i(TAG, "getLocationWithHd callback locations is empty")
+            return
+        }
+        for (location in locations) {
+            if (location == null) {
+                Log.i(TAG, "getLocationWithHd callback location is empty")
+                return
+            }
+            LocationLog.i(
+                TAG,
+                """
+                    [old]location result : 
+                    Longitude = ${location.longitude}
+                    Latitude = ${location.latitude}
+                    Accuracy = ${location.accuracy}
+                    """.trimIndent()
+            )
+            val extraInfo = location.extras
+            parseIndoorLocation(extraInfo)
+        }
+    }
+
+    // Parsing Indoor Location Result Information
+    private fun parseIndoorLocation(maps: Map<String?, Any?>?) {
+        if (maps != null && maps.isNotEmpty()) {
+            if (maps.containsKey("isHdNlpLocation")) {
+                val hdLocation = maps["isHdNlpLocation"]
+                if (hdLocation is Boolean) {
+                    if (hdLocation) {
+                        // Parsing Indoor Location Result Information
+                        val buildingId = maps["buildingId"] as String?
+                        // floor:Floor ID
+                        // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact the operation personnel.)
+                        val floor = maps["floor"] as Int
+                        // floorAcc:Floor confidence (value range: 0-100)
+                        val floorAcc = maps["floorAcc"] as Int
+                        LocationLog.i(
+                            TAG,
+                            "[new]location result : \nbuildingId = $buildingId\nfloor = $floor\nfloorAcc = $floorAcc"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    // Parsing Indoor Location Result Information
+    private fun parseIndoorLocation(extraInfo: Bundle?) {
+        if (extraInfo == null) {
+            return
+        }
+        if (extraInfo.getBoolean("isHdNlpLocation", false)) {
+            // buildingId:Building ID (For details, see [Currently Supported Buildings])
+            val buildingId = extraInfo.getString("buildingId", "")
+            // floor:Floor ID
+            // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact the operation personnel.)
+            val floor = extraInfo.getInt("floor", Int.MIN_VALUE)
+            // floorAcc:Floor confidence (value range: 0-100)
+            val floorAcc = extraInfo.getInt("floorAcc", Int.MIN_VALUE)
+            LocationLog.i(
+                TAG,
+                "[old]location result : \nbuildingId = $buildingId\nfloor = $floor\nfloorAcc = $floorAcc"
+            )
+        }
+    }
+
 
     private fun logLocation(locations: List<Location>?) {
         var hdFlag = ""

@@ -27,6 +27,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import com.hms.locationsample6.R
 import com.hms.locationsample6.fusedlocation.*
+import com.hms.locationsample6.geofence.GeocoderActivity
 import com.hms.locationsample6.geofence.OperateGeoFenceActivity
 import com.hms.locationsample6.useractivity.ActivityConversionActivity
 import com.hms.locationsample6.useractivity.ActivityIdentificationActivity
@@ -226,6 +227,13 @@ class LocationMainActivity : AppCompatActivity() {
     fun writeLog(view: View) {
         Log.d("click", "ButtonClick  {$view}")
         startActivity(Intent(this, WriteLogActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        })
+    }
+
+    fun geocoder(view: View) {
+        Log.d("click", "ButtonClick  {$view}")
+        startActivity(Intent(this, GeocoderActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         })
     }

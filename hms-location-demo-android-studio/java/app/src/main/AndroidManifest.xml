@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.huawei.locationsample6">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -15,7 +16,8 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="com.huawei.hms.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation,ProtectedPermissions" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
@@ -33,6 +35,7 @@
         <activity android:name=".location.fusedlocation.CheckSettingActivity" />
         <activity android:name=".geofence.OperateGeoFenceActivity" />
         <activity android:name=".geofence.GeoFenceActivity" />
+        <activity android:name=".location.fusedlocation.GeocoderActivity" />
         <activity android:name=".HuaweiLocationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
