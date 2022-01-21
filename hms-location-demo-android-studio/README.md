@@ -6,7 +6,6 @@ English | [中文](README_ZH.md)
  * [Preparations](#Preparations)
  * [Installation](#Installation)
  * [Environment Requirements](#Environment-Requirements)
- * [Sample Code](#Sample-Code)
  * [Result](#Result)
  * [Technical Support](#Technical-Support)
  * [License](#License)
@@ -14,15 +13,12 @@ English | [中文](README_ZH.md)
 ## Introduction
 The sample code encapsulates APIs of HMS Core Location Kit, and provides many sample programs for your reference or use.
 ## Preparations
-The sample code is built using Gradle to demonstrate how to use the Location SDK for Android. First, download the sample code by cloning this repository or downloading the archived snapshot. In Android Studio, click **Open an existing Android Studio project** and select the directory where the **locationkit-java-sample** file is located. You can use the **gradlew build** command to directly build the project. Then, you need to create an app in AppGallery Connect, obtain the **agconnect-services.json** file, and add it to the project. You also need to generate a signing certificate fingerprint, add the signing certificate file to the project, and add related configurations to the **build.gradle** file. For details, please refer to "Configuring App Information in AppGallery Connect" in the official development guide.
+The sample code is built using Gradle to demonstrate how to use the Location SDK for Android. First, download the sample code by cloning this repository or downloading the archived snapshot. In Android Studio, click **Open an existing Android Studio project** and select the directory where the **sample** file is located. You can use the **gradlew build** command to directly build the project. Then, you need to create an app in AppGallery Connect, obtain the **agconnect-services.json** file, and add it to the project. You also need to generate a signing certificate fingerprint, add the signing certificate file to the project, and add related configurations to the **build.gradle** file. For details, please refer to "Configuring App Information in AppGallery Connect" in the official development guide.
 ## Installation
 1.	Clone or download the project and open it using Android Studio or a compatible IDE.
 2.	Use the IDE to install the configured project on your device.
 ## Environment Requirements
-A Huawei phone or tablet running EMUI 5.0 or later, or a non-Huawei phone running Android 5.1 or later
-## Sample Code
-1.	Call the **addGeofence** method of **GeoFenceData** to add a geofence.  The code is stored in the **src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java** file.
-2.	Define a broadcast receiver. The code is stored in the **src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java** file.
+A Huawei phone or tablet running EMUI 5.0 or later, or a non-Huawei phone running Android 5.1 or later.
 ## Result
 <img src="images/home.jpg" width = 20% height = 20%> <img src="images/locationgetlast.jpg" width = 20% height = 20%> <img src="images/locationhd.jpg" width = 20% height = 20%>
 
