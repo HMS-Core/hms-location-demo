@@ -5,8 +5,8 @@
  * [开发准备](#开发准备)
  * [安装](#安装)
  * [环境要求](#环境要求)
- * [示例代码](#示例代码)
  * [结果](#结果)
+ * [技术支持](#技术支持)
  * [授权许可](#授权许可)
 
 ## 简介
@@ -18,9 +18,6 @@
 2.	使用IDE功能在你的设备上安装配置的项目。
 ## 环境要求
 EMUI 5.0及以上的华为手机、华为平板或Android 5.1及以上的非华为手机。
-## 示例代码
-1.	调用GeoFenceData的addGeofence方法添加地理围栏。 代码位置是在src\main\java\com\huawei\hmssample2\geofence\GeoFenceActivity.java文件中的addGeofence方法中。
-2.	定位广播接收器。代码存储在src\main\java\com\huawei\hmssample2\location\fusedlocation\LocationBaseActivity.java文件中。
 ## 结果
 <img src="images/home.jpg" width = 20% height = 20%> <img src="images/locationgetlast.jpg" width = 20% height = 20%> <img src="images/locationhd.jpg" width = 20% height = 20%>
 
