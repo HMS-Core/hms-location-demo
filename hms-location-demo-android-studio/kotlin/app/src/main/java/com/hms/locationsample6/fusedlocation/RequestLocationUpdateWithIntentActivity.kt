@@ -70,7 +70,7 @@ class RequestLocationUpdateWithIntentActivity : BaseActivity(), View.OnClickList
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.location_requestLocationUpdatesWithIntent -> requestLocationUpdatesWithIntent()
-            R.id.location_removeLocationUpdatesWithIntent -> removeLocatonUpdatesWithIntent()
+            R.id.location_removeLocationUpdatesWithIntent -> removeLocationUpdatesWithIntent()
 
         }
     }
@@ -111,19 +111,19 @@ class RequestLocationUpdateWithIntentActivity : BaseActivity(), View.OnClickList
         return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
-    private fun removeLocatonUpdatesWithIntent() {
+    private fun removeLocationUpdatesWithIntent() {
         GlobalScope.launch {
             try {
                 fusedLocationProviderClient.removeLocationUpdates(getPendingIntent())
                     .addOnSuccessListener {
-                        LocationLog.i(TAG, "removeLocatonUpdatesWithIntent onSuccess")
+                        LocationLog.i(TAG, "removeLocationUpdatesWithIntent onSuccess")
                     }
                     .addOnFailureListener { e ->
-                        LocationLog.i(TAG, "removeLocatonUpdatesWithIntent onFailure:" + e.message)
+                        LocationLog.i(TAG, "removeLocationUpdatesWithIntent onFailure:" + e.message)
                     }
-                LocationLog.i(TAG, "removeLocatonUpdatesWithIntent call finish")
+                LocationLog.i(TAG, "removeLocationUpdatesWithIntent call finish")
             } catch (e: java.lang.Exception) {
-                LocationLog.e(TAG, "removeLocatonUpdatesWithIntent exception:" + e.message)
+                LocationLog.e(TAG, "removeLocationUpdatesWithIntent exception:" + e.message)
             }
         }
     }
@@ -172,6 +172,6 @@ class RequestLocationUpdateWithIntentActivity : BaseActivity(), View.OnClickList
 
     override fun onDestroy() {
         super.onDestroy()
-        removeLocatonUpdatesWithIntent()
+        removeLocationUpdatesWithIntent()
     }
 }
