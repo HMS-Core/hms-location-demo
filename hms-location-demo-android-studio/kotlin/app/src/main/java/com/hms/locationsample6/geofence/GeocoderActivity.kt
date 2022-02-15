@@ -130,6 +130,9 @@ class GeocoderActivity : BaseActivity(), View.OnClickListener {
         val language = revGeoLanguage!!.text.toString()
         val country = revGeoCountry!!.text.toString()
         ExecutorUtil.getInstance().execute {
+            // Enter a proper region longitude and latitude. Otherwise, no geographic information is returned. If a
+            // non-China region is used, transfer the longitude and latitude of the non-China region and ensure that
+            // the longitude and latitude are correct.
             val getFromLocationRequest =
                 GetFromLocationRequest(lat, longi, maxResult)
             val locale = Locale(language, country)
@@ -199,6 +202,8 @@ class GeocoderActivity : BaseActivity(), View.OnClickListener {
             val locale = Locale(language, country)
             val geocoderService =
                 LocationServices.getGeocoderService(this@GeocoderActivity, locale)
+            // Enter the correct location information. Otherwise, the geographic information cannot be parsed. For a
+            // non-China region, transfer the location information of the non-China region.
             geocoderService.getFromLocationName(getFromLocationNameRequest)
                 .addOnSuccessListener(OnSuccessListener<List<HWLocation>?> { hwLocations ->
                     printGeocoderResult(
