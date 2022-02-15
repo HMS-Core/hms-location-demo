@@ -80,7 +80,7 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
     @Override
     protected void onDestroy() {
         // Removed when the location update is no longer required.
-        removeLocatonUpdatesWithIntent();
+        removeLocationUpdatesWithIntent();
         super.onDestroy();
     }
 
@@ -148,22 +148,22 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
     /**
      * Remove Location Update
      */
-    private void removeLocatonUpdatesWithIntent() {
+    private void removeLocationUpdatesWithIntent() {
         try {
             Task<Void> voidTask = mFusedLocationProviderClient.removeLocationUpdates(getPendingIntent());
             voidTask.addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    LocationLog.i(TAG, "removeLocatonUpdatesWithIntent onSuccess");
+                    LocationLog.i(TAG, "removeLocationUpdatesWithIntent onSuccess");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception e) {
-                    LocationLog.e(TAG, "removeLocatonUpdatesWithIntent onFailure:" + e.getMessage());
+                    LocationLog.e(TAG, "removeLocationUpdatesWithIntent onFailure:" + e.getMessage());
                 }
             });
         } catch (Exception e) {
-            LocationLog.e(TAG, "removeLocatonUpdatesWithIntent exception:" + e.getMessage());
+            LocationLog.e(TAG, "removeLocationUpdatesWithIntent exception:" + e.getMessage());
         }
     }
 
@@ -181,7 +181,7 @@ public class RequestLocationUpdatesWithIntentActivity extends LocationBaseActivi
                     requestLocationUpdatesWithIntent();
                     break;
                 case R.id.location_removeLocationUpdatesWithIntent:
-                    removeLocatonUpdatesWithIntent();
+                    removeLocationUpdatesWithIntent();
                     break;
                 default:
                     break;
