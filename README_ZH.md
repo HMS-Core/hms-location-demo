@@ -20,7 +20,7 @@
 ## 环境要求
 EMUI 5.0及以上的华为手机、华为平板或Android 5.1及以上的非华为手机。
 ## 结果
-<img src="hms-location-demo-android-studio/images/home.jpg" width = 20% height = 20%> <img src="hms-location-demo-android-studio/images/locationgetlast.jpg" width = 20% height = 20%> <img src="hms-location-demo-android-studio/images/locationhd.jpg" width = 20% height = 20%>
+<img src="images/home.jpg" width = 20% height = 20%> <img src="images/locationgetlast.jpg" width = 20% height = 20%> <img src="images/locationhd.jpg" width = 20% height = 20%>
 
 ## 技术支持
 如果您对HMS Core还处于评估阶段，可在[Reddit社区](https://www.reddit.com/r/HuaweiDevelopers/
