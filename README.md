@@ -20,7 +20,7 @@ The sample code is built using Gradle to demonstrate how to use the Location SDK
 ## Environment Requirements
 A Huawei phone or tablet running EMUI 5.0 or later, or a non-Huawei phone running Android 5.1 or later.
 ## Result
-<img src="hms-location-demo/images/home.jpg" width = 20% height = 20%> <img src="hms-location-demo/images/locationgetlast.jpg" width = 20% height = 20%> <img src="hms-hms-location-demo/images/locationhd.jpg" width = 20% height = 20%>
+<img src="images/home.jpg" width = 20% height = 20%> <img src="images/locationgetlast.jpg" width = 20% height = 20%> <img src="images/locationhd.jpg" width = 20% height = 20%>
 
 ## Technical Support
 You can visit the [Reddit community](https://www.reddit.com/r/HuaweiDevelopers/) to obtain the latest information about HMS Core and communicate with other developers.
