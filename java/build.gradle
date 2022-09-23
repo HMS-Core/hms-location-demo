@@ -2,9 +2,7 @@
 
 buildscript {
     repositories {
-        maven { url 'https://dgg.maven.repo.cmc.tools.huawei.com/artifactory/sz-maven-public/' }
         maven { url 'https://developer.huawei.com/repo/' }
-        maven { url 'https://cmc.centralrepo.rnd.huawei.com/artifactory/product_maven/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.0'
@@ -14,9 +12,7 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url 'https://dgg.maven.repo.cmc.tools.huawei.com/artifactory/sz-maven-public/' }
         maven { url 'https://developer.huawei.com/repo/' }
-        maven { url 'https://cmc.centralrepo.rnd.huawei.com/artifactory/product_maven/' }
     }
 }
 
