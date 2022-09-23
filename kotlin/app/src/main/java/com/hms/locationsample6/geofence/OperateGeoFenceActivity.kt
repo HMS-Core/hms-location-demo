@@ -28,6 +28,7 @@ import com.hms.locationsample6.utils.GeoFenceData
 import com.huawei.hms.location.Geofence
 import com.huawei.hms.location.GeofenceRequest
 import com.huawei.hms.location.GeofenceService
+import com.huawei.hms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_operate_geo_fence.*
 import java.util.*
 
@@ -50,7 +51,7 @@ class OperateGeoFenceActivity : BaseActivity(), View.OnClickListener {
         removeGeofence.setOnClickListener(this)
         removeWithID.setOnClickListener(this)
         removeWithIntent.setOnClickListener(this)
-        geoFenceService = GeofenceService(this)
+        geoFenceService = LocationServices.getGeofenceService(this)
         addLogFragment()
     }
 

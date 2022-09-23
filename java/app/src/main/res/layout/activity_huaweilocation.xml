@@ -87,5 +87,10 @@
             style="@style/ButtonStyle"
             android:text="WriteLog" />
 
+        <Button
+            android:id="@+id/coordinate_converter"
+            style="@style/ButtonStyle"
+            android:text="CoordinateConverter" />
+
     </LinearLayout>
 </ScrollView>

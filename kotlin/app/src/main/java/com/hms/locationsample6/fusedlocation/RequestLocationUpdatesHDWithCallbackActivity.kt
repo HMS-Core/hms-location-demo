@@ -129,6 +129,11 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                     true
                 )
                 handleData(locationRequest, jsonString)
+                // Sets the type of the returned coordinate:
+                // COORDINATE_TYPE_WGS84 Indicates that the 84 coordinate is returned.
+                // COORDINATE_TYPE_GCJ02 Indicates that the 02 coordinate is returned. The default value is COORDENATE_TYPE_WGS84.
+                // If a high-precision coordinate is returned, no conversion is performed.
+                locationRequest.coordinateType = LocationRequest.COORDINATE_TYPE_WGS84
                 if (null == mLocationHDCallback) {
                     mLocationHDCallback = object : LocationCallback() {
                         override fun onLocationResult(locationRequest: LocationResult) {
@@ -173,6 +178,10 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                     true
                 )
                 handleData(locationRequest, jsonString)
+                // Sets the type of the returned coordinate:
+                // COORDINATE_TYPE_WGS84 Indicates that the 84 coordinate is returned.
+                // COORDINATE_TYPE_GCJ02 Indicates that the 02 coordinate is returned. The default value is COORDENATE_TYPE_WGS84.
+                locationRequest.coordinateType = LocationRequest.COORDINATE_TYPE_WGS84
                 if (null == mLocationIndoorCallback) {
                     mLocationIndoorCallback = object : LocationCallback() {
                         override fun onLocationResult(locationResult: LocationResult) {
@@ -215,7 +224,6 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
         locationRequest?.let {
             Log.i(TAG, "getLocationWithHd callback  onLocationResult locationResult is not null")
             val locations = locationRequest.getLocations()
-            var hdFlag: String
             if (locations.isNotEmpty()) {
                 Log.i(TAG, "getLocationWithHd callback  onLocationResult location is not empty")
                 logLocation(locations)
@@ -229,14 +237,9 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                     if (hwLocation.countryName.isEmpty()) {
                         return
                     }
-                    hdFlag = if (hwLocation.accuracy < 2) {
-                        "result is HD"
-                    } else {
-                        ""
-                    }
                     LocationLog.i(
                         TAG,
-                        """[new]location result :Longitude = ${hwLocation.longitude}Latitude = ${hwLocation.latitude}Accuracy = ${hwLocation.accuracy}${hwLocation.countryName},${hwLocation.state},${hwLocation.city},${hwLocation.county},${hwLocation.featureName}$hdFlag""".trimIndent()
+                        """[new]location result :Longitude = ${hwLocation.longitude}Latitude = ${hwLocation.latitude}Accuracy = ${hwLocation.accuracy}${hwLocation.countryName},${hwLocation.state},${hwLocation.city},${hwLocation.county},${hwLocation.featureName}""".trimIndent()
                     )
                 }
             }
@@ -309,7 +312,6 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                 if (hdLocation is Boolean) {
                     if (hdLocation) {
                         // Parsing Indoor Location Result Information
-                        val buildingId = maps["buildingId"] as String?
                         // floor:Floor ID
                         // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact the operation personnel.)
                         val floor = maps["floor"] as Int
@@ -317,7 +319,7 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                         val floorAcc = maps["floorAcc"] as Int
                         LocationLog.i(
                             TAG,
-                            "[new]location result : \nbuildingId = $buildingId\nfloor = $floor\nfloorAcc = $floorAcc"
+                            "[new]location result : \nfloor = $floor\nfloorAcc = $floorAcc"
                         )
                     }
                 }
@@ -331,8 +333,7 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
             return
         }
         if (extraInfo.getBoolean("isHdNlpLocation", false)) {
-            // buildingId:Building ID (For details, see [Currently Supported Buildings])
-            val buildingId = extraInfo.getString("buildingId", "")
+
             // floor:Floor ID
             // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact the operation personnel.)
             val floor = extraInfo.getInt("floor", Int.MIN_VALUE)
@@ -340,15 +341,13 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
             val floorAcc = extraInfo.getInt("floorAcc", Int.MIN_VALUE)
             LocationLog.i(
                 TAG,
-                "[old]location result : \nbuildingId = $buildingId\nfloor = $floor\nfloorAcc = $floorAcc"
+                "[old]location result : \nfloor = $floor\nfloorAcc = $floorAcc"
             )
         }
     }
 
 
     private fun logLocation(locations: List<Location>?) {
-        var hdFlag = ""
-        var hdSecurity = ""
         if (locations == null || locations.isEmpty()) {
             Log.i(
                 TAG,
@@ -364,42 +363,6 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                 )
                 return
             }
-            var hdbBinary = false
-            val extraInfo = location.extras
-            var sourceType = 0
-            if (extraInfo != null && !extraInfo.isEmpty && extraInfo.containsKey("SourceType")) {
-                sourceType = extraInfo.getInt("SourceType", -1)
-                hdbBinary = getBinaryFlag(sourceType)
-            }
-            val hDSecurityType = location.extras.getInt("HDSecurityType", -1)
-            val hDEncryptType = location.extras.getInt("HDEncryptType", -1)
-            if (hdbBinary) {
-                hdFlag = "result is HD"
-                if (hDEncryptType == 1) {
-                    // Decryption algorithm SM4ECB. For details about the decryption key, contact commercial personnel XXX. For details about the access process, see related documents.
-                    val key =
-                        "XXXXXXXXXXXXXXX"
-                    val sLatitude = location.extras.getString("HDEncryptLat")
-                    val sLongitude = location.extras.getString("HDEncryptLng")
-                    val mLatitude: String? = sLatitude?.let { myDecrypt(it, key) }
-                    val mLongitude: String? = sLongitude?.let { myDecrypt(it, key) }
-                    try {
-                        location.latitude = mLatitude!!.toDouble()
-                        location.longitude = mLongitude!!.toDouble()
-                    } catch (e: java.lang.Exception) {
-                        LocationLog.i(
-                            TAG,
-                            "failed to convert the data type."
-                        )
-                    }
-                }
-            }
-            if (hDSecurityType == 0) {
-                hdSecurity = "non-biased, non-encrypted, high-precision WGS84"
-            }
-            if (hDSecurityType == 1) {
-                hdSecurity = "high precision with biased encryption GCJ02"
-            }
             LocationLog.i(
                 TAG,
                 """
@@ -407,29 +370,8 @@ class RequestLocationUpdatesHDWithCallbackActivity : BaseActivity(), View.OnClic
                     Longitude = ${location.longitude}
                     Latitude = ${location.latitude}
                     Accuracy = ${location.accuracy}
-                    SourceType = $sourceType
-                    $hdFlag
-                    $hdSecurity
                     """.trimIndent()
             )
         }
-    }
-
-    private fun myDecrypt(Latitude: String, key: String): String {
-        // For details about the decryption method, you can query the decryption method.
-        return "XXXXXXXXXXX"
-    }
-
-    private fun getBinaryFlag(sourceType: Int): Boolean {
-        var flag = false
-        if (sourceType <= 0) {
-            return false
-        }
-        val binary = Integer.toBinaryString(sourceType)
-        if (binary.length >= 4) {
-            val isbinary = binary.substring(binary.length - 4)[0].toString() + ""
-            flag = isbinary == "1"
-        }
-        return flag
     }
 }

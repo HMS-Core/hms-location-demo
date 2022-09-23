@@ -2,25 +2,21 @@
 
 buildscript {
     repositories {
+        maven { url 'https://dgg.maven.repo.cmc.tools.huawei.com/artifactory/sz-maven-public/' }
         maven { url 'https://developer.huawei.com/repo/' }
-        google()
-        //jcenter is no longer available in March 2021, service update adds mavenCentral
-        jcenter()
-        mavenCentral()
+        maven { url 'https://cmc.centralrepo.rnd.huawei.com/artifactory/product_maven/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.4'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         classpath 'com.huawei.agconnect:agcp:1.6.0.300'
     }
 }
 
 allprojects {
     repositories {
+        maven { url 'https://dgg.maven.repo.cmc.tools.huawei.com/artifactory/sz-maven-public/' }
         maven { url 'https://developer.huawei.com/repo/' }
-        google()
-        //jcenter is no longer available in March 2021, service update adds mavenCentral
-        jcenter()
-        mavenCentral()
+        maven { url 'https://cmc.centralrepo.rnd.huawei.com/artifactory/product_maven/' }
     }
 }
 

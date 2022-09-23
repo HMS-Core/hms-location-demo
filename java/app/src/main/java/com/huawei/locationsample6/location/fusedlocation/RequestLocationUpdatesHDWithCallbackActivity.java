@@ -1,18 +1,18 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6.location.fusedlocation;
 
@@ -157,6 +157,11 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 try {
                     LocationRequest locationRequest = new LocationRequest();
                     setLocationRequest(locationRequest);
+                    // Sets the type of the returned coordinate:
+                    // COORDINATE_TYPE_WGS84 Indicates that the 84 coordinate is returned.
+                    // COORDINATE_TYPE_GCJ02 Indicates that the 02 coordinate is returned. The default value is COORDENATE_TYPE_WGS84.
+                    // If a high-precision coordinate is returned, no conversion is performed.
+                    locationRequest.setCoordinateType(LocationRequest.COORDINATE_TYPE_WGS84);
                     if (null == mLocationHDCallback) {
                         mLocationHDCallback = new LocationCallback() {
                             @Override
@@ -203,6 +208,10 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 try {
                     LocationRequest locationRequest = new LocationRequest();
                     setLocationRequest(locationRequest);
+                    // Sets the type of the returned coordinate:
+                    // COORDINATE_TYPE_WGS84 Indicates that the 84 coordinate is returned.
+                    // COORDINATE_TYPE_GCJ02 Indicates that the 02 coordinate is returned. The default value is COORDENATE_TYPE_WGS84.
+                    locationRequest.setCoordinateType(LocationRequest.COORDINATE_TYPE_WGS84);
                     if (null == mLocationIndoorCallback) {
                         mLocationIndoorCallback = new LocationCallback() {
                             @Override
@@ -297,31 +306,15 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 Log.i(TAG, "getLocationWithHd callback hwLocation is empty");
                 return;
             }
-            boolean hdbBinary = false;
-            Map<String, Object> extraInfo = hwLocation.getExtraInfo();
-            int sourceType = 0;
-            if (extraInfo != null && !extraInfo.isEmpty() && extraInfo.containsKey("SourceType")) {
-                Object object = extraInfo.get("SourceType");
-                if (object instanceof Integer) {
-                    sourceType = (int) object;
-                    hdbBinary = getBinaryFlag(sourceType);
-                }
-            }
-            String hdFlag = "";
-            if (hdbBinary) {
-                hdFlag = "result is HD";
-            }
             LocationLog.i(TAG,
                 "[new]location result : " + "\n" + "Longitude = " + hwLocation.getLongitude() + "\n" + "Latitude = "
                     + hwLocation.getLatitude() + "\n" + "Accuracy = " + hwLocation.getAccuracy() + "\n"
-                    + "SourceType = " + sourceType + "\n" + hwLocation.getCountryName() + "," + hwLocation.getState()
-                    + "," + hwLocation.getCity() + "," + hwLocation.getCounty() + "," + hwLocation.getFeatureName()
-                    + "\n" + hdFlag);
+                    + hwLocation.getCountryName() + "," + hwLocation.getState() + "," + hwLocation.getCity() + ","
+                    + hwLocation.getCounty() + "," + hwLocation.getFeatureName());
         }
     }
 
     private void logLocation(List<Location> locations) {
-        String hdFlag = "";
         if (locations == null || locations.isEmpty()) {
             Log.i(TAG, "getLocationWithHd callback locations is empty");
             return;
@@ -331,43 +324,8 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 Log.i(TAG, "getLocationWithHd callback location is empty");
                 return;
             }
-            boolean hdbBinary = false;
-            Bundle extraInfo = location.getExtras();
-            int sourceType = 0;
-            if (extraInfo != null && !extraInfo.isEmpty() && extraInfo.containsKey("SourceType")) {
-                sourceType = extraInfo.getInt("SourceType", -1);
-                hdbBinary = getBinaryFlag(sourceType);
-            }
-            int hDSecurityType = location.getExtras().getInt("HDSecurityType", -1);
-            int hDEncryptType = location.getExtras().getInt("HDEncryptType", -1);
-            if (hdbBinary) {
-                hdFlag = "result is HD";
-                if (hDEncryptType == 1) {
-                    // Decryption algorithm SM4ECB
-                    String key = "XXXXXXXXXXXXXXX";
-                    String latitude = location.getExtras().getString("HDEncryptLat");
-                    String longitude = location.getExtras().getString("HDEncryptLng");
-                    String mLatitude = myDecrypt(latitude, key);
-                    String mLongitude = myDecrypt(longitude, key);
-                    try {
-                        location.setLatitude(Double.parseDouble(mLatitude));
-                        location.setLongitude(Double.parseDouble(mLongitude));
-                    } catch (Exception e) {
-                        LocationLog.i(TAG, "failed to convert the data type.");
-                    }
-                }
-            }
-            String hdSecurity = "";
-            if (hDSecurityType == 0) {
-                hdSecurity = "non-biased, non-encrypted, high-precision WGS84";
-            }
-            if (hDSecurityType == 1) {
-                hdSecurity = "high precision with biased encryption GCJ02";
-            }
-            LocationLog.i(TAG,
-                "[old]location result : " + "\n" + "Longitude = " + location.getLongitude() + "\n" + "Latitude = "
-                    + location.getLatitude() + "\n" + "Accuracy = " + location.getAccuracy() + "\n" + "SourceType = "
-                    + sourceType + "\n" + hdFlag + "\n" + hdSecurity);
+            LocationLog.i(TAG, "[old]location result : " + "\n" + "Longitude = " + location.getLongitude() + "\n"
+                + "Latitude = " + location.getLatitude() + "\n" + "Accuracy = " + location.getAccuracy());
         }
     }
 
@@ -417,8 +375,6 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                 if (object instanceof Boolean) {
                     boolean isIndoorLocation = (boolean) object;
                     if (isIndoorLocation) {
-                        // buildingId:Building ID (For details, see [Currently Supported Buildings])
-                        String buildingId = (String) maps.get("buildingId");
                         // floor:Floor ID
                         // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact
                         // the operation personnel.)
@@ -426,7 +382,7 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
                         // floorAcc:Floor confidence (value range: 0-100)
                         int floorAcc = (int) maps.get("floorAcc");
                         LocationLog.i(TAG,
-                            "[new]location result : " + System.lineSeparator() + "buildingId = " + buildingId
+                            "[new]location result : " + System.lineSeparator()
                                 + System.lineSeparator() + "floor = " + floor + System.lineSeparator() + "floorAcc = "
                                 + floorAcc);
                     }
@@ -442,35 +398,15 @@ public class RequestLocationUpdatesHDWithCallbackActivity extends LocationBaseAc
         }
         if (extraInfo.getBoolean("isHdNlpLocation", false)) {
             // Parsing Indoor Location Result Information
-            String buildingId = extraInfo.getString("buildingId", "");
             // floor:Floor ID
-            // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact the operation
-            // personnel.)
+            // (For example, 1 corresponds to F1. The mapping varies with buildings. For details, contact
+            // the operation personnel.)
             int floor = extraInfo.getInt("floor", Integer.MIN_VALUE);
             // floorAcc:Floor confidence (value range: 0-100)
             int floorAcc = extraInfo.getInt("floorAcc", Integer.MIN_VALUE);
-            LocationLog.i(TAG, "[old]location result : " + System.lineSeparator() + "buildingId = " + buildingId
+            LocationLog.i(TAG, "[old]location result : " + System.lineSeparator()
                 + System.lineSeparator() + "floor = " + floor + System.lineSeparator() + "floorAcc = " + floorAcc);
 
         }
-    }
-
-    private String myDecrypt(String Latitude, String key) {
-        // For details about the decryption method, see.
-        String decrypt = "XXXXXXXXXXX";
-        return decrypt;
-    }
-
-    private boolean getBinaryFlag(int sourceType) {
-        boolean flag = false;
-        if (sourceType <= 0) {
-            return false;
-        }
-        String binary = Integer.toBinaryString(sourceType);
-        if (binary.length() >= 4) {
-            String isbinary = binary.substring(binary.length() - 4).charAt(0) + "";
-            flag = isbinary.equals("1");
-        }
-        return flag;
     }
 }

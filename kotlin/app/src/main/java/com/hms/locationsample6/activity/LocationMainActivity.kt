@@ -254,6 +254,13 @@ class LocationMainActivity : AppCompatActivity() {
         })
     }
 
+    fun coordinateConverter(view: View) {
+        Log.d("click", "ButtonClick  {$view}")
+        startActivity(Intent(this, CoordinateConverterActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        })
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,

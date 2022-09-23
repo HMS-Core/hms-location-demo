@@ -15,14 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="requestActivityTransitionUpdate" />
+            android:text="requestActivityIdentificationUpdate" />
 
         <Button
             android:id="@+id/removeActivityTransitionUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="removeActivityTransitionUpdate" />
+            android:text="removeActivityIdentificationUpdate" />
     </LinearLayout>
 
     <LinearLayout

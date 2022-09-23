@@ -1,18 +1,18 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6.geofence;
 
@@ -31,6 +31,7 @@ import com.huawei.hmf.tasks.Task;
 import com.huawei.hms.location.Geofence;
 import com.huawei.hms.location.GeofenceRequest;
 import com.huawei.hms.location.GeofenceService;
+import com.huawei.hms.location.LocationServices;
 import com.huawei.locationsample6.R;
 import com.huawei.locationsample6.location.fusedlocation.LocationBaseActivity;
 import com.huawei.logger.LocationLog;
@@ -42,7 +43,7 @@ import java.util.List;
 public class OperateGeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
     public static final ArrayList<RequestList> REQUEST_LIST = new ArrayList<RequestList>();
 
-    public String TAG = "operateGeoFenceActivity";
+    public static final String TAG = "operateGeoFenceActivity";
 
     public GeofenceService geofenceService;
 
@@ -73,7 +74,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
         trigger = findViewById(R.id.trigger);
         geoFenceData = findViewById(R.id.GeoFenceData);
         geoRequestData = findViewById(R.id.GeoRequestData);
-        geofenceService = new GeofenceService(this);
+        geofenceService = LocationServices.getGeofenceService(this);
         addLogFragment();
     }
 
@@ -117,11 +118,11 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
     }
 
     public void requestGeoFenceWithNewIntent() {
-        if (GeoFenceData.returnList().isEmpty() == true) {
+        if (GeoFenceData.returnList().isEmpty()) {
             geoRequestData.setText("no new request to add!");
             return;
         }
-        if (checkUniqueID() == true) {
+        if (checkUniqueID()) {
             geoRequestData.setText("ID already exist,please remove and add it agagin!");
             return;
         }
@@ -234,7 +235,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
     }
 
     public void requestGeoFenceWithIntent() {
-        if (GeoFenceData.returnList().isEmpty() == true) {
+        if (GeoFenceData.returnList().isEmpty()) {
             geoRequestData.setText("no new request to add!");
             return;
         }
@@ -242,7 +243,7 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
             geoRequestData.setText("no pengdingIntent to send!");
             return;
         }
-        if (checkUniqueID() == true) {
+        if (checkUniqueID()) {
             geoRequestData.setText("ID already exist,please remove and add it agagin!");
             return;
         }
@@ -281,8 +282,9 @@ public class OperateGeoFenceActivity extends LocationBaseActivity implements Vie
 
     public boolean checkUniqueID() {
         for (int i = 0; i < REQUEST_LIST.size(); i++) {
-            if (REQUEST_LIST.get(i).checkID() == true)
+            if (REQUEST_LIST.get(i).checkID()) {
                 return true;
+            }
         }
         return false;
     }

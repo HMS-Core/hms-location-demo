@@ -1,18 +1,18 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6.geofence;
 
@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeoFenceActivity extends LocationBaseActivity implements View.OnClickListener {
-    public String TAG = "GeoFenceActivity";
+    public static final String TAG = "GeoFenceActivity";
 
     LocationCallback mLocationCallbacks;
 
@@ -251,7 +251,7 @@ class GeoFenceData {
     private static int requestCode = 0;
 
     public static void addGeofence(Data data) {
-        if (checkStyle(geofences, data.uniqueId) == false) {
+        if (!checkStyle(geofences, data.uniqueId)) {
             LocationLog.d("GeoFenceActivity", "not unique ID!");
             LocationLog.i("GeoFenceActivity", "addGeofence failed!");
             return;
@@ -270,10 +270,11 @@ class GeoFenceData {
         geofences = new ArrayList<Geofence>();
     }
 
-    public static boolean checkStyle(ArrayList<Geofence> geofences, String ID) {
+    public static boolean checkStyle(ArrayList<Geofence> geofences, String id) {
         for (int i = 0; i < geofences.size(); i++) {
-            if (geofences.get(i).getUniqueId().equals(ID))
+            if (geofences.get(i).getUniqueId().equals(id)) {
                 return false;
+            }
         }
         return true;
     }

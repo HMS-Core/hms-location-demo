@@ -1,18 +1,18 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6;
 
@@ -66,7 +66,11 @@ public class LogInfoUtil {
         public void onReceive(Context c, Intent intent) {
             boolean success = true;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                success = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false);
+                try {
+                    success = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false);
+                } catch (Exception e) {
+                    Log.i(TAG, "isException");
+                }
             }
             if (success) {
                 List<ScanResult> scanResults = wifiMgr.getScanResults();
@@ -77,7 +81,7 @@ public class LogInfoUtil {
                 WifiInfo info = wifiMgr.getConnectionInfo();
                 StringBuilder currentWifiInfo = new StringBuilder();
                 if (info != null && !TextUtils.isEmpty(info.getBSSID())) {
-                    long mac = 0;
+                    long mac = 0L;
                     if (!TextUtils.isEmpty(info.getBSSID())) {
                         mac = Long.parseLong(new BigInteger(info.getBSSID().replace(":", ""), 16).toString());
                     }
@@ -94,7 +98,7 @@ public class LogInfoUtil {
                 }
                 Log.i(TAG + "-WIFI", currentWifiInfo.toString());
                 for (ScanResult result : scanResults) {
-                    long mac = 0;
+                    long mac = 0L;
                     if (!TextUtils.isEmpty(result.BSSID)) {
                         mac = Long.parseLong(new BigInteger(result.BSSID.replace(":", ""), 16).toString());
                     }
@@ -110,16 +114,20 @@ public class LogInfoUtil {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Obtain the device from the intent.
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                // Determine whether pairing has been performed.
-                if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-                    String devicesStr = "[" + "Name: " + device.getName() + ", Address: " + device.getAddress()
-                        + ", BondState: " + device.getBondState();
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        devicesStr += ", Type: " + device.getType();
+                try{
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    // Determine whether pairing has been performed.
+                    if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+                        String devicesStr = "[" + "Name: " + device.getName() + ", Address: " + device.getAddress()
+                                + ", BondState: " + device.getBondState();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                            devicesStr += ", Type: " + device.getType();
+                        }
+                        devicesStr += "]";
+                        Log.i(TAG + "-Bluetooth", devicesStr);
                     }
-                    devicesStr += "]";
-                    Log.i(TAG + "-Bluetooth", devicesStr);
+                } catch (Exception exception) {
+                    Log.i(TAG + "-Bluetooth", "isException");
                 }
                 // Search Complete.
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {

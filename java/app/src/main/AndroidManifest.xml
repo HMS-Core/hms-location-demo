@@ -20,6 +20,7 @@
         android:name="android.permission.ACCESS_MOCK_LOCATION"
         tools:ignore="MockLocation,ProtectedPermissions" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="false"
@@ -73,6 +74,13 @@
         <activity
             android:name=".WriteLogActivity"
             android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".CoordinateConverterActivity"
+            android:configChanges="orientation|screenSize" />
+
+        <service
+            android:name="com.huawei.location.service.BackGroundService"
+            android:foregroundServiceType="location" />
 
         <receiver
             android:name=".location.fusedlocation.LocationBroadcastReceiver"

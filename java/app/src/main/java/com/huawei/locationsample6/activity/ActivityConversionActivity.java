@@ -1,18 +1,18 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6.activity;
 
@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityConversionActivity extends LocationBaseActivity implements View.OnClickListener {
-    public String TAG = "ActivityTransitionConvert";
+    public static final String TAG = "ActivityTransitionConvert";
 
     public ActivityIdentificationService activityIdentificationService;
 
@@ -50,29 +50,29 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
 
     public List<ActivityConversionInfo> transitions;
 
-    private CheckBox IN_VEHICLE_IN;
+    private CheckBox cbInVehicleIn;
 
-    private CheckBox WALKING_IN;
+    private CheckBox cbWalkingIn;
 
-    private CheckBox WALKING_OUT;
+    private CheckBox cbWalkingOut;
 
-    private CheckBox IN_VEHICLE_OUT;
+    private CheckBox cbInVehicleOut;
 
-    private CheckBox ON_BICYCLE_IN;
+    private CheckBox cbOnBicycleIn;
 
-    private CheckBox ON_BICYCLE_OUT;
+    private CheckBox cbOnBicycleOut;
 
-    private CheckBox ON_FOOT_IN;
+    private CheckBox cbOnFootIn;
 
-    private CheckBox ON_FOOT_OUT;
+    private CheckBox cbOnFootOut;
 
-    private CheckBox STILL_IN;
+    private CheckBox cbStillIn;
 
-    private CheckBox STILL_OUT;
+    private CheckBox cbStillOut;
 
-    private CheckBox RUNNING_IN;
+    private CheckBox cbRunningIn;
 
-    private CheckBox RUNNING_OUT;
+    private CheckBox cbRunningOut;
 
     private PendingIntent pendingIntent;
 
@@ -82,18 +82,18 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
         setContentView(R.layout.activity_transition);
         activityIdentificationService = ActivityIdentification.getService(this);
         RequestPermission.requestActivityTransitionPermission(this);
-        IN_VEHICLE_IN = findViewById(R.id.IN_VEHICLE_IN);
-        IN_VEHICLE_OUT = findViewById(R.id.IN_VEHICLE_OUT);
-        ON_BICYCLE_IN = findViewById(R.id.ON_BICYCLE_IN);
-        ON_BICYCLE_OUT = findViewById(R.id.ON_BICYCLE_OUT);
-        ON_FOOT_IN = findViewById(R.id.ON_FOOT_IN);
-        ON_FOOT_OUT = findViewById(R.id.ON_FOOT_OUT);
-        STILL_IN = findViewById(R.id.STILL_IN);
-        STILL_OUT = findViewById(R.id.STILL_OUT);
-        WALKING_IN = findViewById(R.id.WALKING_IN);
-        WALKING_OUT = findViewById(R.id.WALKING_OUT);
-        RUNNING_IN = findViewById(R.id.RUNNING_IN);
-        RUNNING_OUT = findViewById(R.id.RUNNING_OUT);
+        cbInVehicleIn = findViewById(R.id.IN_VEHICLE_IN);
+        cbInVehicleOut = findViewById(R.id.IN_VEHICLE_OUT);
+        cbOnBicycleIn = findViewById(R.id.ON_BICYCLE_IN);
+        cbOnBicycleOut = findViewById(R.id.ON_BICYCLE_OUT);
+        cbOnFootIn = findViewById(R.id.ON_FOOT_IN);
+        cbOnFootOut = findViewById(R.id.ON_FOOT_OUT);
+        cbStillIn = findViewById(R.id.STILL_IN);
+        cbStillOut = findViewById(R.id.STILL_OUT);
+        cbWalkingIn = findViewById(R.id.WALKING_IN);
+        cbWalkingOut = findViewById(R.id.WALKING_OUT);
+        cbRunningIn = findViewById(R.id.RUNNING_IN);
+        cbRunningOut = findViewById(R.id.RUNNING_OUT);
         findViewById(R.id.btnSubmit).setOnClickListener(this);
         findViewById(R.id.btnMove).setOnClickListener(this);
         addLogFragment();
@@ -103,30 +103,42 @@ public class ActivityConversionActivity extends LocationBaseActivity implements 
         transitions = new ArrayList<ActivityConversionInfo>();
         ActivityConversionInfo.Builder activityTransition = new ActivityConversionInfo.Builder();
         RequestValueResut requestValueResut = new RequestValueResut();
-        if (IN_VEHICLE_IN.isChecked())
+        if (cbInVehicleIn.isChecked()) {
             requestValueResut.addList(100, 0);
-        if (IN_VEHICLE_OUT.isChecked())
+        }
+        if (cbInVehicleOut.isChecked()) {
             requestValueResut.addList(100, 1);
-        if (ON_BICYCLE_IN.isChecked())
+        }
+        if (cbOnBicycleIn.isChecked()) {
             requestValueResut.addList(101, 0);
-        if (ON_BICYCLE_OUT.isChecked())
+        }
+        if (cbOnBicycleOut.isChecked()) {
             requestValueResut.addList(101, 1);
-        if (ON_FOOT_IN.isChecked())
+        }
+        if (cbOnFootIn.isChecked()) {
             requestValueResut.addList(102, 0);
-        if (ON_FOOT_OUT.isChecked())
+        }
+        if (cbOnFootOut.isChecked()) {
             requestValueResut.addList(102, 1);
-        if (STILL_IN.isChecked())
+        }
+        if (cbStillIn.isChecked()) {
             requestValueResut.addList(103, 0);
-        if (STILL_OUT.isChecked())
+        }
+        if (cbStillOut.isChecked()) {
             requestValueResut.addList(103, 1);
-        if (WALKING_IN.isChecked())
+        }
+        if (cbWalkingIn.isChecked()) {
             requestValueResut.addList(107, 0);
-        if (WALKING_OUT.isChecked())
+        }
+        if (cbWalkingOut.isChecked()) {
             requestValueResut.addList(107, 1);
-        if (RUNNING_IN.isChecked())
+        }
+        if (cbRunningIn.isChecked()) {
             requestValueResut.addList(108, 0);
-        if (RUNNING_OUT.isChecked())
+        }
+        if (cbRunningOut.isChecked()) {
             requestValueResut.addList(108, 1);
+        }
         ArrayList<RequestValue> result = requestValueResut.result;
         for (int i = 0; i < result.size(); i++) {
             RequestValue temp = result.get(i);

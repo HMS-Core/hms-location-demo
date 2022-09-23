@@ -17,7 +17,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
     defaultConfig {
-        applicationId "com.huawei.locationsample6"
+        applicationId "com.huawei.Locationsample6"
         minSdkVersion 19
         targetSdkVersion 31
         versionCode 1
@@ -62,6 +62,6 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.huawei.hms:location:6.4.0.300'
+    implementation 'com.huawei.hms:location:6.7.0.300'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }

@@ -116,6 +116,12 @@
             style="@style/ButtonStyle"
             android:onClick="geocoder"
             android:text="geocoder" />
+
+        <Button
+            android:id="@+id/coordinate_converter"
+            style="@style/ButtonStyle"
+            android:onClick="coordinateConverter"
+            android:text="CoordinateConverter" />
     </LinearLayout>
 
 

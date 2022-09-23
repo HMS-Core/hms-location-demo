@@ -39,6 +39,7 @@
                 style="@style/ButtonStyle"
                 android:text="@string/hwlocation_removeLocationUpdatesWithCallback"/>
 
+            <include layout="@layout/item_background_location" />
 
             <FrameLayout
                 android:id="@+id/framelog"

@@ -12,7 +12,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.huawei.locationsample6"
+        applicationId "com.huawei.Locationsample6"
         minSdkVersion 19
         targetSdkVersion 31
         versionCode 1
@@ -71,7 +71,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
     testImplementation 'junit:junit:4.12'
-    implementation 'com.huawei.hms:location:6.4.0.300'
+    implementation 'com.huawei.hms:location:6.7.0.300'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
 }

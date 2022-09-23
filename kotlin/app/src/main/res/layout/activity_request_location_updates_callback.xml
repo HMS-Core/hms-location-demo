@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:text="removeLocationUpdates with callback"/>
 
+            <include layout="@layout/item_background_location" />
 
             <ImageView
                 android:layout_width="match_parent"

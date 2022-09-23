@@ -28,9 +28,11 @@ import androidx.core.app.ActivityCompat.requestPermissions
 import com.hms.locationsample6.R
 import com.hms.locationsample6.activity.BaseActivity
 import com.hms.locationsample6.logger.LocationLog
+import com.hms.locationsample6.utils.NotificationUtil
 import com.huawei.hmf.tasks.Task
 import com.huawei.hms.location.*
 import kotlinx.android.synthetic.main.activity_request_location_updates_callback.*
+import kotlinx.android.synthetic.main.item_background_location.*
 
 class RequestLocationUpdatesWithCallbackActivity : BaseActivity(), View.OnClickListener {
     companion object {
@@ -51,6 +53,8 @@ class RequestLocationUpdatesWithCallbackActivity : BaseActivity(), View.OnClickL
         setContentView(R.layout.activity_request_location_updates_callback)
         location_requestLocationUpdatesWithCallback.setOnClickListener(this)
         location_removeLocationUpdatesWithCallback.setOnClickListener(this)
+        location_enableBackgroundLocation.setOnClickListener(this)
+        location_disableBackgroundLocation.setOnClickListener(this)
         addLogFragment()
         // create fusedLocationProviderClient
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -60,6 +64,10 @@ class RequestLocationUpdatesWithCallbackActivity : BaseActivity(), View.OnClickL
             interval = 1000
             needAddress = true
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            // Sets the type of the returned coordinate:
+            // COORDINATE_TYPE_WGS84 Indicates that the 84 coordinate is returned.
+            // COORDINATE_TYPE_GCJ02 Indicates that the 02 coordinate is returned. The default value is COORDENATE_TYPE_WGS84.
+            coordinateType = LocationRequest.COORDINATE_TYPE_WGS84
         }
         // Set the interval for location updates, in milliseconds.
         // set the priority of the request
@@ -173,6 +181,7 @@ class RequestLocationUpdatesWithCallbackActivity : BaseActivity(), View.OnClickL
     override fun onDestroy() {
         // don't need to receive callback
         removeLocationUpdatesWithCallback()
+        disableBackgroundLocation()
         super.onDestroy()
     }
 
@@ -202,12 +211,49 @@ class RequestLocationUpdatesWithCallbackActivity : BaseActivity(), View.OnClickL
         }
     }
 
+    private fun enableBackgroundLocation() {
+        fusedLocationProviderClient
+            .enableBackgroundLocation(
+                NotificationUtil.NOTIFICATION_ID,
+                NotificationUtil.getNotification(this)
+            )
+            .addOnSuccessListener {
+                LocationLog.i(
+                    TAG,
+                    "enableBackgroundLocation onSuccess"
+                )
+            }
+            .addOnFailureListener { e ->
+                LocationLog.e(
+                    TAG,
+                    "enableBackgroundLocation onFailure:${e.message}"
+                )
+            }
+    }
+
+    private fun disableBackgroundLocation() {
+        fusedLocationProviderClient.disableBackgroundLocation()
+            .addOnSuccessListener {
+                LocationLog.i(
+                    TAG,
+                    "disableBackgroundLocation onSuccess"
+                )
+            }
+            .addOnFailureListener { e ->
+                LocationLog.e(
+                    TAG,
+                    "disableBackgroundLocation onFailure:${e.message}"
+                )
+            }
+    }
+
     override fun onClick(v: View) {
         try {
             when (v.id) {
                 R.id.location_requestLocationUpdatesWithCallback -> requestLocationUpdatesWithCallback()
                 R.id.location_removeLocationUpdatesWithCallback -> removeLocationUpdatesWithCallback()
-
+                R.id.location_enableBackgroundLocation -> enableBackgroundLocation()
+                R.id.location_disableBackgroundLocation -> disableBackgroundLocation()
             }
         } catch (e: Exception) {
             Log.e(

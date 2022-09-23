@@ -1,18 +1,18 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6.location.fusedlocation;
 
@@ -59,7 +59,7 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
                 StringBuffer buf = new StringBuffer();
                 ActivityConversionResponse activityTransitionResult =
                     ActivityConversionResponse.getDataFromIntent(intent);
-                if (activityTransitionResult != null && isListenActivityConversion == true) {
+                if (activityTransitionResult != null && isListenActivityConversion) {
                     List<ActivityConversionData> list = activityTransitionResult.getActivityConversionDatas();
                     for (int i = 0; i < list.size(); i++) {
                         Log.i(TAG, "activityTransitionEvent[" + i + "]" + list.get(i));
@@ -71,7 +71,7 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
 
                 ActivityIdentificationResponse activityRecognitionResult =
                     ActivityIdentificationResponse.getDataFromIntent(intent);
-                if (activityRecognitionResult != null && isListenActivityIdentification == true) {
+                if (activityRecognitionResult != null && isListenActivityIdentification) {
                     LocationLog.i(TAG, "activityRecognitionResult:" + activityRecognitionResult);
                     List<ActivityIdentificationData> list = activityRecognitionResult.getActivityIdentificationDatas();
                     ActivityIdentificationActivity.setData(list);

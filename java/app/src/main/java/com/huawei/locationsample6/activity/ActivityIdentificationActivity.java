@@ -1,18 +1,18 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6.activity;
 
@@ -58,29 +58,29 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
     private static LinearLayout.LayoutParams type8;
 
     @SuppressLint("StaticFieldLeak")
-    private static LinearLayout activityIN_VEHICLE;
+    private static LinearLayout activityInVehicle;
 
     @SuppressLint("StaticFieldLeak")
-    private static LinearLayout activityON_BICYCLE;
+    private static LinearLayout activityOnBicycle;
 
     @SuppressLint("StaticFieldLeak")
-    private static LinearLayout activityON_FOOT;
+    private static LinearLayout activityOnFoot;
 
     @SuppressLint("StaticFieldLeak")
-    private static LinearLayout activitySTILL;
+    private static LinearLayout activityStill;
 
     @SuppressLint("StaticFieldLeak")
-    private static LinearLayout activityUNKNOWN;
+    private static LinearLayout activityUnknown;
 
     @SuppressLint("StaticFieldLeak")
-    private static LinearLayout activityWALKING;
+    private static LinearLayout activityWalking;
 
     @SuppressLint("StaticFieldLeak")
     private static LinearLayout activityRunning;
 
     public ActivityIdentificationService activityIdentificationService;
 
-    public String TAG = "ActivityTransitionUpdate";
+    public static final String TAG = "ActivityTransitionUpdate";
 
     private PendingIntent pendingIntent;
 
@@ -92,29 +92,29 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
         RequestPermission.requestActivityTransitionPermission(this);
         findViewById(R.id.requestActivityTransitionUpdate).setOnClickListener(this);
         findViewById(R.id.removeActivityTransitionUpdate).setOnClickListener(this);
-        activityIN_VEHICLE = findViewById(R.id.activity_in_vehicle);
-        if (activityIN_VEHICLE.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-            type0 = (LinearLayout.LayoutParams) activityIN_VEHICLE.getLayoutParams();
+        activityInVehicle = findViewById(R.id.activity_in_vehicle);
+        if (activityInVehicle.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type0 = (LinearLayout.LayoutParams) activityInVehicle.getLayoutParams();
         }
-        activityON_BICYCLE = findViewById(R.id.activity_on_bicycle);
-        if (activityON_BICYCLE.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-            type1 = (LinearLayout.LayoutParams) activityON_BICYCLE.getLayoutParams();
+        activityOnBicycle = findViewById(R.id.activity_on_bicycle);
+        if (activityOnBicycle.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type1 = (LinearLayout.LayoutParams) activityOnBicycle.getLayoutParams();
         }
-        activityON_FOOT = findViewById(R.id.activity_on_foot);
-        if (activityON_FOOT.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-            type2 = (LinearLayout.LayoutParams) activityON_FOOT.getLayoutParams();
+        activityOnFoot = findViewById(R.id.activity_on_foot);
+        if (activityOnFoot.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type2 = (LinearLayout.LayoutParams) activityOnFoot.getLayoutParams();
         }
-        activitySTILL = findViewById(R.id.activity_still);
-        if (activitySTILL.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-            type3 = (LinearLayout.LayoutParams) activitySTILL.getLayoutParams();
+        activityStill = findViewById(R.id.activity_still);
+        if (activityStill.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type3 = (LinearLayout.LayoutParams) activityStill.getLayoutParams();
         }
-        activityUNKNOWN = findViewById(R.id.activity_unknown);
-        if (activityUNKNOWN.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-            type4 = (LinearLayout.LayoutParams) activityUNKNOWN.getLayoutParams();
+        activityUnknown = findViewById(R.id.activity_unknown);
+        if (activityUnknown.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type4 = (LinearLayout.LayoutParams) activityUnknown.getLayoutParams();
         }
-        activityWALKING = findViewById(R.id.activity_walking);
-        if (activityWALKING.getLayoutParams() instanceof LinearLayout.LayoutParams) {
-            type7 = (LinearLayout.LayoutParams) activityWALKING.getLayoutParams();
+        activityWalking = findViewById(R.id.activity_walking);
+        if (activityWalking.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            type7 = (LinearLayout.LayoutParams) activityWalking.getLayoutParams();
         }
         activityRunning = findViewById(R.id.activity_running);
         if (activityRunning.getLayoutParams() instanceof LinearLayout.LayoutParams) {
@@ -221,27 +221,27 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
                 switch (type) {
                     case ActivityIdentificationData.VEHICLE:
                         type0.width = type0.width + value * ENLARGE;
-                        activityIN_VEHICLE.setLayoutParams(type0);
+                        activityInVehicle.setLayoutParams(type0);
                         break;
                     case ActivityIdentificationData.BIKE:
                         type1.width = type1.width + value * ENLARGE;
-                        activityON_BICYCLE.setLayoutParams(type1);
+                        activityOnBicycle.setLayoutParams(type1);
                         break;
                     case ActivityIdentificationData.FOOT:
                         type2.width = type2.width + value * ENLARGE;
-                        activityON_FOOT.setLayoutParams(type2);
+                        activityOnFoot.setLayoutParams(type2);
                         break;
                     case ActivityIdentificationData.STILL:
                         type3.width = type3.width + value * ENLARGE;
-                        activitySTILL.setLayoutParams(type3);
+                        activityStill.setLayoutParams(type3);
                         break;
                     case ActivityIdentificationData.OTHERS:
                         type4.width = type4.width + value * ENLARGE;
-                        activityUNKNOWN.setLayoutParams(type4);
+                        activityUnknown.setLayoutParams(type4);
                         break;
                     case ActivityIdentificationData.WALKING:
                         type7.width = type7.width + value * ENLARGE;
-                        activityWALKING.setLayoutParams(type7);
+                        activityWalking.setLayoutParams(type7);
                         break;
                     case ActivityIdentificationData.RUNNING:
                         type8.width = type8.width + value * ENLARGE;
@@ -260,17 +260,17 @@ public class ActivityIdentificationActivity extends LocationBaseActivity impleme
 
     public static void reSet() {
         type0.width = PROGRESS_BAR_ORIGIN_WIDTH;
-        activityIN_VEHICLE.setLayoutParams(type0);
+        activityInVehicle.setLayoutParams(type0);
         type1.width = PROGRESS_BAR_ORIGIN_WIDTH;
-        activityON_BICYCLE.setLayoutParams(type1);
+        activityOnBicycle.setLayoutParams(type1);
         type2.width = PROGRESS_BAR_ORIGIN_WIDTH;
-        activityON_FOOT.setLayoutParams(type2);
+        activityOnFoot.setLayoutParams(type2);
         type3.width = PROGRESS_BAR_ORIGIN_WIDTH;
-        activitySTILL.setLayoutParams(type3);
+        activityStill.setLayoutParams(type3);
         type4.width = PROGRESS_BAR_ORIGIN_WIDTH;
-        activityUNKNOWN.setLayoutParams(type4);
+        activityUnknown.setLayoutParams(type4);
         type7.width = PROGRESS_BAR_ORIGIN_WIDTH;
-        activityWALKING.setLayoutParams(type7);
+        activityWalking.setLayoutParams(type7);
         type8.width = PROGRESS_BAR_ORIGIN_WIDTH;
         activityRunning.setLayoutParams(type8);
     }

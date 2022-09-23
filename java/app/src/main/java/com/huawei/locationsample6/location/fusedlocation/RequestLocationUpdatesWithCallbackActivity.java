@@ -1,20 +1,22 @@
 /*
-*       Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-*/
+ * Copyright (c) Huawei Technologies Co., Ltd. 2021-2021. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.huawei.locationsample6.location.fusedlocation;
+
+import java.util.List;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -37,9 +39,8 @@ import com.huawei.hms.location.LocationSettingsResponse;
 import com.huawei.hms.location.SettingsClient;
 import com.huawei.locationsample6.LogInfoUtil;
 import com.huawei.locationsample6.R;
+import com.huawei.locationsample6.util.NotificationUtil;
 import com.huawei.logger.LocationLog;
-
-import java.util.List;
 
 /**
  * Example of Using requestLocationUpdates and removeLocationUpdates.
@@ -68,6 +69,8 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
         // Button click listeners
         findViewById(R.id.location_requestLocationUpdatesWithCallback).setOnClickListener(this);
         findViewById(R.id.location_removeLocationUpdatesWithCallback).setOnClickListener(this);
+        findViewById(R.id.location_enableBackgroundLocation).setOnClickListener(this);
+        findViewById(R.id.location_disableBackgroundLocation).setOnClickListener(this);
         addLogFragment();
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         mSettingsClient = LocationServices.getSettingsClient(this);
@@ -76,6 +79,10 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
         mLocationRequest.setInterval(5000);
         // Sets the priority
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        // Sets the type of the returned coordinate:
+        // COORDINATE_TYPE_WGS84 Indicates that the 84 coordinate is returned.
+        // COORDINATE_TYPE_GCJ02 Indicates that the 02 coordinate is returned. The default value is COORDENATE_TYPE_WGS84.
+        mLocationRequest.setCoordinateType(LocationRequest.COORDINATE_TYPE_WGS84);
         if (null == mLocationCallback) {
             mLocationCallback = new LocationCallback() {
                 @Override
@@ -136,6 +143,7 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
     protected void onDestroy() {
         // Removed when the location update is no longer required.
         removeLocationUpdatesWithCallback();
+        disableBackgroundLocation();
         super.onDestroy();
     }
 
@@ -161,6 +169,39 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
         }
     }
 
+    private void enableBackgroundLocation() {
+        mFusedLocationProviderClient
+                .enableBackgroundLocation(NotificationUtil.NOTIFICATION_ID, NotificationUtil.getNotification(this))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        LocationLog.i(TAG, "enableBackgroundLocation onSuccess");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        LocationLog.e(TAG, "enableBackgroundLocation onFailure:" + e.getMessage());
+                    }
+                });
+    }
+
+    private void disableBackgroundLocation() {
+        mFusedLocationProviderClient.disableBackgroundLocation()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        LocationLog.i(TAG, "disableBackgroundLocation onSuccess");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        LocationLog.e(TAG, "disableBackgroundLocation onFailure:" + e.getMessage());
+                    }
+                });
+    }
+
     @Override
     public void onClick(View v) {
         try {
@@ -170,6 +211,12 @@ public class RequestLocationUpdatesWithCallbackActivity extends LocationBaseActi
                     break;
                 case R.id.location_removeLocationUpdatesWithCallback:
                     removeLocationUpdatesWithCallback();
+                    break;
+                case R.id.location_enableBackgroundLocation:
+                    enableBackgroundLocation();
+                    break;
+                case R.id.location_disableBackgroundLocation:
+                    disableBackgroundLocation();
                     break;
                 default:
                     break;
