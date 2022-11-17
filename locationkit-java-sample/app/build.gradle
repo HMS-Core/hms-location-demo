@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.huawei.agconnect'
+android {
+    signingConfigs {
+        release {
+            storeFile file('../android.keystore')
+            keyAlias 'android.keystore'
+            keyPassword 'android'
+            storePassword 'android'
+            v2SigningEnabled true
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    //noinspection GradleCompatible
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+    defaultConfig {
+        applicationId "com.huawei.Locationsample6"
+        minSdkVersion 22
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            // Enable obfuscation
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            debuggable true
+            packagingOptions {
+                // CPU architecture: ARMv7 ARMv8.
+                doNotStrip "*/arm64-v8a/libucs-credential.so"
+                doNotStrip "*/armeabi-v7a/libucs-credential.so"
+                // CPU architecture： x86 x86_64.
+                doNotStrip "*/x86/libucs-credential.so"
+                doNotStrip "*/x86_64/libucs-credential.so"
+            }
+        }
+        debug {
+            debuggable true
+            packagingOptions {
+                // CPU architecture: ARMv7 ARMv8.
+                doNotStrip "*/arm64-v8a/libucs-credential.so"
+                doNotStrip "*/armeabi-v7a/libucs-credential.so"
+                //CPU architecture： x86 x86_64.
+                doNotStrip "*/x86/libucs-credential.so"
+                doNotStrip "*/x86_64/libucs-credential.so"
+            }
+        }
+    }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.huawei.hms:location:6.8.0.300'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+}

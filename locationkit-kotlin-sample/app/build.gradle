@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.huawei.agconnect'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+    //noinspection GradleCompatible
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.huawei.Locationsample6"
+        minSdkVersion 22
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    signingConfigs {
+        config {
+            storeFile file('../android.keystore')
+            keyAlias 'android.keystore'
+            keyPassword 'android'
+            storePassword 'android'
+            v2SigningEnabled true
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.config
+            // Enable obfuscation
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+            packagingOptions {
+                // CPU architecture: ARMv7 ARMv8.
+                doNotStrip "*/arm64-v8a/libucs-credential.so"
+                doNotStrip "*/armeabi-v7a/libucs-credential.so"
+                //CPU architecture： x86 x86_64.
+                doNotStrip "*/x86/libucs-credential.so"
+                doNotStrip "*/x86_64/libucs-credential.so"
+            }
+        }
+        debug {
+            debuggable true
+            packagingOptions {
+                // CPU architecture: ARMv7 ARMv8.
+                doNotStrip "*/arm64-v8a/libucs-credential.so"
+                doNotStrip "*/armeabi-v7a/libucs-credential.so"
+                //CPU architecture： x86 x86_64.
+                doNotStrip "*/x86/libucs-credential.so"
+                doNotStrip "*/x86_64/libucs-credential.so"
+            }
+        }
+    }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.huawei.hms:location:6.8.0.300'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
+}
