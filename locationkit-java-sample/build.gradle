@@ -3,7 +3,7 @@
 buildscript {
     repositories {
         maven { url 'https://developer.huawei.com/repo/' }
-		google()
+	google()
         jcenter()
         mavenCentral()
     }
@@ -16,7 +16,7 @@ buildscript {
 allprojects {
     repositories {
         maven { url 'https://developer.huawei.com/repo/' }
-		google()
+	google()
         jcenter()
         mavenCentral()
     }
