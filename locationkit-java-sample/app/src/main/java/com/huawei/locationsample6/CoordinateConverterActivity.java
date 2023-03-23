@@ -14,7 +14,7 @@ import com.huawei.locationsample6.location.fusedlocation.LocationBaseActivity;
 import com.huawei.locationsample6.util.CoordinateConverterUtil;
 
 /**
- * 功能描述 坐标转换测试
+ * CoordinateConverterActivity
  *
  * @since 2022-08-22
  */

@@ -8,7 +8,7 @@ import com.huawei.hms.location.LocationUtils;
 import com.huawei.hms.support.api.entity.location.coordinate.LonLat;
 
 /**
- * 功能描述 Coordinate conversion
+ * CoordinateConverterUtil
  *
  * @since 2020-08-22
  */

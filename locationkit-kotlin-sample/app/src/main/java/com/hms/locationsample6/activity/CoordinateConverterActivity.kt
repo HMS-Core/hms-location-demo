@@ -12,7 +12,7 @@ import com.hms.locationsample6.R
 import com.hms.locationsample6.utils.CoordinateConverterUtil.change
 
 /**
- * 功能描述 坐标转换测试
+ * CoordinateConverterActivity
  *
  * @since 2022-08-22
  */
