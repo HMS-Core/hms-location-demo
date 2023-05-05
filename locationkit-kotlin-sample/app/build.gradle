@@ -26,10 +26,10 @@ android {
     }
     signingConfigs {
         config {
-            storeFile file('../android.keystore')
-            keyAlias 'android.keystore'
-            keyPassword 'android'
-            storePassword 'android'
+            storeFile file('../XXXXXX')
+            keyAlias 'alias'
+            keyPassword '******'
+            storePassword '******'
             v2SigningEnabled true
         }
     }
@@ -50,6 +50,7 @@ android {
             }
         }
         debug {
+            signingConfig signingConfigs.config
             debuggable true
             packagingOptions {
                 // CPU architecture: ARMv7 ARMv8.
